@@ -1,10 +1,10 @@
-pdf: example.pdf
+pdf: paper.pdf
 
-example.pdf: example.tex bibliography.bib
+paper.pdf: paper.tex bibliography.bib
 	pdflatex $<
-	bibtex example.aux
+	bibtex paper.aux
 	pdflatex $<
 	pdflatex $<
 
 clean:
-	rm -vf *.aux *.log *.blg *.bbl example.pdf
+	rm -vf *.aux *.log *.blg *.bbl paper.pdf
