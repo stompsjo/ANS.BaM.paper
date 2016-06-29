@@ -1,16 +1,16 @@
 \documentclass{anstrans}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{An Improved ANS Transaction Template}
-\author{Seth R.~Johnson,$^{*}$ Abraham Lincoln$^{\dagger}$}
+\title{Evidence of the necissity of isotopic precise calculation in fuel cycle
+calculation}
+\author{Baptiste Mouginot$^{*}$ Paul, P.H. Wilson$^{*}$}
 
 \institute{
-$^{*}$Radiation Transport Group, Oak Ridge National Laboratory, P.O.\ Box 2008,
-Oak Ridge, TN
+$^{*}$University of Wisconsin-Madison, WI
 \and
-$^{\dagger}$State Capitol Building, Springfield, IL
+%$^{\dagger}$State Capitol Building, Springfield, IL
 }
 
-\email{sethrj@umich.edu \and honestabe@example.com}
+\email{mouginot@wisc.edu \and paul.wilson@wisc.edu}
 
 % Optional disclaimer: remove this command to hide
 \disclaimer{Notice: this manuscript is a work of fiction. Any resemblance to
@@ -29,138 +29,120 @@ actual articles, living or dead, is purely coincidental.}
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction}
-Microsoft Word can be a finicky beastie. \LaTeX\ abstracts content from
-formatting, allowing the user to let a style file such as this take care of
-uppercasing the section headings, spacing the paragraphs, and shuffle around
-the figures.
+\section{Introduction} 
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-culpa qui officia deserunt mollit anim id est laborum.
+This work is part of the evaluation study of the transition analysis
+\cite{Bo-fengpaper?} identify as the ``Evaluation Group 29'' or ``EG29'', in the
+recently-published Evaluation and Screening (E\&S) \cite{ES}.  The EG29 fuel
+cycle corresponds to a double strata fleet. The first stratum is composed by
+sodium-cooled fast reactor (SFRs) multi-recycling the plutonium. The surplus
+amounts of plutonium is send to the second stratum composed of pressurized water
+reactor with full mixed oxide (U/Pu)O$_{2}$ cores (MOX-PWRs).  The PWR stratum
+is also multi recycling its plutonium. The target energy generation ratio for
+the final EG29 system is 70:30 (SFR:PWR), with a 1\% annual growth in nuclear
+energy demand.
 
-The \SN\ equations were developed by Carlson \cite{Car1953}. Another
-paper is cited here \cite{Lar2008}.
+The purpose of this study is to enlighten the importance of the isotopic
+composition for the plutonium, on PWR MOX fuel fabrication and the effect of its
+evolution. Two main effect can modify the isotopic composition of the plutonium
+used to build the PWR-MOX fuel: decay and depletion.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Theory}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur faucibus
-erat sed nisi aliquet molestie. Etiam malesuada, sapien at lobortis lacinia,
-justo ante volutpat nunc, gravida commodo justo purus ut quam. Proin tincidunt
-sem quis dui condimentum rhoncus. Nulla ut libero est, ut sollicitudin ligula.
-Curabitur quam orci, aliquet dignissim feugiat eu, porta ac leo. Aenean in
-ipsum arcu. Duis tempus porttitor turpis, eu volutpat odio fringilla sit amet.
-Donec malesuada, arcu id porttitor mattis, arcu est molestie arcu, quis
-dignissim tellus justo nec sapien. Praesent pretium interdum odio ac varius.
-Suspendisse dui mauris, posuere in varius a, semper id dui. Suspendisse
-placerat, quam quis luctus aliquam, metus justo hendrerit massa, vel tempus
-ligula sem et purus.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur faucibus
-erat sed nisi aliquet molestie.
+\section{Study description}
+This works compares the plutonium amount require to build the fresh MOX fuel
+using 3 different fabrication modeling: ``fixed mixing ratio'', ``plutonium
+equivalent theory'', ``Neural network \cite{CLASS_MLP}'', considering or not
+decay, and using recipe reactor or recalculation the depletion for each loaded
+fuel.
 
-Equations look exceedingly pretty. Here is a 3-D, monoenergetic, steady-state
-transport equation with isotropic scattering and an isotropic extraneous source:
-\begin{subequations} \label{eqs:fullTransport}
-\begin{multline} \label{eq:fullTransportVol}
-  \vec{\Omega}\vd \grad \psi(\vec{x}, \vec{\Omega})
-  + \sigma(\vec{x}) \psi (\vec{x}, \vec{\Omega})
-\\ =
-  \frac{\sigma_s(\vec{x})}{4\pi} \int_{4\pi} \psi(\vec{x},\vec{\Omega}')
-  \ud\Omega' + \frac{q(\vec{x})}{4\pi}
-  \equiv \frac{1}{4\pi} Q(\vec{x}) \,,
-\end{multline}
-inside $\vec{x} \in V$, $\vec{\Omega} \in 4\pi$, with an incident boundary
-condition
-\begin{equation} \label{eq:fullTransportBndy}
-  \psi(\vec{x}, \vec{\Omega}) = \psi^b(\vec{x}, \vec{\Omega}) \,,
- \quad \vec{x} \in \partial V, \ \vec{\Omega} \vd \vec{n} < 0\,.
-\end{equation}
-\end{subequations}
+The first part of the study in focused on the effect of the decay on the
+isotopic composition of the reprocessed plutonium and its implication of fuel
+fabrication depending on the fabrication modeling.
+The second part of the study, compares 2 recipes compositions versus recalculated
+depletion using the neural network fuel fabrication modeling. 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Results and Analysis}
-The results were interesting, so interesting in fact that we have decided to
-present them here.
+\subsection{Cycle}
+The cycle used for the following study is a very simple cycle implying a single
+PWR reactor using MOX fuel. After irradiation the uranium and the plutonium are
+separated and re-processed to fuel the next batch of MOX fuel for the PWR.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Subsection Goes Here}
-The user must manually capitalize initial letters of a subsection heading.
+A stream of ``good'' quality plutonium coming from an hypothetical irradiated
+SFR blanket is represented by a storage. The impact of the decay on this storage
+is limited, as the content in $^{241}$Pu is almost negligible.  In order to
+build the first batch of fuel, an initial storage has also been set.  In order
+to limit the effect of decay of this storage the initial inventory have been
+tuned to be as small as possible (preventing any unnecessary plutonium pilling
+up).
 
-For those who like equations in their papers, \LaTeX\ is a good choice. Here is
-an equation for the Marshak diffusion boundary condition:
-\begin{equation} \label{eq:marshak}
-  4 J^- = \phi + 2 D \vec{n} \vd \grad \phi \,.
-\end{equation}
-If we so choose, we can effortlessly reference the equation later.
+\subsection{Fabrication model}
+Three different way to model the fuel fabrication have been used: ``fix mixing
+ratio'', ``Pu-equivalent`` and ''Neural Network``.
+The fix mixing ratio used pre-set ratio for the different stream mixing. The
+''Pu-equivalent`` model try to fix the best mixing ratio allowing to reproduce
+the initial reactivity of the requested MOX fuel. As the requested fuel
+composition correspond to the fuel composition built with the ''fix mixing
+ratio`` model, the results of those 2 models are expected to be close.
+The last model use a different approach to mix the different stream: the
+$<k_{infty}>$, the mean infinity neutronic multiplication factor, have to reach
+a threshold at the end of the irradiation ($50~$GWd/t in this study). The
+$<k_{infty}>$ used in this study is 1.034 \cite{???}. The Neural Network in this
+model have been pre-trained on several different depletion calculation,
+allowing it to predict the correct plutonium enrichment required.
 
-Another paragraph starts with Eq.~\eqref{eq:marshak} and sets $J^-$ to zero, a
-vacuum boundary condition:
-\begin{equation*}
-  0 = \phi + \frac{2}{3} \frac{1}{\sigma} \vec{n} \vd \grad \phi \,.
-\end{equation*}
-The extrapolation distance is $2/3$. A more detailed asymptotic analysis yields
-an extrapolation distance of about $0.71045$.
+Because of all those model have not necessary been tuned on exactly the same
+PWR configuration and parameter, only the behavior differences between the
+different calculations should be analysed..
 
-Figure~\ref{fig:voltage} shows how a plot might conceivably look in your
-document. Always place figures after they are referenced so as not to throw
-off the reader. You can use symbols and different line styles to help
-differentiate your results, especially if they are printed in black and white.
-Note how Fig.~\ref{fig:voltage} uses dashed lines \verb|--| for the exact
-solution, solid lines \verb|-| for the new method's solutions, and dotted lines
-\verb|:| for existing inaccurate methods.
-\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
-  \centering
-  \includegraphics{example_figure}
-  \caption{Captions are flush with the left.}
-  \label{fig:voltage}
-\end{figure}
-
-Later on, we can include a table, even one that spans two columns such as
-Table~\ref{tab:widetable}.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{table*}[htb]
-  \centering
-\begin{tabular}{llllllllll}\toprule
-      & $\phi_T(0)$      & $\phi_T(10)$      & $\phi_T(20)$      &
-      $\phi_D(0)$      & $\phi_D(10)$      & $\phi_D(20)$      & $\rho$      &
-      $\varepsilon$      & $N_\text{it}$
-\\ \midrule
-$c=0.999$  & 0.9038 & 20.63 & 31.24 & 0.9087 & 20.63 & 31.23 & 0.2192 & $10^{-7}$ & 15
-\\
-$c=0.990$  & 0.3675 & 13.04 & 24.7 & 0.3696 & 13.04 & 24.69 & 0.2184 & $10^{-7}$ & 15
-\\
-$c=0.900$  & 0.009909 & 4.776 & 17.64 & 0.009984 & 4.786 & 17.63 & 0.2118 & $10^{-7}$ & 14
-\\
-$c=0.500$  & $6.069\times 10^{-5}$ & 2.212 & 15.53 & 6.213$\times 10^{-5}$ & 2.239 & 15.53 & 0.2068 & $10^{-7}$ & 13
-\\
-\bottomrule
-\end{tabular}
-  \caption{This is an example of a really wide table which might not normally
-  fit in the document.}
-  \label{tab:widetable}
-\end{table*}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Notice how the table reference uses a Roman numeral
-for its numbering scheme, whereas the figure reference uses an Arabic numeral.
-For one-column tables, use the \verb|table| environment; two-column tables use
-\verb|table*|. The same applies to figures.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Another Subsection}
-Excessive sectioning in a three-page document is discouraged, but here are more
-subsections to demonstrate compliance with the ANS formatting guidelines.
+\section{Decay impact}
 
-\subsubsection{Third-level Heading}
-This subsubsection shows compliance with the ANS-specified standard. This level
-of heading should be used rarely.
+To measure the impact of the decay on the fuel fabrication process, $2\times3$
+different calculations have been performed, each using a different way to model
+the fuel fabrication, with and without decay activated:
 
-\subsubsection{Another Such Heading}
-And, if you really think you need a third-level heading, you should make sure
-that your subsection needs at least two of them.
+\begin{itemize}
+  \item fixed mixing ratio,
+  \item plutonium equivalent theory,
+  \item Neural network \cite{CLASS_MLP}.
+\end{itemize}
+
+The fixed mixing ratio corresponds to a simple mix of the different stream to
+build the fresh MOX fuel. The mixing ratio remain fix regardless to the isotopic
+composition evolution resulting of the decay process.
+
+The second calculation uses the plutonium equivalent theory to determine the
+proper mixing ratio between the different stream. In this case the model is
+tuned to build a MOX fuel with the same initial reactivity as the fuel loaded
+with the fixed mixing ratio model. 
+
+The last model based on pre-trained neural network, determine the mixing ratio
+in order to build a MOX fuel that will reach a $<k_{\infty}>$ of $1.034$ at the
+end of irradiation (i.e.: $50~$GWd/t). (The $<k_{\infty}>$ corresponds to the mean
+$k_{\infty}$ of the tree batches of the reactor) 
+
+In order to discriminate between the depletion calculation effect and the decay
+consequences, in each case the reactor use the same output composition for the
+spent fuel despite the change in fresh MOX fuel composition.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Irradiation calculation impact}
+
+This part is dedicated to the evaluation of the impact of non recalculation of
+the MOX fuel evolution during irradiation.
+
+Two additional calculation have been performed. Those calculations use the
+neural network for the fuel fabrication modeling as well as for the
+recalculation of the MOX fuel depletion calculation: for each MOX fuel loaded in
+the reactor, a dedicated depletion calculation also to update the output recipe
+used for the spent MOX fuel.
+
+
+The difference between the fix recipe reactor calculation and the more precise
+reactor are show in the following part.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
