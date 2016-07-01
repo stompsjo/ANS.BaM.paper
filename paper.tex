@@ -239,8 +239,14 @@ strongly driven by the fuel isotopic composition.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Depletion vs Recipe}
 
-Another analysis was performed to evaluate the impact of the depletion
-calculation on a fuel cycle macroscopic (???) level.
+Four simulations were carried out representing variations across two problem
+dimensions.  One variation compares how reactor models determine the recipe of
+used fuel.  The standard recipe reactor model produces used fuel of a fixed
+composition, regardless of the composition of the incoming fuel.  The
+alternative is a neural network depletion model provided by the cyCLASS
+package.  This model determines the composition of the used fuel depending on
+its initial composition and discharge burnup.  Both of these models were used
+without decay and with decay.
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
   \centering
@@ -251,16 +257,6 @@ calculation on a fuel cycle macroscopic (???) level.
     with (solid line) and without (dash line) decay enable.}
   \label{fig:depletion}
 \end{figure}
-
-
-Four simulations were carried out representing variations across two problem
-dimensions.  One variation compares how reactor models determine the recipe of
-used fuel.  The standard recipe reactor model produces used fuel of a fixed
-composition, regardless of the composition of the incoming fuel.  The
-alternative is a neural network depletion model provided by the cyCLASS
-package.  This model determines the composition of the used fuel depending on
-its initial composition and discharge burnup.  Both of these models were used
-without decay and with decay.
 
 As shown on Fig. \ref{fig:depletion}, the equilibrium values for recipe based
 calculation and the depletion calculation are not the same. Moreover,
