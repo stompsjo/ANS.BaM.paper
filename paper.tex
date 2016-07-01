@@ -2,8 +2,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{Evidence of the necessity of isotopic precise calculation in fuel cycle
 calculation}
-\author{Baptiste Mouginot$^{*}$, Paul P.H. Wilson$^{*}$, Robert W. Carlsen$^{*}$, Meghan B. McGarry$^{*}$,
-Arrielle C. Opotowsky$^{*}$ }
+\author{ Baptiste Mouginot$^{*}$, Paul P.H. Wilson$^{*}$, Robert W. Carlsen$^{*}$ }
 
 \institute{
 $^{*}$University of Wisconsin-Madison, WI
@@ -59,13 +58,12 @@ also been contributed to the Cyclus environment using the cyCLASS tool\cite{cyCL
 allowing the use of the fuel fabrication and depletion models from the CLASS tool
 \cite{CLASS} in Cyclus.
 
-%% PPHW: Need a reference to cyCLASS - perhaps tag a version and put a zip
-%% file on figshare with a DOI.
 
 \section{Study description}
+
 This work compares the plutonium fraction required to build fresh MOX fuel
 using three different stream mixing models in fuel fabrication: ``fixed mixing
-ratio'', ``plutonium equivalent theory'', ``neural network'' \cite{CLASS_MLP}.
+ratio'', ``plutonium equivalent theory'', ``neural network'' \cite{Leniau2015125}.
 The first part of the study in focuses on the effect of decay on the isotopic
 composition of the reprocessed plutonium and its impact on fuel fabrication
 depending on the chosen stream mixing model.  The second part of the study,
@@ -75,53 +73,86 @@ fabrication model, also including the impact of decay.
 
 
 \subsection{Cycle}
-This analysis is focused only on the second strata of EG29, represented by a single
-PWR reactor using MOX fuel. After irradiation the uranium and the plutonium are
-separated and reprocessed to fuel the next batch of MOX fuel for the PWR.
-%% PPHW - must provide the separation parameters/efficiencies
+
+This analysis is focused only on the second strata of EG29, represented by a
+single PWR reactor using MOX fuel. After irradiation the uranium and the
+plutonium are separated and reprocessed to fuel the next batch of MOX fuel for
+the PWR. The separation efficiency is $0.988$. The separated U/Pu (``J1''
+stream) is then separated into two sub-stream, one used for new PWR deployment
+(``J1\_prime\_storage'' on Fig. \ref{fig:flow}) and the other one for the
+production the new batch of MOX fuel (``J1\_second\_storage''). The respective
+fraction of those sub-stream are $0.105$ and $0.895$.
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
   \centering
   \includegraphics[width=0.48\textwidth]{flow}
   \caption{Schematic representation of the fuel cycle. Quantities on the row
   represents the cumulative amount in kg of material exchanged between two
-facilities in the calculation using ``pu-equivalent'' for fuel fabrication
-modeling with decay activated.}
+  facilities in the calculation using ``pu-equivalent'' for fuel fabrication
+  modeling with decay activated.}
   \label{fig:flow}
 \end{figure}
 
-%% PPHW - must provide the composition of the ``good'' Pu
-A stream of ``good'' quality plutonium coming from a hypothetical irradiated
-SFR blanket is represented by a storage facility. 
-%% PPHW - which facility?  which label - there are two.
-The impact of the decay on this stored Pu
-is limited, as the content in $^{241}$Pu is almost negligible.  In order to
-build the first batch of fuel, an initial quantity of stored Pu has also been provided.
-%% PPHW - how much?
-In order to limit the effect of decay of this storage the initial inventory have been
-tuned to be as small as possible, preventing any unnecessary accumulation of plutonium.
-%% PPHW - is this about the initial inventory or the capacity of the storage facility
-%%      - the latter seems to be about capacity
+A stream (``E3'') of ``good'' quality plutonium coming from a hypothetical irradiated
+SFR blanket is represented by a storage facility
+(``E3\_second\_limited\_storage`` on Fig. \ref{fig:flow}).
+
+\begin{table*}[htb]
+  \centering
+  \begin{tabular}{llllllllllll}\toprule
+    Stream 
+    & $^{234}$U   & $^{235}$U   & $^{236}$U   & $^{238}$U   
+    & $^{238}$Pu  & $^{239}$Pu  & $^{240}$Pu  & $^{241}$Pu  & $^{242}$Pu 
+    & $^{241}$Am  & F.P. \\ \midrule
+    E3 [\%]
+    & $0.002$   & $0.203$    & $0.083$   & $81.082$
+    & $0.0087$  & $17.9764$  & $0.6166$  & $0.0216$  & $0.0007$
+    & $0$         & $0$ \\
+    J1 [\%]
+    & $0$       & $0$        & $0$       & $93.632$
+    & $0.1216$  & $2.7058$   & $1.8193$  & $0.7402$  & $0.6833$
+    & $0.2978$  & $0$ \\
+    \bottomrule
+  \end{tabular}
+  \caption{Streams compositions in percentage by mass.}
+  \label{tab:strem_compo}
+\end{table*}
+
+The impact of the decay on this stored Pu is limited, as the content in
+$^{241}$Pu is almost negligible (see Tab. \ref{tab:stream_compo}).  
+ 
+In order to build the first batches of fuel, an initial quantity of 225t has
+also been provided in the ``J1\_second\_storage'', which corresponds to 3 times
+the requirement on ``J1'' stream to build the PWR-MOX fuel for full PWR
+core. 
+
+
+
 
 \subsection{Fabrication model}
 Three different ways to model the fuel fabrication have been used: ``fix mixing
 ratio'', ``Pu-equivalent'' and ``neural network''.
-The fix mixing ratio is based on a user-defined ratio for the different stream mixing. The
-``Pu-equivalent'' model finds the mixing ratio that results in an initial reactivity
-that matches that of the requested MOX fuel recipe.  This ratio may change as the 
-composition of the incoming streams changes.  As the requested fuel
-composition corresponds to the fuel composition built with the ''fix mixing
-ratio`` model, the results of those 2 models are expected to be similar.
-The ``neural network'' model attempts to achieve a given reactivity at the end of a 
-life for a given batch of fuel ($50~$GWd/t in this study). The
-$<k_{infty}>$ used in this study is 1.034 \cite{???}. The neural network in this
-model has been pre-trained on several different depletion calculations,
-allowing it to predict the correct plutonium fraction required, depending
-on the composition of that plutonium.
+The fix mixing ratio is based on a user-defined ratio for the J1 and E3 stream
+mixing. The respective mixing ratio used for J1 and E3 stream are 
+$0.8357$ and $0.1643$.
+The ``Pu-equivalent'' model finds the mixing ratio that results in an initial
+reactivity that matches that of the requested MOX fuel recipe.  This ratio may
+change as the composition of the incoming streams changes.  As the requested
+fuel composition corresponds to the fuel composition built with the ''fix mixing
+ratio`` model, the results of those 2 models are expected to be similar.  The
+``neural network'' model attempts to achieve a given reactivity at the  end of
+cycle reactivity of the whole core for a multi-batch core ($50~$GWd/t in this
+study). The $k_{infty}$ used in this study is 1.034, assuming the reactivity of
+the full core is the mean reactivity of the batches. The neural network in this
+model has been pre-trained on several different depletion calculations, allowing
+it to predict the correct plutonium fraction required, depending on the
+composition of that plutonium.
 
-%% PPHW - is this end of cycle reactivity of the whole core for a multi-batch core?
-%%      - or is it end of life reactivity for a given batch?
-%%      - 1.034 and 50 GWd/t don't seem to go together
+Because the neural network model allows only to mix a plutonium stream into a
+uranium stream, slight modification have been made on the cycle: in both ``J1''
+and ``E3'' streams uranium and plutonium are separated, the uranium and
+plutonium sub-streams are mix together to build one stream of pure uranium and
+one stream of pure plutonium. 
 
 Because of these models have not necessary been tuned on exactly the same
 PWR configuration and parameters, this analysis focuses on the differences
@@ -129,10 +160,10 @@ in the results due to the change in model rather than the results themselves.
 
 The second part of the study compares the amount of plutonium require to build
 the PWR-MOX fuel (using the neural network modeling for fuel fabrication) for
-the recipe based output composition versus a compisition calculated by depletion.
-To caluclate the depletion for each fuel batch loaded in the PWR reactor, another 
+the recipe based output composition versus a composition calculated by depletion.
+To calculate the depletion for each fuel batch loaded in the PWR reactor, another 
 neural network is used to predict the macroscopic cross section of the
-fuel \cite{NN_CLASS} (only fission, capture and n,2n reactions are considered). The
+fuel \cite{Leniau2015125} (only fission, capture and n,2n reactions are considered). The
 depletion calculation is done renormalizing the neutron flux to maintain a
 constant power in the reactor.
 
@@ -149,12 +180,11 @@ in the fresh PWR-MOX fuel.
   \centering
   \includegraphics[width=0.48\textwidth]{nodecay_pu_contribution.png}
   \caption{Evolution of the fraction of plutonium in the fresh PWR-MOX fuel
-  using the 3 predicted models, without considering decay.}
+  using the 3 predicted models: ``fix mixing ratio'' (``fix'', blue), ``Pu-equivalent''
+  (``Pu-eq'', green) and ``Neural Network'' (``NN'', red), without considering decay.}
   \label{fig:nod}
 \end{figure}
 
-%% PPHW - need better figure legend text so that readers know what they are
-%% looking at
 
 With decay turned on, see Fig. \ref{fig:d}, results for the ``fix mixing ratio''
 calculation see a small decrease of the fraction of plutonium in the fuel,
@@ -169,13 +199,12 @@ slowing stabilizing as the plutonium composition approaches an equilibrium.
   \centering
   \includegraphics[width=0.48\textwidth]{decay_pu_contribution.png}
   \caption{Evolution of the fraction of plutonium in the fresh PWR-MOX fuel
-  using the 3 prediction models, with and without decay enable.}
+    using the 3 prediction models: ``fix mixing ratio'' (``fix'', blue),
+    ``Pu-equivalent'' (``Pu-eq'', green) and ``Neural Network'' (``NN'', red),
+    with (plain line) and without (dash line) decay enable.} 
   \label{fig:d}
 \end{figure}
 
-%% PPHW - need better color and symbol choices to facilitate comparison
-%%      - different models use different colors and decay/no decay uses
-%%      -  different symbols (for example)
 
 As the calculation using ``neural network'' fabrication modeling requires more
 plutonium than the cycle can produce, the initial inventory has been set to a
@@ -214,8 +243,9 @@ calculation on a fuel cycle macroscopic (???) level.
   \centering
   \includegraphics[width=0.48\textwidth]{irradiation_pu_contribution.png}
   \caption{Evolution of the fraction of plutonium in the fresh PWR-MOX fuel
-  using the ``neural network'' prediction models, with decay enable using recipe
-based spent fuel composition and recalculated spent fuel composition.}
+    using the ``Neural Network'' prediction models, using recipe based spent
+    fuel composition (red) and recalculated spent fuel composition (orange),
+    with (plain line) and without (dash line) decay enable.}
   \label{fig:depletion}
 \end{figure}
 
@@ -249,8 +279,9 @@ the cycle. The amounts of the other nuclides are very close.
   \centering
   \includegraphics[width=0.48\textwidth]{MOX_pu_composition.png}
   \caption{Evolution of the composition of the plutonium in the fresh PWR-MOX fuel
-  using the ``neural network'' prediction models, with decay enable using recipe
-based spent fuel composition and recalculated spent fuel composition.}
+  using the ``Neural Network'' prediction models, with decay enable using recipe
+  based spent fuel composition (plain line) and recalculated spent fuel
+  composition (dash line).}
   \label{fig:depletioncompo}
 \end{figure}
 
