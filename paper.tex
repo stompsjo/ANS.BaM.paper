@@ -160,21 +160,21 @@ in the results due to the change in model rather than the results themselves.
 
 The second part of the study compares the amount of plutonium require to build
 the PWR-MOX fuel (using the neural network modeling for fuel fabrication) for
-the recipe based output composition versus a composition calculated by depletion.
-To calculate the depletion for each fuel batch loaded in the PWR reactor, another 
-neural network is used to predict the macroscopic cross section of the
-fuel \cite{Leniau2015125} (only fission, capture and n,2n reactions are considered). The
-depletion calculation is done renormalizing the neutron flux to maintain a
-constant power in the reactor.
+the recipe based output composition versus a composition calculated by
+depletion.  To calculate the depletion for each fuel batch loaded in the PWR
+reactor, another neural network is used to predict the macroscopic cross section
+of the fuel \cite{Leniau2015125} (only fission, capture and n,2n reactions are
+considered). The depletion calculation is done renormalizing the neutron flux to
+maintain a constant power in the reactor.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Decay}
 
-As observed in Fig. \ref{fig:nod}, despite the fact that the different models 
-were not tuned to
-describe the exact same PWR concept, the results without decay are very
-close. They all predict a constant plutonium fraction around $8\%$ of plutonium
-in the fresh PWR-MOX fuel.
+
+As observed in Fig. \ref{fig:nod}, despite the fact that the different models
+were not tuned to describe the exact same PWR concept, the results without decay
+are very close. They all predict a constant plutonium fraction around $8\%$ of
+plutonium in the fresh PWR-MOX fuel.
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
   \centering
@@ -185,7 +185,6 @@ in the fresh PWR-MOX fuel.
   \label{fig:nod}
 \end{figure}
 
-
 With decay turned on, see Fig. \ref{fig:d}, results for the ``fix mixing ratio''
 calculation see a small decrease of the fraction of plutonium in the fuel,
 corresponding to the decay of $^{241}$Pu into $^{241}$Am.  For the
@@ -195,13 +194,13 @@ coming from the $^{241}$Am. For the calculation using ``neural network'' fuel
 fabrication modeling the effect is very quickly increasing to $13\%$ and then
 slowing stabilizing as the plutonium composition approaches an equilibrium.
 
-\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
+\begin{figure}[h!] % replace 't' with 'b' to force it to be on the bottom
   \centering
   \includegraphics[width=0.48\textwidth]{decay_pu_contribution.png}
   \caption{Evolution of the fraction of plutonium in the fresh PWR-MOX fuel
     using the 3 prediction models: ``fix mixing ratio'' (``fix'', blue),
     ``Pu-equivalent'' (``Pu-eq'', green) and ``Neural Network'' (``NN'', red),
-    with (plain line) and without (dash line) decay enable.} 
+    with (solid line) and without (dash line) decay enable.} 
   \label{fig:d}
 \end{figure}
 
@@ -245,15 +244,10 @@ calculation on a fuel cycle macroscopic (???) level.
   \caption{Evolution of the fraction of plutonium in the fresh PWR-MOX fuel
     using the ``Neural Network'' prediction models, using recipe based spent
     fuel composition (red) and recalculated spent fuel composition (orange),
-    with (plain line) and without (dash line) decay enable.}
+    with (solid line) and without (dash line) decay enable.}
   \label{fig:depletion}
 \end{figure}
 
-%% PPHW: - I don't know which answer is which !?!?  bad legend labels!
-
-%% PPHW: I don't know what the difference between these calculations is!!!
-%% You have 4 results but haven't made clear what the variations are. Do they
-%% all have decay?  I think the following is correct, but I'm not sure...
 
 Four simulations were carried out representing variations across two problem
 dimensions.  One variation compares how reactor models determine the recipe of
@@ -269,11 +263,13 @@ calculation and the depletion calculation are not the same. Moreover,
 recalculating the fuel spent fuel composition for each fuel batch allows the
 cycle to reach equilibrium faster.
 
-This is caused by the slight change in the composition in the available plutonium
-(see Fig. \ref{fig:depletioncompo}): in the case of the depletion calculation
-the available plutonium contain $68\%$ of $^{239}$Pu versus $64\%$ in the recipe
-based case, and also significantly less $^{241}$Pu leading to less $^{242}$Pu in
-the cycle. The amounts of the other nuclides are very close.
+This is caused by the slight change in the composition in the available
+plutonium (see Fig. \ref{fig:depletioncompo}): in the case of the depletion
+calculation the available plutonium contain $68\%$ of $^{239}$Pu versus $64\%$
+in the recipe based case, and also less $^{242}$Pu and $^{241}$Am, respectively
+$4.8\%$ and $5.4\%$ in the depletion case versus $7.3\%$ and $6.7\%$. The
+amounts of the other nuclides are very close.
+
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
   \centering
