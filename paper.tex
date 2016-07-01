@@ -48,6 +48,12 @@ is also multi-recycling its plutonium. The target energy generation ratio for
 the final EG29 system is 70:30 (SFR:PWR), with a 1\% annual growth in nuclear
 energy demand.
 
+\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
+  \centering
+  \includegraphics[width=0.48\textwidth]{FCDP_cycle}
+  \caption{Schematic representation of the EG29 fuel cycle taken from \cite{FCDP}.}
+  \label{fig:FCDP}
+\end{figure}
 %% PPHW: Can we add the official FCDP images
 
 All the calculation of this study have been performed using the Cyclus fuel cycle
@@ -152,7 +158,8 @@ Because the neural network model allows only to mix a plutonium stream into a
 uranium stream, slight modification have been made on the cycle: in both ``J1''
 and ``E3'' streams uranium and plutonium are separated, the uranium and
 plutonium sub-streams are mix together to build one stream of pure uranium and
-one stream of pure plutonium. 
+one stream of pure plutonium. That is why, when comparing the different fuel
+fabrication models only the total plutonium enrichement are compared. 
 
 Because of these models have not necessary been tuned on exactly the same
 PWR configuration and parameters, this analysis focuses on the differences
