@@ -17,6 +17,7 @@ $^{*}$University of Wisconsin-Madison, WI
 \usepackage{graphicx} % allows inclusion of graphics
 \usepackage{booktabs} % nice rules (thick lines) for tables
 \usepackage{microtype} % improves typography for PDF
+\usepackage{hyperref}
 
 \newcommand{\SN}{S$_N$}
 \renewcommand{\vec}[1]{\bm{#1}} %vector is bold italic
@@ -53,13 +54,13 @@ energy demand.
 \end{figure}
 %% PPHW: Can we add the official FCDP images
 
-All the calculation of this study have been performed using the Cyclus fuel cycle
-simulator framework\cite{CYCLUS}. The facility models are from the Cycamore package, developed by the
-Cyclus team, and containing a Pu-equivalent fuel fabrication model as well as
-a simple fixed mixing ratio fuel fabrication model. A new neural network model has
-also been contributed to the Cyclus environment using the cyCLASS tool\cite{cyCLASS}, 
-allowing the use of the fuel fabrication and depletion models from the CLASS tool
-\cite{CLASS} in Cyclus.
+All the calculation of this study have been performed using the Cyclus fuel
+cycle simulator framework\cite{CYCLUS}. The facility models are from the
+Cycamore package, developed by the Cyclus team, and containing a Pu-equivalent
+fuel fabrication model as well as a simple fixed mixing ratio fuel fabrication
+model. A new neural network model has also been contributed to the Cyclus
+environment using the cyCLASS tool\cite{cyCLASS}, allowing the use of the fuel
+fabrication and depletion models from the CLASS tool \cite{CLASS} in Cyclus.
 
 
 \section{Study description}
@@ -80,17 +81,21 @@ fabrication model, also including the impact of decay.
 This analysis is focused only on the second strata of EG29, represented by a
 single PWR reactor using MOX fuel. After irradiation the uranium and the
 plutonium are separated and reprocessed to fuel the next batch of MOX fuel for
-the PWR. The separation efficiency is $0.988$. The separated U/Pu (``J1''
-stream) is then separated into two sub-stream, one used for new PWR deployment
-(``J1\_prime\_storage'' on Fig. \ref{fig:flow}) and the other one for the
-production the new batch of MOX fuel (``J1\_second\_storage''). The respective
-fraction of those sub-stream are $0.105$ and $0.895$.
+the PWR. As no loss are associated to the fabrication process, the separation
+efficiency is set at $0.988$, which corresponding to the $1\%$ loss in
+separation and the $0.2\%$ during fabrication as specified in \cite{FCDP}).
+About $10\%$ of this U/Pu stream (``J1`` stream) is arbitrary set aside in order
+to support an hypothetical new PWR deployment (``J1\_prime\_storage), the
+remaining $90\%$ is used for the production the new batch of MOX fuel
+(``J1\_second\_storage''). Analyzing the precise value of these quantities is not
+the focus of this work, and many possible values could be used to demonstrate
+the outcomes shown here.
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
   \centering
   \includegraphics[width=0.48\textwidth]{flow}
   \caption{Schematic representation of the fuel cycle. Quantities on the row
-  represents the cumulative amount in kg of material exchanged between two
+  represent the cumulative amount in kg of material exchanged between two
   facilities in the calculation using ``pu-equivalent'' for fuel fabrication
   modeling with decay activated.}
   \label{fig:flow}
@@ -102,6 +107,7 @@ SFR blanket is represented by a storage facility
 
 \begin{table*}[htb]
   \centering
+  \caption{Streams compositions in percentage by mass.}
   \begin{tabular}{llllllllllll}\toprule
     Stream 
     & $^{234}$U   & $^{235}$U   & $^{236}$U   & $^{238}$U   
@@ -117,7 +123,6 @@ SFR blanket is represented by a storage facility
     & $0.2978$  & $0$ \\
     \bottomrule
   \end{tabular}
-  \caption{Streams compositions in percentage by mass.}
   \label{tab:stream_compo}
 \end{table*}
 
@@ -194,7 +199,7 @@ corresponding to the decay of $^{241}$Pu into $^{241}$Am.  For the
 ``Pu-equivalent'' modeling we can observe a slight increase of the fraction of
 plutonium, which is required to compensate for the negative reactivity effect
 coming from the $^{241}$Am. For the calculation using ``neural network'' fuel
-fabrication modeling the effect is very quickly increasing to $13\%$ and then
+fabrication modeling the effect very quickly increases to $13\%$ and then
 slowing stabilizing as the plutonium composition approaches an equilibrium.
 
 \begin{figure}[h!] % replace 't' with 'b' to force it to be on the bottom
@@ -214,8 +219,6 @@ higher values, increasing the plutonium decay effect. Nevertheless this shows
 the strong impact of the presence of $^{241}$Am with the plutonium used for the
 PWR-MOX fuel fabrication.
 
-%% PPHW: why is the Pu-equiavlent model so bad?
-
 Finally, a set of calculations with decay have been performed using the ``Pu-equivalent''
 fabrication model, increasing by a factor 2, 5 and 10 the amount of plutonium in
 the startup inventory. This mimics different degrees of a plutonium accumulation,
@@ -224,7 +227,6 @@ This calculation results in a change in the mixing ratio required to build the
 PWR-MOX fuel of 10 to 30\%. This kind of plutonium accumulation can
 unexpectedly occur in a real fuel cycle and might need to be considered in a
 complete fuel cycle transition study.
-
 
 The decay process tends to change to composition of the plutonium vector, and
 then of the plutonium enrichment required to build a proper PWR-MOX fuel.  Such
