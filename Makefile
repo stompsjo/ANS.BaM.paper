@@ -1,10 +1,21 @@
-pdf: paper.pdf
 
-paper.pdf: paper.tex bibliography.bib
-	pdflatex $<
-	bibtex paper.aux
-	pdflatex $<
-	pdflatex $<
+paper=paper.pdf
 
-clean:
-	rm -vf *.aux *.log *.blg *.bbl paper.pdf
+all: ${paper} 
+
+${paper}: paper.tex bibliography.bib 
+	pdflatex paper.tex
+	pdflatex paper.tex
+	pdflatex paper.tex
+
+bib:
+	pdflatex paper.tex               
+	bibtex paper
+	pdflatex paper.tex
+	pdflatex paper.tex
+
+tidy:
+	rm -vf *.aux *.log *.blg *.bbl
+
+clean: tidy
+	rm -vf paper.pdf
