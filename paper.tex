@@ -208,10 +208,35 @@ process it repeated until the change in the different assays is smaller than the
 set precision (1e-8 by default).
 
 Other hypothesis will be explored in the future, such as maintaining the ideal
-stage of the cascade through a tunning of the cuts values $\theta_{i}$ of each
+stage of the cascade through a tuning of the cuts values $\theta_{i}$ of each
 stage of the cascade, or maintaining $\alpha\beta = const$ as described in
 \cite{walker2017}.
 
+Note that as a consequence of our design method, the cascade product and tail
+assay will not necessary match the targeted values, and usually slightly over
+enrich and over strip the product and the tail.
+
+\section{The experiment}
+
+As explain previously, the goal of this work is to assess the rate of the HEU
+production using enrichment cascade designed within the JCPOA agreement
+constrains. For this work two different cases will be investigated and compare
+to the reference case.
+
+\subsection{Reference Case}
+The reference case corresponds to a cascade design include all the 5060
+centrifuges available within JCPOA targeting an enriched product at $90\%$ of U-235,
+stripping the tail product up to 0.28 $\%$ from a feed of natural uranium. 
+The design cascade in this case, includes 4 stripping stages, and 38 enriching
+stages. The Feed/Product/Tail (F/P/T) assay are respectively
+0.0071/0.903/0.0028.
+
+\subsection{Case 1}
+\subsection{Case 2}
+
+Both case 1 and 2 will be simulation without and with tail recycling. In the
+tail recycling cases, the tails of the cascade level $N$ are blended in the feed
+of cascade level $N-1$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results and Analysis}
