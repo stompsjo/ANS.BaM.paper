@@ -1,20 +1,17 @@
 \documentclass{anstrans}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{An Improved ANS Transaction Template}
-\author{Seth R.~Johnson,$^{*}$ Abraham Lincoln$^{\dagger}$}
+\author{Baptiste Mouginot,$^{*}$ Kathie Mummah,$^{*}$ Paul P.H. Wilson$^{*}$}
 
 \institute{
-$^{*}$Radiation Transport Group, Oak Ridge National Laboratory, P.O.\ Box 2008,
-Oak Ridge, TN
-\and
-$^{\dagger}$State Capitol Building, Springfield, IL
+$^{*}$University of Wisconsin-Madison, WI
 }
 
-\email{sethrj@umich.edu \and honestabe@example.com}
+\email{mouginot@wisc.edu \and mummah@wisc.edu \and paul.wilson@wisc.edu}
 
 % Optional disclaimer: remove this command to hide
-\disclaimer{Notice: this manuscript is a work of fiction. Any resemblance to
-actual articles, living or dead, is purely coincidental.}
+% \disclaimer{Notice: this manuscript is a work of fiction. Any resemblance to
+% actual articles, living or dead, is purely coincidental.}
 
 %%%% packages and definitions (optional)
 \usepackage{graphicx} % allows inclusion of graphics
@@ -30,88 +27,202 @@ actual articles, living or dead, is purely coincidental.}
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
-Microsoft Word can be a finicky beastie. \LaTeX\ abstracts content from
-formatting, allowing the user to let a style file such as this take care of
-uppercasing the section headings, spacing the paragraphs, and shuffle around
-the figures.
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-culpa qui officia deserunt mollit anim id est laborum.
 
-The \SN\ equations were developed by Carlson \cite{Car1953}. Another
-paper is cited here \cite{Lar2008}.
+
+
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Theory}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur faucibus
-erat sed nisi aliquet molestie. Etiam malesuada, sapien at lobortis lacinia,
-justo ante volutpat nunc, gravida commodo justo purus ut quam. Proin tincidunt
-sem quis dui condimentum rhoncus. Nulla ut libero est, ut sollicitudin ligula.
-Curabitur quam orci, aliquet dignissim feugiat eu, porta ac leo. Aenean in
-ipsum arcu. Duis tempus porttitor turpis, eu volutpat odio fringilla sit amet.
-Donec malesuada, arcu id porttitor mattis, arcu est molestie arcu, quis
-dignissim tellus justo nec sapien. Praesent pretium interdum odio ac varius.
-Suspendisse dui mauris, posuere in varius a, semper id dui. Suspendisse
-placerat, quam quis luctus aliquam, metus justo hendrerit massa, vel tempus
-ligula sem et purus.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur faucibus
-erat sed nisi aliquet molestie.
 
-Equations look exceedingly pretty. Here is a 3-D, monoenergetic, steady-state
-transport equation with isotropic scattering and an isotropic extraneous source:
-\begin{subequations} \label{eqs:fullTransport}
-\begin{multline} \label{eq:fullTransportVol}
-  \vec{\Omega}\vd \grad \psi(\vec{x}, \vec{\Omega})
-  + \sigma(\vec{x}) \psi (\vec{x}, \vec{\Omega})
-\\ =
-  \frac{\sigma_s(\vec{x})}{4\pi} \int_{4\pi} \psi(\vec{x},\vec{\Omega}')
-  \ud\Omega' + \frac{q(\vec{x})}{4\pi}
-  \equiv \frac{1}{4\pi} Q(\vec{x}) \,,
-\end{multline}
-inside $\vec{x} \in V$, $\vec{\Omega} \in 4\pi$, with an incident boundary
-condition
-\begin{equation} \label{eq:fullTransportBndy}
-  \psi(\vec{x}, \vec{\Omega}) = \psi^b(\vec{x}, \vec{\Omega}) \,,
- \quad \vec{x} \in \partial V, \ \vec{\Omega} \vd \vec{n} < 0\,.
+
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+Some text for introduction etc\ldots
+
+
+\section{Cascade Enrich Construction}
+\subsection{Centrifuge properties}
+In the present work, the analytical solution by R\"aetz \cite{ref} of the
+differential equation for the gas centrifuge as described in \cite{Glaser2008}
+is used. The different parameter of the centrifuges, such as average temperature
+of the gas, rotation speed, height, feed flow rate, diameter, pressure ratio,
+countercurent ratio, efficiency have been choosen to match the cascade design
+describe in \cite{glaser2008} and \cite{Walker2017} using P-1 centrifuges and
+repect the JCPOA aggrement.
+
+
+\subsection{Cascade Design}
+
+The cascade build as an ideal cascade, taht is to day, $\alpha =\beta = const$
+for all stage of the cascade, where $\alpha$ and $\beta$ respectively represent
+the feed to product and the feed to tail enrichment factors. 
+$\alpha$ can be expressed as a function of the feed rate $F$, $\delta U(\theta)$ and $\theta$,
+and $\beta$ as a function of $alpha$ and $\theta$: 
+\begin{subequations} \label{eqs:alphabeta}
+    \begin{equation} \label{eq:alpha}
+    \alpha = \sqrt{\frac{2\delta U}{F} \frac{1-\theta}{\theta}}+1
+\end{equation}
+\\
+\begin{equation}\label{eq:beta}
+    \beta = R 
+              \dfrac{1 - \dfrac{N - \theta \dfrac{\alpha R}{1+\alpha R}}{1 - \theta}}
+                   {\dfrac{N - \theta \dfrac{\alpha R}{1+\alpha R}}{1 - \theta}} 
 \end{equation}
 \end{subequations}
 
+From equation \eqref{eq:alpha} and \eqref{eq:beta} it is possible to determine the cut value
+(all other centrifuge parameters been fixed) allowing the have $\alpha=\beta$
+required to build an ideal cascade.
+
+As an ideal cascade is build, we only need to determine the proper cut value of
+each stages, $\theta_{i}$, the value of $\alpha_{i}$ and $\beta_{i}$ remain
+constant over the different stages.
+It can be shown that $\theta_{i}$ can be computed from $\alpha$,
+$\beta$ values and the feed assay, $N_{i}$:
+\begin{eqnarray}
+    \theta_{i} &=& \dfrac{N_{i} - N''_{i}}{N'_{i}-N''_{i}}\nonumber\\
+           &=& \dfrac{N_{i} - \dfrac{1}{1 + \beta/R_{i}}}{ \dfrac{\alpha R_{i}}{1 + \alpha R_{i}} -
+           \dfrac{1}{1 + \beta/R_{i}}} 
+\end{eqnarray}
+
+This algorithm assumes that the corresponding $\delta U$ (not re-computed) can be
+achieve with the centrifuges.  With $\theta_{i}$ determined it is possible to
+compute the product and the tail assay from $\alpha$ and $\beta$.
+The design of the cascade is performed through 2 steps. First one determines the
+number of stages and their configuration, adding stages following the previously
+described procedure, until $N'_{last} > N'_{requested}$ and $N''_{last} <
+N''_{requested}$. (Note that $N'_{last}$ corresponds to the product assay of the
+last enrichment stage, and $N''_{last}$ to the tail assay of the last stripping
+stage). This allows to determine the number of enriching and stripping stages as
+well as their enrichment properties ($N_{i}$, $N'_{i}$,
+$N''_{i}$,$\theta_{i}$i).
+
+The second steps is dedicated on populating the cascade with centrifuges. One
+first solves the linear flow equation to determine the theoretical flow in the
+cascade:
+\begin{strip}
+\begin{equation}
+\setcounter{MaxMatrixCols}{20}
+\begin{bmatrix}
+-1         & 1-\theta_{S+1} & 0              & 0 & ... & 0 & 0            & 0   & 0              & 0 & ... & 0            & 0            & 0 \\
+\theta_{S} & -1             & 1-\theta_{S+2} & 0 & ... & 0 & 0            & 0   & 0              & 0 & ... & 0            & 0            & 0 \\
+           &                &                &   &     &   &              & ... &                &   &     &              &              &   \\
+0          & 0              & 0              & 0 & ... & 0 & \theta_{-1}  & -1  & 1 - \theta_{1} & 0 & ... & 0            & 0            & 0 \\
+           &                &                &   &     &   &              & ... &                &   &     &              &              &   \\
+0          & 0              & 0              & 0 & ... & 0 & 0            & 0   & 0              & 0 & ... & \theta_{E-2} & -1           & 1-\theta_{E} \\
+0          & 0              & 0              & 0 & ... & 0 & 0            & 0   & 0              & 0 & ... & 0            & \theta_{E-1} & -1
+\end{bmatrix}
+\times 
+\begin{bmatrix}
+     F_{S}   \\
+     F_{S+1} \\
+     \cdots  \\
+     F_{0}   \\
+    \cdots   \\
+    F_{E-1}  \\
+    F_{E}
+\end{bmatrix}
+=
+\begin{bmatrix}
+     0   \\
+     0 \\
+     \cdots  \\
+     F   \\
+    \cdots   \\
+    0  \\
+    0
+\end{bmatrix}
+\label{eq:flow}
+\end{equation}
+\end{strip}
+Once the relative flow on the different stages $F_{i}$ have been determined, the
+cascade can be populated with actual machines, feeling up the different stages
+until either the maximum number available of machines, either the maximum feed
+flow is reached.
+
+
+\subsection{Response to an non-ideal feed - $\theta_{i} = const$ hypothesis}
+
+As it is practically impossible to get reliable information about tuning a
+cascade when feed with a different feed assay than the one used for its design.
+Two different tuning have been considered, the first one makes the hypothesis
+that no physical change are made to the different centrifuges: the cut on the
+machine remains the same at every stage. The second considered tuning option,
+keep the enrichment factor constant implying to modify the cuts and then the
+different flows.
+
+The first tuning method assumes the cut of each stages are constant. As $\delta
+U$ and $\alpha$ do not depend on the stage feed assay $N'$,the feed to product
+ratio $\alpha$ do not change across the different stages. According to equation
+\eqref{eq:beta} , when $\alpha$ and $\theta$ remaining, if the feed assay,
+$N$, change $\beta$ has to change accordingly.  This will lead to brake of the
+ideal status of the cascade, i.e.  $N_{i} \neq N'_{i-1} \neq N''_{i+1}$.
+
+In order to compute the stage proper product and tails assay at each stages, one
+need to blend the tails and the product from respectively the next and the
+previous stage in order to determine the correct stage feed assay. As this is a
+obvious cycling problem, it has been chosen to solve it iteratively: all feed
+assay are iteratively updated, blending the proper product and tail, then using
+the updated feed assay, the new product and tail assay are recomputed. This
+process it repeated until the change in the different assays is smaller than the
+set precision (1e-8 by default).
+
+Other hypothesis will be explored in the future, such as maintaining the ideal
+stage of the cascade through a tunning of the cuts values $\theta_{i}$ of each
+stage of the cascade, or maintaining $\alpha\beta = const$ as described in
+\cite{walker2017}.
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results and Analysis}
-The results were interesting, so interesting in fact that we have decided to
-present them here.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Subsection Goes Here}
-The user must manually capitalize initial letters of a subsection heading.
-
-For those who like equations in their papers, \LaTeX\ is a good choice. Here is
-an equation for the Marshak diffusion boundary condition:
 \begin{equation} \label{eq:marshak}
   4 J^- = \phi + 2 D \vec{n} \vd \grad \phi \,.
 \end{equation}
 If we so choose, we can effortlessly reference the equation later.
 
-Another paragraph starts with Eq.~\eqref{eq:marshak} and sets $J^-$ to zero, a
-vacuum boundary condition:
-\begin{equation*}
-  0 = \phi + \frac{2}{3} \frac{1}{\sigma} \vec{n} \vd \grad \phi \,.
-\end{equation*}
-The extrapolation distance is $2/3$. A more detailed asymptotic analysis yields
-an extrapolation distance of about $0.71045$.
-
-Figure~\ref{fig:voltage} shows how a plot might conceivably look in your
-document. Always place figures after they are referenced so as not to throw
-off the reader. You can use symbols and different line styles to help
-differentiate your results, especially if they are printed in black and white.
-Note how Fig.~\ref{fig:voltage} uses dashed lines \verb|--| for the exact
-solution, solid lines \verb|-| for the new method's solutions, and dotted lines
-\verb|:| for existing inaccurate methods.
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
   \centering
   \includegraphics{example_figure}
