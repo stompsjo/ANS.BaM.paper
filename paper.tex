@@ -219,7 +219,7 @@ All cases will be considered with and without tail recycling. Figure
 \ref{fig:flow} shows the different flows between the different facilities in the
 fleet, in a configuration with two different levels of cascade without tail
 recycling. When considering the tail recycling, all the flow going from a
-cascade to the waste, are going from the cascade $i$ to the cascade $i-1$. 
+cascade to the waste, are going from the cascade $i$ to the cascade $i-1$.
 The Storage are not required in Cyclus they have been added to ensure the
 proper material flow between the facilities (if a receiver facility input buffer
 is full then the sender facility will stop sending material to it, and will stop
@@ -237,7 +237,7 @@ working when its own output buffer will be filled).
 
 \subsection{Relevant Cases}
 \subsubsection{Reference Case}
-The reference case corresponds to the most ideal cascade design--utilizing all the 5060
+The reference case corresponds to the most ideal cascade design--utilizing all of the 5060
 centrifuges available within JCPOA to produce an enriched product at $>90\%$ of U-235,
 stripping the tail product up to 0.28 $\%$ from a feed of natural uranium.
 The design cascade in this case, includes 4 stripping stages, and 38 enriching
@@ -254,15 +254,16 @@ The corresponding design is:\\
 - 167 centrifuges,\\
 - F/P/T assays: 0.0071/0.0412842/0.00290548.\\
 
-\subsubsection{Case 2}
-Case 2 also limited to 30 cascades in the scenario (the maximum allowable under
-the JCPOA agreement), but this time each level of cascade are designed to get
-feed with the previous level product and to have 4 stripping stages and 10
-enriching stages. The configuration of the different level of cascade can be
-found in table \ref{tab:cascadelvl}. The different cascades don't have the same
-geometry: the number of centrifuges per stage depends on their own design and
-varies slightly from a level to another.
-%we haven't defined a level
+\subsubsection{Case 2} Case 2 also limited to 30 cascades in the scenario (the
+maximum allowable under the JCPOA agreement), but this time each level of
+cascades are designed to take feed from the previous level's product. Each
+cascade has 4 stripping stages and 10 enriching stages. The configuration of
+cascade levels can be found in table \ref{tab:cascadelvl}. Unlike case 1, the
+organization of centrifuges varies from level to level. Each level is re-optimized
+to have the most efficient number of centrifuges in each stage, although the total number
+of stages remains constant. T
+
+ %we haven't defined a level
 
 \begin{table}[htb]
 \centering
@@ -280,13 +281,13 @@ Level   &           & Assay     &       & Machines  \\
 
 \bottomrule
 \end{tabular}
-  \caption{Summary of the different properties of the different level of cascade.}
+  \caption{Summary of cascade properties for each level}
   \label{tab:cascadelvl}
 \end{table}
 
 
-\subsection{Level optimisation}
-A last round of optimisation if then ran in order to limit the number of cascade
+\subsection{Level optimization}
+A last round of optimization if then ran in order to limit the number of cascade
 level to the amount of level required produce HEU, and then to populate the
 different level with a total of 30 cascades in order to maximize the HEU
 production rate.
@@ -295,10 +296,10 @@ production rate.
 \subsection{Enrichment}
 \subsubsection{Without tail recycling}
 Despite the reconfiguration of each level occurring in the second case, the case
-1 is way more effective to produce HEU than case 1.Indeed as observed on Figure
+1 is notably more effective in producing HEU than case 1. Indeed, as observed in Figure
 \ref{fig:assay_c1_nc} and \ref{fig:assay_c2_nc}, the first case is able to
 produce an uranium product enrich at $98\%$ while the second case is only able
-to reach an enrichment of $88.3\%$.
+to reach an enrichment of $88.3\%$ with the same number of levels.
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
   \centering
@@ -313,10 +314,13 @@ to reach an enrichment of $88.3\%$.
   the case 2 without recycling.}\label{fig:assay_c2_nc}
 \end{figure}
 
-Because the cut value at each stage is unchanged it artificially produces over
-enriched tails when feed with higher enriched materials compared to a cascade
-feed with the same feed assay but with a cascade designed for it.  The effective
-cut values for each cascade can be computed as :
+Because the cut value $\theta_i$ at each stage is unchanged, case 2 artificially
+produces over-enriched tails when fed with higher enriched materials compared
+to a cascade feed with the same feed assay but with a cascade designed for it.
+
+% ^ the above paragraph is confusing but I don't understand it enough to fix it
+
+The effective cut values for each cascade can be computed as :
 
 \begin{equation}\label{eq:theta_eff}
     \theta = \dfrac{N - N''}{N'-N''}
@@ -335,14 +339,10 @@ Level   &  $\theta_{eff}^{C1}$   & $\theta_{eff}^{C2}$ \\
 4       & 0.109375               & 0.411872     \\
 5       & 0.109375               & 0.547009     \\
 
-\bottomrule
-\end{tabular}
-  \caption{Cascade effective $\theta$ as a function of the cascade level and the
-  case considered.}
-  \label{tab:cascade_theta}
-\end{table}
-As illustrated on Table \ref{tab:cascade_theta} the effective cut of the
-different level increase up to $0.54$ for the fifth stage on case 2. The high
+\bottomrule \end{tabular} \caption{Cascade effective $\theta$ as a function of
+the cascade level and the case considered.} \label{tab:cascade_theta}
+\end{table} As illustrated in Table \ref{tab:cascade_theta}, the effective cut
+of each level increases up to $0.54$ for the fifth stage for case 2. The high
 effective cut value increase the product production rate but decrease the
 enrichment ratio.
 
@@ -352,18 +352,19 @@ enrichment ratio.
 
 
 \subsubsection{Case 1}
-As shows on Figure \ref{ }, without tails recycling, the number of cascade level
-required to enrich the uranium up to $90\%$ are respectively 5 for the
-first case considered. Recycling the tails, allow to reduce the number of
-enrichment levels required to enrich natural uranium up to a high enrich level
-to 3.
+As shows on Figure \ref{ }, without tails recycling, the number of cascade levels
+required to enrich uranium up to $90\%$ is 5 for the
+first case considered. Recycling the tails allows for a reduction in the number of
+enrichment levels down to only 3.
 
-This bump in enrichment can easily be explained, as the cascade does not have the
-same number of stages, there is less stripping enrichment work, than enriching
-work. That is to say that even work in an ideal case (where the stripping work of a
-stage is the exact inverse of the enrich work), with an cascade with less
-stripping stage than enriching stage will produce tail with a higher enrichment
-than the feed of the previous level of
+This bump in enrichment can easily be explained, as the cascade does not have
+the same number of stages, less work is spent on stripping as opposed to
+enriching. Even compared to an ideal case, where the stripping
+work of a stage is the exact inverse of the enriching work, a cascade with
+less stripping stages will produce tails with a higher
+enrichment than the feed of the previous level of
+
+%Did you commit in the middle of a sentence or did you forget to finish?
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
