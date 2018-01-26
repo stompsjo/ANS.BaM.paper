@@ -1,7 +1,7 @@
 \documentclass{anstrans}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{An Improved ANS Transaction Template}
-\author{Baptiste Mouginot,$^{*}$ Kathie Mummah,$^{*}$ Paul P.H. Wilson$^{*}$}
+\author{Baptiste Mouginot,$^{*}$ Kathryn Mummah,$^{*}$ Paul P.H. Wilson$^{*}$}
 
 \institute{
 $^{*}$University of Wisconsin-Madison, WI
@@ -17,6 +17,7 @@ $^{*}$University of Wisconsin-Madison, WI
 \usepackage{graphicx} % allows inclusion of graphics
 \usepackage{booktabs} % nice rules (thick lines) for tables
 \usepackage{microtype} % improves typography for PDF
+\usepackage{float}
 
 \newcommand{\SN}{S$_N$}
 \renewcommand{\vec}[1]{\bm{#1}} %vector is bold italic
@@ -82,63 +83,60 @@ Some text for introduction etc\ldots
 
 \section{Cascade Enrich Construction}
 \subsection{Centrifuge properties}
-In the present work, the analytical solution by R\"aetz \cite{ref} of the
-differential equation for the gas centrifuge as described in \cite{Glaser2008}
-is used. The different parameter of the centrifuges, such as average temperature
-of the gas, rotation speed, height, feed flow rate, diameter, pressure ratio,
-countercurent ratio, efficiency have been choosen to match the cascade design
-describe in \cite{glaser2008} and \cite{Walker2017} using P-1 centrifuges and
-repect the JCPOA aggrement.
+The present work uses the analytical solution by R\"aetz \cite{ref} of the
+differential equation for the gas centrifuge as described in \cite{Glaser2008}. Centrifuge parameters, such as average gas temperature, rotation speed, height, feed flow rate, diameter, pressure ratio,
+counter-current flow ratio, and efficiency have been chosen to match the cascade design
+describe in \cite{glaser2008} and \cite{Walker2017}. These parameters for a P1-type centrifuge are used to estimate the Joint Comprehensive Plan of Action (JCPOA)-compliant IR-1 centrifuge.
 
 
 \subsection{Cascade Design}
 
-The cascade build as an ideal cascade, taht is to day, $\alpha =\beta = const$
+The cascade is built to be ideal, defined by $\alpha =\beta = const$
 for all stage of the cascade, where $\alpha$ and $\beta$ respectively represent
-the feed to product and the feed to tail enrichment factors. 
-$\alpha$ can be expressed as a function of the feed rate $F$, $\delta U(\theta)$ and $\theta$,
-and $\beta$ as a function of $alpha$ and $\theta$: 
+the feed to product and the feed to tail enrichment factors.
+$\alpha$ can be expressed as a function of the feed rate $F$, the separative performance $\delta U(\theta)$ and $\theta$,
+and $\beta$ as a function of $alpha$ and $\theta$:
 \begin{subequations} \label{eqs:alphabeta}
     \begin{equation} \label{eq:alpha}
     \alpha = \sqrt{\frac{2\delta U}{F} \frac{1-\theta}{\theta}}+1
 \end{equation}
 \\
 \begin{equation}\label{eq:beta}
-    \beta = R 
+    \beta = R
               \dfrac{1 - \dfrac{N - \theta \dfrac{\alpha R}{1+\alpha R}}{1 - \theta}}
-                   {\dfrac{N - \theta \dfrac{\alpha R}{1+\alpha R}}{1 - \theta}} 
+                   {\dfrac{N - \theta \dfrac{\alpha R}{1+\alpha R}}{1 - \theta}}
 \end{equation}
 \end{subequations}
 
-From equation \eqref{eq:alpha} and \eqref{eq:beta} it is possible to determine the cut value
-(all other centrifuge parameters been fixed) allowing the have $\alpha=\beta$
+From equation \eqref{eq:alpha} and \eqref{eq:beta} it is possible to determine the cut, or the ratio of product flow to feed flow.
+%(all other centrifuge parameters been fixed) allowing the have $\alpha=\beta$
 required to build an ideal cascade.
 
-As an ideal cascade is build, we only need to determine the proper cut value of
-each stages, $\theta_{i}$, the value of $\alpha_{i}$ and $\beta_{i}$ remain
-constant over the different stages.
+Since $\alpha_{i}$ and $\beta_{i}$ remain constant, only the value of the cut, $\theta_{i}$, changes in each stage of a cascade.
+
 It can be shown that $\theta_{i}$ can be computed from $\alpha$,
-$\beta$ values and the feed assay, $N_{i}$:
+$\beta$ values and the feed assay, $N_{i}$ \cite{ref}:
 \begin{eqnarray}
     \theta_{i} &=& \dfrac{N_{i} - N''_{i}}{N'_{i}-N''_{i}}\nonumber\\
            &=& \dfrac{N_{i} - \dfrac{1}{1 + \beta/R_{i}}}{ \dfrac{\alpha R_{i}}{1 + \alpha R_{i}} -
-           \dfrac{1}{1 + \beta/R_{i}}} 
+           \dfrac{1}{1 + \beta/R_{i}}}
 \end{eqnarray}
 
-This algorithm assumes that the corresponding $\delta U$ (not re-computed) can be
-achieve with the centrifuges.  With $\theta_{i}$ determined it is possible to
-compute the product and the tail assay from $\alpha$ and $\beta$.
+This algorithm assumes that the corresponding separative power $\delta U$ (not re-computed) can be
+achieved with the chosen centrifuge design. Once $\theta_{i}$ determined, it is possible to
+compute the product and the tail assay.
+
 The design of the cascade is performed through 2 steps. First one determines the
-number of stages and their configuration, adding stages following the previously
+configuration and number of stages, adding stages following the previously
 described procedure, until $N'_{last} > N'_{requested}$ and $N''_{last} <
 N''_{requested}$. (Note that $N'_{last}$ corresponds to the product assay of the
 last enrichment stage, and $N''_{last}$ to the tail assay of the last stripping
 stage). This allows to determine the number of enriching and stripping stages as
 well as their enrichment properties ($N_{i}$, $N'_{i}$,
 $N''_{i}$,$\theta_{i}$i).
+% might be more useful to the reader to say this in words instead of variables, i.e. adding stages until the product assay of the final stage is greater than or equal to than the desired assay, and the tails assay is similarly less than or equal to the desired tails assay
 
-The second steps is dedicated on populating the cascade with centrifuges. One
-first solves the linear flow equation to determine the theoretical flow in the
+The second step determines how to populate the cascade with the user-defined maximum number of centrifuges. One first solves the linear flow equation to determine the theoretical flow in the
 cascade:
 \begin{strip}
 \begin{equation}
@@ -152,7 +150,7 @@ cascade:
 0          & 0              & 0              & 0 & ... & 0 & 0            & 0   & 0              & 0 & ... & \theta_{E-2} & -1           & 1-\theta_{E} \\
 0          & 0              & 0              & 0 & ... & 0 & 0            & 0   & 0              & 0 & ... & 0            & \theta_{E-1} & -1
 \end{bmatrix}
-\times 
+\times
 \begin{bmatrix}
      F_{S}   \\
      F_{S+1} \\
@@ -172,60 +170,60 @@ cascade:
     0  \\
     0
 \end{bmatrix}
+\caption{caption needed!}
 \label{eq:flow}
 \end{equation}
 \end{strip}
-Once the relative flow on the different stages $F_{i}$ have been determined, the
-cascade can be populated with actual machines, feeling up the different stages
-until either the maximum number available of machines, either the maximum feed
+Once the relative flow of each stage, $F_{i}$, has been determined, the
+cascade can be populated with actual machines up the stages
+until either the maximum number available of machines or the maximum feed
 flow is reached.
 
 
 \subsection{Response to an non-ideal feed - $\theta_{i} = const$ hypothesis}
 
-As it is practically impossible to get reliable information about tuning a
-cascade when feed with a different feed assay than the one used for its design.
+Little information is available about the optimum way to tune a cascade that is being fed a feed enrichment that does not match its ideal enrichment.
 
-This tuning method assumes the cut of each stages are constant. As $\delta
-U$ and $\alpha$ do not depend on the stage feed assay $N'$,the feed to product
-ratio $\alpha$ do not change across the different stages. According to equation
-\eqref{eq:beta} , when $\alpha$ and $\theta$ remaining, if the feed assay,
-$N$, change $\beta$ has to change accordingly.  This will lead to brake of the
+The tuning method outlined here does not re-optimize $\theta_i$ based on the true flow enrichment. As $\delta
+U$ and $\alpha$ do not depend on the stage feed assay $N'$ and the feed to product
+ratio $\alpha$ do not change from stage to stage. According to equation
+\eqref{eq:beta}, when $\alpha$ and $\theta$ are fixed, if the feed assay,
+$N$ changes, then $\beta$ will change accordingly.  This brakes the
 ideal status of the cascade, i.e.  $N_{i} \neq N'_{i-1} \neq N''_{i+1}$.
 
-In order to compute the stage proper product and tails assay at each stages, one
-need to blend the tails and the product from respectively the next and the
-previous stage in order to determine the correct stage feed assay. As this is a
+In order to compute the proper product and tails assay at each stages\, the tails and the product from respectively the next and the
+previous stage must be blended in order to determine the correct stage feed assay. As this is a
 obvious cycling problem, it has been chosen to solve it iteratively: all feed
 assay are iteratively updated, blending the proper product and tail, then using
 the updated feed assay, the new product and tail assay are recomputed. This
-process it repeated until the change in the different assays is smaller than the
+process is repeated until the change in assays is smaller than the
 set precision (1e-8 by default).
 
-Other hypothesis will be explored in the future, such as maintaining the ideal
-stage of the cascade through a tuning of the cuts values $\theta_{i}$ of each
-stage of the cascade, or maintaining $\alpha\beta = const$ as described in
+Other hypotheses will be explored in the future, such as maintaining the ideal
+stage of the cascade through tuning the cut values $\theta_{i}$ of each
+stage of the cascade, or maintaining $\alpha*\beta = const$ as described in
 \cite{walker2017}.
 
 Note that as a consequence of our design method, the cascade product and tail
 assay will not necessary match the targeted values, and usually slightly over
-enrich and over strip the product and the tail.
+enrich and over strip the product and the tail respectively.
 
 \section{The experiment}
 
-As explain previously, the goal of this work is to assess the rate of the HEU
-production using enrichment cascade designed within the JCPOA agreement
-constrains. For this work two different cases will be investigated and compare
+As explained previously, the goal of this work is to assess the rate of the highly-enriched uranium (HEU)
+production using enrichment cascades designed within the JCPOA agreement
+constraints. For this work, two different cases will be investigated and compared
 to the reference case.
-i
-\subsection{the studied cases}
+
+\subsection{Relevant Cases}
 \subsubsection{Reference Case}
-The reference case corresponds to a cascade design include all the 5060
-centrifuges available within JCPOA targeting an enriched product at $90\%$ of U-235,
-stripping the tail product up to 0.28 $\%$ from a feed of natural uranium. 
+The reference case corresponds to the most ideal cascade design--utilizing all the 5060
+centrifuges available within JCPOA to produce an enriched product at >$90\%$ of U-235,
+stripping the tail product up to 0.28 $\%$ from a feed of natural uranium.
 The design cascade in this case, includes 4 stripping stages, and 38 enriching
 stages. The Feed/Product/Tail (F/P/T) assay are respectively
 0.0071/0.903/0.0028.
+%maybe include some cascade shape figures?
 
 \subsubsection{Case 1}
 The case 1 is design to allow configure 30 cascades in the scenario (limit of
@@ -286,12 +284,12 @@ first case considered. Recycling the tails, allow to reduce the number of
 enrichment levels required to enrich natural uranium up to a high enrich level
 to 3.
 
-This bump in enrichment can easily be explained, as the cascade don't have the
+This bump in enrichment can easily be explained, as the cascade does not have the
 same number of stages, there is less stripping enrichment work, than enriching
 work. That is to say that even work in an ideal case (where the stripping work of a
 stage is the exact inverse of the enrich work), with an cascade with less
 stripping stage than enriching stage will produce tail with a higher enrichment
-than the feed of the previous level of 
+than the feed of the previous level of
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -354,6 +352,24 @@ and another equation:
 \end{equation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Nomenclature}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{l|l}
+%         &  \\
+        $N$ & Feed assay \\
+        $N'$ & Product assay \\
+        $N''$ & Tails assay \\
+        $\alpha$ & Feed to product enrichment factor \\
+        $\beta$ & Feed to tail enrichment factor \\
+        $\theta$ & Cut
+    \end{tabular}
+%    \caption{Caption}
+    \label{tab:my_label}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Acknowledgments}
 This material is based upon work supported a Department of Energy Nuclear
 Energy University Programs Graduate Fellowship.
@@ -362,4 +378,3 @@ Energy University Programs Graduate Fellowship.
 \bibliographystyle{ans}
 \bibliography{bibliography}
 \end{document}
-
