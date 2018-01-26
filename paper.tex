@@ -217,8 +217,9 @@ As explain previously, the goal of this work is to assess the rate of the HEU
 production using enrichment cascade designed within the JCPOA agreement
 constrains. For this work two different cases will be investigated and compare
 to the reference case.
-
-\subsection{Reference Case}
+i
+\subsection{the studied cases}
+\subsubsection{Reference Case}
 The reference case corresponds to a cascade design include all the 5060
 centrifuges available within JCPOA targeting an enriched product at $90\%$ of U-235,
 stripping the tail product up to 0.28 $\%$ from a feed of natural uranium. 
@@ -226,7 +227,7 @@ The design cascade in this case, includes 4 stripping stages, and 38 enriching
 stages. The Feed/Product/Tail (F/P/T) assay are respectively
 0.0071/0.903/0.0028.
 
-\subsection{Case 1}
+\subsubsection{Case 1}
 The case 1 is design to allow configure 30 cascades in the scenario (limit of
 the JCPOA agreement), all design the same way. The design properties are:\\
 - less than 169 centrifuges per cascade,\\
@@ -235,7 +236,7 @@ The corresponding design is:\\
 - 167 centrifuges,\\
 - F/P/T assays: 0.0071/0.0412842/0.00290548.\\
 
-\subsection{Case 2}
+\subsubsection{Case 2}
 The case 2 is design is also limited to 30 cascades in the scenario (limit of
 the JCPOA agreement), all design the same way. In thsi case the explored design
 aims to reproduce the different stage of the reference case over the different
@@ -255,6 +256,17 @@ The corresponding design is:\\
 Both case 1 and 2 will be simulation without and with tail recycling. In the
 tail recycling cases, the tails of the cascade level $N$ are blended in the feed
 of cascade level $N-1$.
+
+\subsection{the simulation}
+The simulation is build to layer up the different cascade in order to produce
+HEU. The different layers of cascade will be called levels in the following. The
+first task has been to determine the number of level required to produce HEU.
+The optimum number of cascade per level is determine (the same way) that the
+centrifuges are distributed on the different cascade stages.
+Once both the number of levels and the number of cascades per level is
+determined, the simulation is ran.
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results and Analysis}
