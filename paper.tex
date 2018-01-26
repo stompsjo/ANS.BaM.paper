@@ -295,7 +295,7 @@ production rate.
 \subsubsection{Without tail recycling}
 Despite the reconfiguration of each level occurring in the second case, the case
 1 is way more effective to produce HEU than case 1.Indeed as observed on Figure
-\ref{fig:assay_c1_nc} and \ref{fig:assay_c2_nc}, the first case is able to
+\ref{fig:assay_c1_nr} and \ref{fig:assay_c2_nr}, the first case is able to
 produce an uranium product enrich at $98\%$ while the second case is only able
 to reach an enrichment of $88.3\%$.
 
@@ -303,13 +303,15 @@ to reach an enrichment of $88.3\%$.
   \centering
   \includegraphics[width=0.5\textwidth]{assay_case_1_no_rec.png}
   \caption{Evolution of the different product assays at each cascade level for
-  the case 1 without recycling.}\label{fig:assay_c1_nc}
+  the case 1 without recycling. The blue line represents the $90\%$ enrichment
+  threshold.}\label{fig:assay_c1_nr}
 \end{figure}
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
   \centering
   \includegraphics[width=0.5\textwidth]{assay_case_2_no_rec.png}
   \caption{Evolution of the different product assays at each cascade level for
-  the case 2 without recycling.}\label{fig:assay_c2_nc}
+  the case 2 without recycling. The blue line represents the $90\%$ enrichment
+  threshold.}\label{fig:assay_c2_nr}
 \end{figure}
 
 Because the cut value at each stage is unchanged it artificially produces over
@@ -336,8 +338,7 @@ Level   &  $\theta_{eff}^{C1}$   & $\theta_{eff}^{C2}$ \\
 
 \bottomrule
 \end{tabular}
-  \caption{Cascade effective $\theta$ as a function of the cascade level and the
-  case considered.}
+  \caption{Cascade effective $\theta$ by the level and the case.}
   \label{tab:cascade_theta}
 \end{table}
 As illustrated on Table \ref{tab:cascade_theta} the effective cut of the
@@ -349,27 +350,28 @@ enrichment ratio.
 When recycling the tails from the different cascade levels, both cases behave
 the same way. As the tails have an higher enrichment than the product then are
 blended to, recycling the tail has the effect to bump up the enrichment of the
-product at each level (see Fig. \ref{} and \ref{}).
+product at each level (see Figure \ref{fig:assay_c1_r} and \ref{fig:assay_c2_r}).
 
+\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
+  \centering
+  \includegraphics[width=0.5\textwidth]{assay_case_1_rec.png}
+  \caption{Evolution of the different product assays at each cascade level for
+  the case 1 with recycling. The blue line represents the $90\%$ enrichment
+  threshold.}\label{fig:assay_c1_r}
+\end{figure}
 
+Note that for the case 2, where the fourth stage could appear as useless only the
+blending of its tail allows the product of the third one to pass the $90\%$ threshold.
 
-\subsubsection{Case 1}
-As shows on Figure \ref{ }, without tails recycling, the number of cascade level
-required to enrich the uranium up to $90\%$ are respectively 5 for the
-first case considered. Recycling the tails, allow to reduce the number of
-enrichment levels required to enrich natural uranium up to a high enrich level
-to 3.
+\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
+  \centering
+  \includegraphics[width=0.5\textwidth]{assay_case_2_rec.png}
+  \caption{Evolution of the different product assays at each cascade level for
+  the case 2 with recycling. The blue line represents the $90\%$ enrichment
+  threshold.}\label{fig:assay_c2_r}
+\end{figure}
 
-This bump in enrichment can easily be explained, as the cascade does not have the
-same number of stages, there is less stripping enrichment work, than enriching
-work. That is to say that even work in an ideal case (where the stripping work of a
-stage is the exact inverse of the enrich work), with an cascade with less
-stripping stage than enriching stage will produce tail with a higher enrichment
-than the feed of the previous level of
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Results and Analysis}
+\subsection{HEU flow rate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
