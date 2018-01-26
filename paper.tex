@@ -219,7 +219,7 @@ All cases will be considered with and without tail recycling. Figure
 \ref{fig:flow} shows the different flows between the different facilities in the
 fleet, in a configuration with two different levels of cascade without tail
 recycling. When considering the tail recycling, all the flow going from a
-cascade to the waste, are going from the cascade $i$ to the cascade $i-1$. 
+cascade to the waste, are going from the cascade $i$ to the cascade $i-1$.
 The Storage are not required in Cyclus they have been added to ensure the
 proper material flow between the facilities (if a receiver facility input buffer
 is full then the sender facility will stop sending material to it, and will stop
@@ -237,38 +237,40 @@ working when its own output buffer will be filled).
 
 \subsection{Explored Cases}
 \subsubsection{Reference Case}
-The reference case corresponds to the most ideal cascade design--utilizing all the 5060
+The reference case corresponds to the most ideal cascade design--utilizing all of the 5060
 centrifuges available within JCPOA to produce an enriched product at $>90\%$ of U-235,
 stripping the tail product up to 0.28 $\%$ from a feed of natural uranium.
 The design cascade in this case, includes 4 stripping stages, and 38 enriching
-stages. The Feed/Product/Tail (F/P/T) assay are respectively
+stages. The Feed/Product/Tail (F/P/T) assays are respectively
 0.0071/0.903/0.0028.
 %maybe include some cascade shape figures?
 
 \subsubsection{Case 1}
-The case 1 is design to allow configure 30 cascades in the scenario (limit of
-the JCPOA agreement), all design the same way. The design properties are:\\
+The case 1 is designed to configure 30 cascades in the scenario (the maximum allowable under
+the JCPOA agreement), all designed the same way. The basic properties are:\\
 - less than 169 centrifuges per cascade,\\
 - F/P/T assays: 0.0071/0.035/0.003.\\
 The corresponding design is:\\
 - 167 centrifuges,\\
 - F/P/T assays: 0.0071/0.0412842/0.00290548.\\
 
-\subsubsection{Case 2}
-The case 2 is design is also limited to 30 cascades in the scenario (limit of
-the JCPOA agreement), but this time each level of cascade are designed to get
-feed with the previous level product and to have 4 stripping stages and 10
-enriching stages. The configuration of the different level of cascade can be
-found in table \ref{tab:cascadelvl}. The different cascades don't have the same
-geometry: the number of centrifuges per stage depends on their own design and
-varies slightly from a level to another.
+\subsubsection{Case 2} Case 2 also limited to 30 cascades in the scenario (the
+maximum allowable under the JCPOA agreement), but this time each level of
+cascades are designed to take feed from the previous level's product. Each
+cascade has 4 stripping stages and 10 enriching stages. The configuration of
+cascade levels can be found in table \ref{tab:cascadelvl}. Unlike case 1, the
+organization of centrifuges varies from level to level. Each level is re-optimized
+to have the most efficient number of centrifuges in each stage, although the total number
+of stages remains constant. T
+
+ %we haven't defined a level
 
 \begin{table}[htb]
 \centering
 \begin{tabular}{cllll}
 \toprule
 
-Level   &           & Assay     &       & Machines  \\ 
+Level   &           & Assay     &       & Machines  \\
         & Feed      & Product   & Feed  &           \\
 \midrule
 0       & 0.0071    & 0.0413    & 0.0029 & 167       \\
@@ -279,13 +281,13 @@ Level   &           & Assay     &       & Machines  \\
 
 \bottomrule
 \end{tabular}
-  \caption{Summary of the different properties of the different level of cascade.}
+  \caption{Summary of cascade properties for each level}
   \label{tab:cascadelvl}
 \end{table}
 
 
-\subsection{Level optimisation}
-A last round of optimisation if then ran in order to limit the number of cascade
+\subsection{Level optimization}
+A last round of optimization if then ran in order to limit the number of cascade
 level to the amount of level required produce HEU, and then to populate the
 different level with a total of 30 cascades in order to maximize the HEU
 production rate.
@@ -294,10 +296,10 @@ production rate.
 \subsection{Enrichment}
 \subsubsection{Without tail recycling}
 Despite the reconfiguration of each level occurring in the second case, the case
-1 is way more effective to produce HEU than case 1.Indeed as observed on Figure
-\ref{fig:assay_c1_nr} and \ref{fig:assay_c2_nr}, the first case is able to
+1 is notably more effective in producing HEU than case 1. Indeed, as observed in Figure
+\ref{fig:assay_c1_rc} and \ref{fig:assay_c2_rc}, the first case is able to
 produce an uranium product enrich at $98\%$ while the second case is only able
-to reach an enrichment of $88.3\%$.
+to reach an enrichment of $88.3\%$ with the same number of levels.
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
   \centering
@@ -314,10 +316,13 @@ to reach an enrichment of $88.3\%$.
   threshold.}\label{fig:assay_c2_nr}
 \end{figure}
 
-Because the cut value at each stage is unchanged it artificially produces over
-enriched tails when feed with higher enriched materials compared to a cascade
-feed with the same feed assay but with a cascade designed for it.  The effective
-cut values for each cascade can be computed as :
+Because the cut value $\theta_i$ at each stage is unchanged, case 2 artificially
+produces over-enriched tails when fed with higher enriched materials compared
+to a cascade feed with the same feed assay but with a cascade designed for it.
+
+% ^ the above paragraph is confusing but I don't understand it enough to fix it
+
+The effective cut values for each cascade can be computed as :
 
 \begin{equation}\label{eq:theta_eff}
     \theta = \dfrac{N - N''}{N'-N''}
@@ -328,7 +333,7 @@ cut values for each cascade can be computed as :
 \begin{tabular}{cll}
 \toprule
 
-Level   &  $\theta_{eff}^{C1}$   & $\theta_{eff}^{C2}$ \\ 
+Level   &  $\theta_{eff}^{C1}$   & $\theta_{eff}^{C2}$ \\
 \midrule
 1       & 0.109375               & 0.109375     \\
 2       & 0.109375               & 0.128342     \\
@@ -338,11 +343,12 @@ Level   &  $\theta_{eff}^{C1}$   & $\theta_{eff}^{C2}$ \\
 
 \bottomrule
 \end{tabular}
-  \caption{Cascade effective $\theta$ by the level and the case.}
+  \caption{Cascade effective $\theta$ by the level and case.}
   \label{tab:cascade_theta}
 \end{table}
-As illustrated on Table \ref{tab:cascade_theta} the effective cut of the
-different level increase up to $0.54$ for the fifth stage on case 2. The high
+\end{table} 
+As illustrated in Table \ref{tab:cascade_theta}, the effective cut
+of each level increases up to $0.54$ for the fifth stage for case 2. The high
 effective cut value increase the product production rate but decrease the
 enrichment ratio.
 
@@ -370,6 +376,7 @@ blending of its tail allows the product of the third one to pass the $90\%$ thre
   the case 2 with recycling. The blue line represents the $90\%$ enrichment
   threshold.}\label{fig:assay_c2_r}
 \end{figure}
+
 
 \subsection{HEU flow rate}
 
