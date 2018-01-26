@@ -220,6 +220,10 @@ All cases will be considered with and without tail recycling. Figure
 fleet, in a configuration with two different levels of cascade without tail
 recycling. When considering the tail recycling, all the flow going from a
 cascade to the waste, are going from the cascade $i$ to the cascade $i-1$. 
+The Storage are not required in Cyclus they have been added to ensure the
+proper material flow between the facilities (if a receiver facility input buffer
+is full then the sender facility will stop sending material to it, and will stop
+working when its own output buffer will be filled).
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
   \centering
