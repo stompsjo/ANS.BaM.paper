@@ -235,7 +235,7 @@ working when its own output buffer will be filled).
   products of the cascades at the level $n$.}\label{fig:flow}
 \end{figure}
 
-\subsection{Relevant Cases}
+\subsection{Explored Cases}
 \subsubsection{Reference Case}
 The reference case corresponds to the most ideal cascade design--utilizing all of the 5060
 centrifuges available within JCPOA to produce an enriched product at $>90\%$ of U-235,
@@ -297,7 +297,7 @@ production rate.
 \subsubsection{Without tail recycling}
 Despite the reconfiguration of each level occurring in the second case, the case
 1 is notably more effective in producing HEU than case 1. Indeed, as observed in Figure
-\ref{fig:assay_c1_nc} and \ref{fig:assay_c2_nc}, the first case is able to
+\ref{fig:assay_c1_rc} and \ref{fig:assay_c2_rc}, the first case is able to
 produce an uranium product enrich at $98\%$ while the second case is only able
 to reach an enrichment of $88.3\%$ with the same number of levels.
 
@@ -305,13 +305,15 @@ to reach an enrichment of $88.3\%$ with the same number of levels.
   \centering
   \includegraphics[width=0.5\textwidth]{assay_case_1_no_rec.png}
   \caption{Evolution of the different product assays at each cascade level for
-  the case 1 without recycling.}\label{fig:assay_c1_nc}
+  the case 1 without recycling. The blue line represents the $90\%$ enrichment
+  threshold.}\label{fig:assay_c1_nr}
 \end{figure}
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
   \centering
   \includegraphics[width=0.5\textwidth]{assay_case_2_no_rec.png}
   \caption{Evolution of the different product assays at each cascade level for
-  the case 2 without recycling.}\label{fig:assay_c2_nc}
+  the case 2 without recycling. The blue line represents the $90\%$ enrichment
+  threshold.}\label{fig:assay_c2_nr}
 \end{figure}
 
 Because the cut value $\theta_i$ at each stage is unchanged, case 2 artificially
@@ -339,36 +341,44 @@ Level   &  $\theta_{eff}^{C1}$   & $\theta_{eff}^{C2}$ \\
 4       & 0.109375               & 0.411872     \\
 5       & 0.109375               & 0.547009     \\
 
-\bottomrule \end{tabular} \caption{Cascade effective $\theta$ as a function of
-the cascade level and the case considered.} \label{tab:cascade_theta}
-\end{table} As illustrated in Table \ref{tab:cascade_theta}, the effective cut
+\bottomrule
+\end{tabular}
+  \caption{Cascade effective $\theta$ by the level and case.}
+  \label{tab:cascade_theta}
+\end{table}
+\end{table} 
+As illustrated in Table \ref{tab:cascade_theta}, the effective cut
 of each level increases up to $0.54$ for the fifth stage for case 2. The high
 effective cut value increase the product production rate but decrease the
 enrichment ratio.
 
 \subsubsection{tails recycling}
+When recycling the tails from the different cascade levels, both cases behave
+the same way. As the tails have an higher enrichment than the product then are
+blended to, recycling the tail has the effect to bump up the enrichment of the
+product at each level (see Figure \ref{fig:assay_c1_r} and \ref{fig:assay_c2_r}).
+
+\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
+  \centering
+  \includegraphics[width=0.5\textwidth]{assay_case_1_rec.png}
+  \caption{Evolution of the different product assays at each cascade level for
+  the case 1 with recycling. The blue line represents the $90\%$ enrichment
+  threshold.}\label{fig:assay_c1_r}
+\end{figure}
+
+Note that for the case 2, where the fourth stage could appear as useless only the
+blending of its tail allows the product of the third one to pass the $90\%$ threshold.
+
+\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
+  \centering
+  \includegraphics[width=0.5\textwidth]{assay_case_2_rec.png}
+  \caption{Evolution of the different product assays at each cascade level for
+  the case 2 with recycling. The blue line represents the $90\%$ enrichment
+  threshold.}\label{fig:assay_c2_r}
+\end{figure}
 
 
-
-
-\subsubsection{Case 1}
-As shows on Figure \ref{ }, without tails recycling, the number of cascade levels
-required to enrich uranium up to $90\%$ is 5 for the
-first case considered. Recycling the tails allows for a reduction in the number of
-enrichment levels down to only 3.
-
-This bump in enrichment can easily be explained, as the cascade does not have
-the same number of stages, less work is spent on stripping as opposed to
-enriching. Even compared to an ideal case, where the stripping
-work of a stage is the exact inverse of the enriching work, a cascade with
-less stripping stages will produce tails with a higher
-enrichment than the feed of the previous level of
-
-%Did you commit in the middle of a sentence or did you forget to finish?
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Results and Analysis}
+\subsection{HEU flow rate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
