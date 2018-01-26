@@ -170,7 +170,7 @@ cascade:
     0  \\
     0
 \end{bmatrix}
-\caption{caption needed!}
+%\caption{caption needed!}
 \label{eq:flow}
 \end{equation}
 \end{strip}
@@ -245,7 +245,7 @@ varies slightly from a level to another.
 
 \begin{table}[htb]
 \centering
-\begin{tabular}{lllll}
+\begin{tabular}{cllll}
 \toprule
 
 Level   &           & Assay     &       & Machines  \\ 
@@ -271,6 +271,43 @@ different level with a total of 30 cascades in order to maximize the HEU
 production rate.
 
 \section{Results}
+
+\subsection{wWithout tail recycling}
+Despite the reconfiguration of each level occuring in the second case, the case
+1 is way more effective to produce HEU than case 1.
+Indeed as observed on Figure \ref{} and \ref{}, the first case is able to
+produce a an uranium product enrich at $98\%$ while the second case is only able
+to reach an enrichment of $88.3\%$.
+This is the consequence of the usage of un-touched cascade in the case 1:
+because the cut value at each stage is unchanged it artificially produces over
+enricht tails when feeded with higher enriched materials compared to a cascade
+feed with the same feed assay but with a cascade designed for it.
+The effective cut values for each cascade can be computed as :
+\begin{equation}\label{eq:theta_eff}
+    \theta = \dfrac{N - N''}{N'-N''}
+\end{equation}
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{cll}
+\toprule
+
+Level   &  $\theta_{eff}^{C1}$   & $\theta_{eff}^{C2}$ \\ 
+\midrule
+1       & 0.109375               & 0.109375     \\
+2       & 0.109375               & 0.128342     \\
+3       & 0.109375               & 0.215694     \\
+4       & 0.109375               & 0.411872     \\
+5       & 0.109375               & 0.547009     \\
+
+\bottomrule
+\end{tabular}
+  \caption{Summary of the different properties of the different level of cascade.}
+  \label{tab:cascadelvl}
+\end{table}
+
+    Looks at the effective $\theta$ values of the cascade at the third level in both
+case
 
 \subsection{Assays}
 \subsubsection{Case 1}
