@@ -238,24 +238,30 @@ The corresponding design is:\\
 
 \subsubsection{Case 2}
 The case 2 is design is also limited to 30 cascades in the scenario (limit of
-the JCPOA agreement), all design the same way. In thsi case the explored design
-aims to reproduce the different stage of the reference case over the different
-level of cascade enrichment: the goal is to have the tails assay of a stage to
-match the feed assay of the previous stage. To do so instead of aiming for a
-S/E stages of 4/10, a S/E stages repartition of 6/7 was targeted.:w
+the JCPOA agreement), but this time each level of cascade are designed to get
+feed with the previous level product and to have 4 stripping stages and 10
+enriching stages. The configuration of the different level of cascade can be
+found in table \ref{}
+\begin{table}[htb]
+\centering
+\begin{tabular}{lllll}
+\toprule
 
+Level   &           & Assay     &       & Machines  \\ 
+        & Feed      & Product   & Feed  &           \\
+\midrule
+1       & 0.0071    & 0.0413    & 0.0029 & 167       \\
+2       & 0.0413    & 0.2043    & 0.0173 & 169       \\
+3       & 0.2043    & 0.5941    & 0.0971 & 168       \\
+4       & 0.5941    & 0.8834    & 0.3915 & 168       \\
+5       & 0.8834    & 0.9735    & 0.7746 & 169       \\
 
-The design properties are:\\
-- less than 169 centrifuges per cascade,\\
-- F/P/T assays: 0.0071/0.0296/0.002.\\% to be correct with the correct value --
-                                      % this corresponds to a S/E of 5/6
-The corresponding design is:\\
-- 167 centrifuges,\\
-- F/P/T assays: 0.0071/0.0260104/0.0019111.\\
+\bottomrule
+\end{tabular}
+  \caption{Summary of the different properties of the different level of cascade.}
+  \label{tab:widetable}
+\end{table}
 
-Both case 1 and 2 will be simulation without and with tail recycling. In the
-tail recycling cases, the tails of the cascade level $N$ are blended in the feed
-of cascade level $N-1$.
 
 \subsection{the simulation}
 The simulation is build to layer up the different cascade in order to produce
@@ -305,27 +311,6 @@ If we so choose, we can effortlessly reference the equation later.
 Later on, we can include a table, even one that spans two columns such as
 Table~\ref{tab:widetable}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{table*}[htb]
-  \centering
-\begin{tabular}{llllllllll}\toprule
-      & $\phi_T(0)$      & $\phi_T(10)$      & $\phi_T(20)$      &
-      $\phi_D(0)$      & $\phi_D(10)$      & $\phi_D(20)$      & $\rho$      &
-      $\varepsilon$      & $N_\text{it}$
-\\ \midrule
-$c=0.999$  & 0.9038 & 20.63 & 31.24 & 0.9087 & 20.63 & 31.23 & 0.2192 & $10^{-7}$ & 15
-\\
-$c=0.990$  & 0.3675 & 13.04 & 24.7 & 0.3696 & 13.04 & 24.69 & 0.2184 & $10^{-7}$ & 15
-\\
-$c=0.900$  & 0.009909 & 4.776 & 17.64 & 0.009984 & 4.786 & 17.63 & 0.2118 & $10^{-7}$ & 14
-\\
-$c=0.500$  & $6.069\times 10^{-5}$ & 2.212 & 15.53 & 6.213$\times 10^{-5}$ & 2.239 & 15.53 & 0.2068 & $10^{-7}$ & 13
-\\
-\bottomrule
-\end{tabular}
-  \caption{This is an example of a really wide table which might not normally
-  fit in the document.}
-  \label{tab:widetable}
-\end{table*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Notice how the table reference uses a Roman numeral
 for its numbering scheme, whereas the figure reference uses an Arabic numeral.
