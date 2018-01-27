@@ -1,6 +1,6 @@
 \documentclass{anstrans}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{An Improved ANS Transaction Template}
+\title{Modeling potential JCPOA breakout scenarios using Cyclus}
 \author{Baptiste Mouginot,$^{*}$ Kathryn Mummah,$^{*}$ Paul P.H. Wilson$^{*}$}
 
 \institute{
@@ -239,7 +239,7 @@ working when its own output buffer will be filled).
 \end{figure}
 
 \subsection{Explored Cases}
-\subsubsection{Reference Case}
+%\subsubsection{Reference Case}
 
 The reference case corresponds to the most ideal cascade design--utilizing all
 of the 5060 centrifuges available within JCPOA to produce an enriched product at
@@ -248,7 +248,7 @@ natural uranium.  The design cascade in this case, includes 4 stripping stages,
 and 38 enriching stages. The Feed/Product/Tail (F/P/T) assays are respectively
 0.0071/0.903/0.0028.
 
-\subsubsection{Case 1}
+%\subsubsection{Case 1}
 
 The case 1 is designed to configure 30 cascades in the scenario (the maximum
 allowable under the JCPOA agreement), all designed the same way. The basic
@@ -256,7 +256,7 @@ properties are: less than 169 centrifuges per cascade, F/P/T assays of
 0.0071/0.035/0.003. The corresponding design includes 167 centrifuges, with
 respective F/P/T assays of 0.0071/0.0412842/0.00290548.
 
-\subsubsection{Case 2}
+%\subsubsection{Case 2}
 
 Case 2 also limited to 30 cascades in the scenario (the maximum allowable under
 the JCPOA agreement), but this time each level of cascades are designed to take
@@ -300,12 +300,6 @@ production rate.
 \subsection{Enrichment}
 \subsubsection{Without tail recycling}
 
-Despite the reconfiguration of each level occurring in the second case, the case
-1 is notably more effective in producing HEU than case 1. Indeed, as observed in
-Figure \ref{fig:assay_c1_rc} and \ref{fig:assay_c2_rc}, the first case is able
-to produce an uranium product enrich at $98\%$ while the second case is only
-able to reach an enrichment of $88.3\%$ with the same number of levels.
-
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
   \centering
   \includegraphics[width=0.5\textwidth]{assay_case_1_no_rec.png}
@@ -313,16 +307,22 @@ able to reach an enrichment of $88.3\%$ with the same number of levels.
   the case 1 without recycling. The blue line represents the $90\%$ enrichment
   threshold.}\label{fig:assay_c1_nr}
 \end{figure}
+Despite the reconfiguration of each level occurring in the second case, the case
+1 is notably more effective in producing HEU than case 1. Indeed, as observed in
+Figure \ref{fig:assay_c1_rc} and \ref{fig:assay_c2_rc}, the first case is able
+to produce an uranium product enrich at $98\%$ while the second case is only
+able to reach an enrichment of $88.3\%$ with the same number of levels.
+
+
+Because the cut value $\theta_i$ at each stage is unchanged, case 2 artificially
+produces over-enriched tails when fed with higher enriched materials compared
+to a cascade feed with the same feed assay but with a cascade designed for it.
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
   \centering
   \includegraphics[width=0.5\textwidth]{assay_case_2_no_rec.png}
   \caption{Evolution of the different product assays at each cascade level for
   the case 2 without recycling. }\label{fig:assay_c2_nr}
 \end{figure}
-
-Because the cut value $\theta_i$ at each stage is unchanged, case 2 artificially
-produces over-enriched tails when fed with higher enriched materials compared
-to a cascade feed with the same feed assay but with a cascade designed for it.
 
 % ^ the above paragraph is confusing but I don't understand it enough to fix it
 
@@ -332,6 +332,10 @@ The effective cut values for each cascade can be computed as :
     \theta = \dfrac{N - N''}{N'-N''}
 \end{equation}
 
+As illustrated in Table \ref{tab:cascade_theta}, the effective cut
+of each level increases up to $0.54$ for the fifth stage for case 2. The high
+effective cut value increase the product production rate but decrease the
+enrichment ratio.
 \begin{table}[htb]
 \centering
 \begin{tabular}{cll}
@@ -350,10 +354,6 @@ Level   &  $\theta_{eff}^{C1}$   & $\theta_{eff}^{C2}$ \\
   \caption{Cascade effective $\theta$ by the level and case.}
   \label{tab:cascade_theta}
 \end{table}
-As illustrated in Table \ref{tab:cascade_theta}, the effective cut
-of each level increases up to $0.54$ for the fifth stage for case 2. The high
-effective cut value increase the product production rate but decrease the
-enrichment ratio.
 
 \subsubsection{tails recycling}
 When recycling the tails from the different cascade levels, both cases behave
@@ -388,16 +388,15 @@ for the case 1 and 2 versus about 2 years with tail recycling.
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
   \centering
-  \includegraphics[width=0.5\textwidth]{HEU_prod.png}
-  \caption{Evolution of the amount of HEU in the storage. The blue line
-      correspond to one significant quantity of HEU ($25~$kg). CX correpsonds to
-      the case number(1 or 2), RT and NRT the tail reprocessing or not ones.
-      W/X/Y/Z represent the number of cascade per level. REF corresponds to the
-      reference case.}\label{fig:heu_prod}
+  \includegraphics[width=0.5\textwidth]{HEU_prod.png} \caption{Evolution of the
+  amount of HEU in the storage. The blue line correspond to 1 SQ of HEU
+  ($25~$kg). Cx, RT(NRT) represents the different cases with (no)tail recycling
+  with the cascade population per level and REF the reference
+  case.}\label{fig:heu_prod}
 \end{figure}
 
-It is also interresting to note that despite requiering more level of cascade to
-reach an enrichment of $90\%$ the second case with tial recycling produces HEU
+It is also interesting to note that despite requiring more level of cascade to
+reach an enrichment of $90\%$ the second case with tail recycling produces HEU
 at a equivalent rate than the case 1. The production rate seems to be faster but
 require more time to reach the maximum production rate (the material have to
 flow through more levels to reach the final level).
@@ -407,11 +406,22 @@ flow through more levels to reach the final level).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
 
-The JCPOA agreement limits the Natanz Fuel Enrichment Plant (NFEP) to 5060 operating centrifuges, or about $10\%$ of its design capacity. The reference case, using all 5060 centrifuges in a single cascade, would lead to a stockpile of approximately $1$ SQ of HEU in 8 months, as opposed to 24 days without the
-JCPOA agreement limitations. However, the more realistic case 1 and the case 2 will produce a $1$ SQ in about 2 years. Nevertheless, the diversion scenario from case 1 or 2 would be much more difficult to detect from the cascade configuration.
+The JCPOA agreement limits the Natanz Fuel Enrichment Plant (NFEP) to 5060
+operating centrifuges, or about $10\%$ of its design capacity. The reference
+case, using all 5060 centrifuges in a single cascade, would lead to a stockpile
+of approximately $1$ SQ of HEU in 8 months, as opposed to 24 days without the
+JCPOA agreement limitations. However, the more realistic case 1 and the case 2
+will produce a $1$ SQ in about 2 years. Nevertheless, the diversion scenario
+from case 1 or 2 would be much more difficult to detect from the cascade
+configuration.
 
 While the results of this work might be limited, it aims to develop a
-methodology to study diversion scenarios from the fuel cycle perspective. Furthermore, additional methods to compute the CascadeEnrich response to non-ideal feed assays will be investigated in the future.  The CascadeEnrich facility will be improved in order to take advantage of the dynamic flow management of the Cyclus framework. This will include automatic cascade level assignment to optimize the analysis workflow.
+methodology to study diversion scenarios from the fuel cycle perspective.
+Furthermore, additional methods to compute the CascadeEnrich response to
+non-ideal feed assays will be investigated in the future.  The CascadeEnrich
+facility will be improved in order to take advantage of the dynamic flow
+management of the Cyclus framework. This will include automatic cascade level
+assignment to optimize the analysis workflow.
 
 
 
