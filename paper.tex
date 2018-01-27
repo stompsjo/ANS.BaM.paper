@@ -1,6 +1,6 @@
 \documentclass{anstrans}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Modeling potential JCPOA breakout scenarios using Cyclus}
+\title{Modeling potential JCPOA diversion scenarios using Cyclus}
 \author{Baptiste Mouginot,$^{*}$ Kathryn Mummah,$^{*}$ Paul P.H. Wilson$^{*}$}
 
 \institute{
@@ -230,12 +230,12 @@ working when its own output buffer will be filled).
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
   \centering
-  \includegraphics[scale=0.7]{flow_case_2_no_recy.pdf}
+  \includegraphics[scale=0.68]{flow_case_2_no_recy.pdf}
   \caption{Illustration of the material flow between the different level of
-      cascades without tail recycling, in this diagram, nu\_src correspond to an
-      infinite source of natural uranium, cascade\_ $n$ and storage\_ $n$
-      corresponds respectively to the cascades, and the storage getting the
-  products of the cascades at the level $n$.}\label{fig:flow}
+      cascades without tail recycling, in this diagram, nu\_src corresponds to an
+  infinite source of natural uranium, cascade\_ $\{n\}$ and storage\_ $\{n\}$
+      corresponds to the cascade and the storage getting the
+      products of the cascades at the level $\{n\}$.}\label{fig:flow}
 \end{figure}
 
 \subsection{Explored Cases}
@@ -254,7 +254,7 @@ The case 1 is designed to configure 30 cascades in the scenario (the maximum
 allowable under the JCPOA agreement), all designed the same way. The basic
 properties are: less than 169 centrifuges per cascade, F/P/T assays of
 0.0071/0.035/0.003. The corresponding design includes 167 centrifuges, with
-respective F/P/T assays of 0.0071/0.0412842/0.00290548.
+respective F/P/T assays of 0.0071/0.0413/0.0029.
 
 %\subsubsection{Case 2}
 
@@ -309,7 +309,7 @@ production rate.
 \end{figure}
 Despite the reconfiguration of each level occurring in the second case, the case
 1 is notably more effective in producing HEU than case 1. Indeed, as observed in
-Figure \ref{fig:assay_c1_rc} and \ref{fig:assay_c2_rc}, the first case is able
+Figure \ref{fig:assay_c1_nr} and \ref{fig:assay_c2_nr}, the first case is able
 to produce an uranium product enrich at $98\%$ while the second case is only
 able to reach an enrichment of $88.3\%$ with the same number of levels.
 
