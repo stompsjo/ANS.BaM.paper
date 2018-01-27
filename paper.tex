@@ -1,6 +1,6 @@
 \documentclass{anstrans}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Modeling potential JCPOA diversion scenarios using Cyclus}
+\title{Enrichment Cascade Alternatives under JCPOA}
 \author{Baptiste Mouginot,$^{*}$ Kathryn Mummah,$^{*}$ Paul P.H. Wilson$^{*}$}
 
 \institute{
@@ -73,12 +73,26 @@ these differences and reveal patterns useful for a safeguards program.
 
 The present work uses the analytical solution by R\"aetz \cite{raetz.phd} of the
 differential equation for the gas centrifuge as described in \cite{glaser.2008}.
-Centrifuge parameters, such as average gas temperature, rotation speed, height,
-feed flow rate, diameter, pressure ratio, counter-current flow ratio, and
-efficiency have been chosen to match the cascade design describe in
-\cite{glaser.2008} and \cite{walker.2017}. These parameters for a P1-type
+Centrifuge parameters, such as average gas temperature, $T$, peripheral speed,
+$v$, height, $h$, diameter, $d$, pressure ratio, $x$, feed flow rate, $F$,
+counter-current flow ratio, $L/P$, and efficiency, $e$ have been chosen (Table
+\ref{tab:centrifuges}) to match the cascade design describe in
+\cite{glaser.2008} and \cite{walker.2017}.  These parameters for a P1-type
 centrifuge are used to estimate the JCPOA-compliant IR-1 centrifuge.
 
+\begin{table}[htb]
+\centering
+\caption{Summary of the centrifuge parameters.}
+\begin{tabular}{cccccccc}
+\toprule
+$T$[K] & $v$[m/s]    & $h$[m] & $d$[m]   & $x$   & $F$[mg/s]  & $L/F$ & $e$  \\
+\midrule
+320    & $320$           & $1.8$ & $0.105$ & $1e3$  & $13$      & 2     & 1.0  \\
+\bottomrule
+\end{tabular}
+
+  \label{tab:centrifuges}
+\end{table}
 
 \subsection{Cascade Design}
 
@@ -94,9 +108,10 @@ U(\theta)$, the cut $\theta$, and $\beta$ as a function of $alpha$ and $\theta$:
 \end{equation}
 \\
 \begin{equation}\label{eq:beta}
-    \beta = R
-              \dfrac{1 - \dfrac{N - \theta \dfrac{\alpha R}{1+\alpha R}}{1 - \theta}}
-                   {\dfrac{N - \theta \dfrac{\alpha R}{1+\alpha R}}{1 - \theta}}
+    \beta =   \left(1 - \dfrac{N - \theta \dfrac{\alpha R}{1+\alpha R}}{1 -
+              \theta}\right)
+              \left(\dfrac{R}{\dfrac{N - \theta \dfrac{\alpha R}{1+\alpha R}}{1
+              - \theta}}\right)
 \end{equation}
 \end{subequations}
 
@@ -111,9 +126,11 @@ $\theta_{i}$, changes in each stage $i$ of a cascade.
 It can be shown that $\theta_{i}$ can be computed from $\alpha$,
 $\beta$ values and the feed assay, $N_{i}$:
 \begin{eqnarray}
-    \theta_{i} &=& \dfrac{N_{i} - N''_{i}}{N'_{i}-N''_{i}}\nonumber\\
-           &=& \dfrac{N_{i} - \dfrac{1}{1 + \beta/R_{i}}}{ \dfrac{\alpha R_{i}}{1 + \alpha R_{i}} -
+    \theta_{i} = \dfrac{N_{i} - \dfrac{1}{1 + \beta/R_{i}}}{ \dfrac{\alpha R_{i}}{1 + \alpha R_{i}} -
            \dfrac{1}{1 + \beta/R_{i}}}
+%%    \theta_{i} &=& \dfrac{N_{i} - N''_{i}}{N'_{i}-N''_{i}}\nonumber\\
+%%           &=& \dfrac{N_{i} - \dfrac{1}{1 + \beta/R_{i}}}{ \dfrac{\alpha R_{i}}{1 + \alpha R_{i}} -
+%%           \dfrac{1}{1 + \beta/R_{i}}}
 \end{eqnarray}
 
 This algorithm assumes that the corresponding separative power $\delta U$ (not
