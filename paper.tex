@@ -136,45 +136,45 @@ $N''_{i}$,$\theta_{i}$i).
 
 The second step determines how to populate the cascade with the user-defined
 maximum number of centrifuges. One first solves the linear flow equation to
-determine the theoretical flow in the cascade:
-
-\begin{strip}
-\begin{equation}
-\setcounter{MaxMatrixCols}{20}
-\begin{bmatrix}
--1         & 1-\theta_{S+1} & 0              & 0 & ... & 0 & 0            & 0   & 0              & 0 & ... & 0            & 0            & 0 \\
-\theta_{S} & -1             & 1-\theta_{S+2} & 0 & ... & 0 & 0            & 0   & 0              & 0 & ... & 0            & 0            & 0 \\
-           &                &                &   &     &   &              & ... &                &   &     &              &              &   \\
-0          & 0              & 0              & 0 & ... & 0 & \theta_{-1}  & -1  & 1 - \theta_{1} & 0 & ... & 0            & 0            & 0 \\
-           &                &                &   &     &   &              & ... &                &   &     &              &              &   \\
-0          & 0              & 0              & 0 & ... & 0 & 0            & 0   & 0              & 0 & ... & \theta_{E-2} & -1           & 1-\theta_{E} \\
-0          & 0              & 0              & 0 & ... & 0 & 0            & 0   & 0              & 0 & ... & 0            & \theta_{E-1} & -1
-\end{bmatrix}
-\times
-\begin{bmatrix}
-     F_{S}   \\
-     F_{S+1} \\
-     \cdots  \\
-     F_{0}   \\
-    \cdots   \\
-    F_{E-1}  \\
-    F_{E}
-\end{bmatrix}
-=
-\begin{bmatrix}
-     0   \\
-     0 \\
-     \cdots  \\
-     F   \\
-    \cdots   \\
-    0  \\
-    0
-\end{bmatrix}
-%\caption{caption needed!}
-\label{eq:flow}
-\end{equation}
-\end{strip}
-Once the relative flow of each stage, $F_{i}$, has been determined, the
+determine the theoretical flow in the cascade.
+%% 
+%% \begin{strip}
+%% \begin{equation}
+%% \setcounter{MaxMatrixCols}{20}
+%% \begin{bmatrix}
+%% -1         & 1-\theta_{S+1} & 0              & 0 & ... & 0 & 0            & 0   & 0              & 0 & ... & 0            & 0            & 0 \\
+%% \theta_{S} & -1             & 1-\theta_{S+2} & 0 & ... & 0 & 0            & 0   & 0              & 0 & ... & 0            & 0            & 0 \\
+%%            &                &                &   &     &   &              & ... &                &   &     &              &              &   \\
+%% 0          & 0              & 0              & 0 & ... & 0 & \theta_{-1}  & -1  & 1 - \theta_{1} & 0 & ... & 0            & 0            & 0 \\
+%%            &                &                &   &     &   &              & ... &                &   &     &              &              &   \\
+%% 0          & 0              & 0              & 0 & ... & 0 & 0            & 0   & 0              & 0 & ... & \theta_{E-2} & -1           & 1-\theta_{E} \\
+%% 0          & 0              & 0              & 0 & ... & 0 & 0            & 0   & 0              & 0 & ... & 0            & \theta_{E-1} & -1
+%% \end{bmatrix}
+%% \times
+%% \begin{bmatrix}
+%%      F_{S}   \\
+%%      F_{S+1} \\
+%%      \cdots  \\
+%%      F_{0}   \\
+%%     \cdots   \\
+%%     F_{E-1}  \\
+%%     F_{E}
+%% \end{bmatrix}
+%% =
+%% \begin{bmatrix}
+%%      0   \\
+%%      0 \\
+%%      \cdots  \\
+%%      F   \\
+%%     \cdots   \\
+%%     0  \\
+%%     0
+%% \end{bmatrix}
+%% %\caption{caption needed!}
+%% \label{eq:flow}
+%% \end{equation}
+%% \end{strip}
+Once the relative flow of each stage has been determined, the
 cascade can be populated with actual machines up the stages
 until either the maximum number available of machines or the maximum feed
 flow is reached.
