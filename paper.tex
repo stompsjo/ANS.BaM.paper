@@ -29,33 +29,15 @@ $^{*}$University of Wisconsin-Madison, WI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
+The Joint Comprehensive Plan of Action (JCPOA)\cite{ref} %cite JCPOA
+agreement limits the Iranian nuclear program and, in return, lifts many of the economic sanctions that had been placed on Iran. Under the JCPOA, Iran is severely limited in its ability to enrich Uranium. This paper presents a model to probe the enriching ability of various cascade configurations that are related to JCPOA agreement limits. This analysis was performed using the Cyclus fuel cycle simulator\cite{ref} %cite Fundamental concepts in the Cyclus nuclear fuel cycle simulation framework
+in order to demonstrate that such analysis can be integrated into a fuel cycle with material flowing among multiple facilities.
 
+The Cyclus fuel cycle simulator is designed to support the dynamic addition novel facility models into fuel cycles both declared and undeclared facilities. The CascadeEnrich archetype\cite{ref} was developed to model gas centrifuge enrichment cascades at a higher fidelity than previous enrichment models, relying on individual centrifuge and cascade design parameters to build an ideal cascade configuration instead of integral facility parameters. Once a CascadeEnrich facility is deployed, it may be asked to participate in the fuel cycle at a variety of flow rates and enrichments over time, constrained by the initial design of the cascade.
 
+This analysis introduces a facility with parameters consistent with the JCPOA-defined capacity and explores its performance when asked to enrich material above JCPOA limits. Although the analytical aspect of this analysis can be performed using other tools, a fuel cycle simulator provides value in further extensions of this work. Studying the internal behavior of a cascade, or rather a set of cascades organized into levels that feed into each other, identifies the most effective ways that enrichments higher than the JCPOA-allowed 3.67\% U-235 could be produced. However, this is only one step in a safeguards program.
 
-Some text for introduction etc\ldots
-Some text for introduction etc\ldots
-Some text for introduction etc\ldots
-Some text for introduction etc\ldots
-Some text for introduction etc\ldots
-Some text for introduction etc\ldots
-Some text for introduction etc\ldots
-Some text for introduction etc\ldots
-Some text for introduction etc\ldots
-Some text for introduction etc\ldots
-Some text for introduction etc\ldots
-Some text for introduction etc\ldots
-Some text for introduction etc\ldots
-Some text for introduction etc\ldots
-Some text for introduction etc\ldots
-Some text for introduction etc\ldots
-Some text for introduction etc\ldots
-Some text for introduction etc\ldots
-Some text for introduction etc\ldots
-Some text for introduction etc\ldots
-Some text for introduction etc\ldots
-Some text for introduction etc\ldots
-Some text for introduction etc\ldots
-Some text for introduction etc\ldots
+Performing enrichment cascade analysis within a fuel cycle simulator offers the opportunity to study the \textit{external} behavior of an enrichment facility as well as internal. When an enrichment facility that is not complying with the JCPOA is forced to participate in a larger fuel cycle---where it must purchase natural uranium and interact with outside facilities, it will act differently than an enrichment facility that \textit{is} fully complying with the JCPOA. The levels of cascades developed in this paper will ultimately be used to probe these differences and reveal patterns useful for a safeguards program.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -86,7 +68,7 @@ Some text for introduction etc\ldots
 The present work uses the analytical solution by R\"aetz \cite{ref} of the
 differential equation for the gas centrifuge as described in \cite{Glaser2008}. Centrifuge parameters, such as average gas temperature, rotation speed, height, feed flow rate, diameter, pressure ratio,
 counter-current flow ratio, and efficiency have been chosen to match the cascade design
-describe in \cite{glaser2008} and \cite{Walker2017}. These parameters for a P1-type centrifuge are used to estimate the Joint Comprehensive Plan of Action (JCPOA)-compliant IR-1 centrifuge.
+describe in \cite{glaser2008} and \cite{Walker2017}. These parameters for a P1-type centrifuge are used to estimate the JCPOA-compliant IR-1 centrifuge.
 
 
 \subsection{Cascade Design}
@@ -346,7 +328,7 @@ Level   &  $\theta_{eff}^{C1}$   & $\theta_{eff}^{C2}$ \\
   \caption{Cascade effective $\theta$ by the level and case.}
   \label{tab:cascade_theta}
 \end{table}
-\end{table} 
+\end{table}
 As illustrated in Table \ref{tab:cascade_theta}, the effective cut
 of each level increases up to $0.54$ for the fifth stage for case 2. The high
 effective cut value increase the product production rate but decrease the
