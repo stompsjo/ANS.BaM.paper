@@ -32,15 +32,15 @@ $^{*}$University of Wisconsin-Madison, WI
 The Joint Comprehensive Plan of Action (JCPOA)\cite{jcpoa} %cite JCPOA agreement
 limits the Iranian nuclear program and, in return, lifts many of the economic
 sanctions that had been placed on Iran. Under the JCPOA, Iran is severely
-limited in its ability to enrich Uranium. This paper presents a model to probe
+limited in its ability to enrich uranium. This paper presents a model to probe
 the enriching ability of various cascade configurations that are related to
-JCPOA agreement limits. This analysis was performed using the Cyclus fuel cycle
-simulator\cite{cyclus} %cite Fundamental concepts in the Cyclus nuclear fuel cycle
+JCPOA agreement limits. The analysis was performed using the Cyclus fuel cycle
+\cite{cyclus} %cite Fundamental concepts in the Cyclus nuclear fuel cycle
 simulation framework in order to demonstrate that such analysis can be
 integrated into a fuel cycle with material flowing among multiple facilities.
 
-The Cyclus fuel cycle simulator is designed to support the dynamic addition
-novel facility models into fuel cycles both declared and undeclared facilities.
+The Cyclus fuel cycle simulator is designed to support the dynamic addition of
+novel facility models into fuel cycles with both declared and undeclared facilities.
 The CascadeEnrich archetype\cite{mbmore.2018} was developed to model gas centrifuge
 enrichment cascades at a higher fidelity than previous enrichment models,
 relying on individual centrifuge and cascade design parameters to build an ideal
@@ -86,7 +86,7 @@ The cascade is built to be ideal, defined by $\alpha =\beta = const$ for all
 stage of the cascade, where $\alpha$ and $\beta$ respectively represent the feed
 to product and the feed to tail enrichment factors.  $\alpha$ can be expressed
 as a function of the feed rate $F$, the separative performance $\delta
-U(\theta)$ and $\theta$, and $\beta$ as a function of $alpha$ and $\theta$:
+U(\theta)$, the cut $\theta$, and $\beta$ as a function of $alpha$ and $\theta$:
 
 \begin{subequations} \label{eqs:alphabeta}
     \begin{equation} \label{eq:alpha}
@@ -101,12 +101,12 @@ U(\theta)$ and $\theta$, and $\beta$ as a function of $alpha$ and $\theta$:
 \end{subequations}
 
 From equation \eqref{eq:alpha} and \eqref{eq:beta} it is possible to determine
-the cut, or the ratio of product flow to feed flow.
+the cut, or the ratio of product flow to feed flow
 %(all other centrifuge parameters been fixed) allowing the have $\alpha=\beta$
 required to build an ideal cascade.
 
 Since $\alpha_{i}$ and $\beta_{i}$ remain constant, only the value of the cut,
-$\theta_{i}$, changes in each stage of a cascade.
+$\theta_{i}$, changes in each stage $i$ of a cascade.
 
 It can be shown that $\theta_{i}$ can be computed from $\alpha$,
 $\beta$ values and the feed assay, $N_{i}$:
@@ -118,24 +118,17 @@ $\beta$ values and the feed assay, $N_{i}$:
 
 This algorithm assumes that the corresponding separative power $\delta U$ (not
 re-computed) can be achieved with the chosen centrifuge design. Once
-$\theta_{i}$ determined, it is possible to compute the product and the tail
+$\theta_{i}$ is determined, it is possible to compute the product and the tail
 assay.
 
 The design of the cascade is performed through 2 steps. First one determines the
-configuration and number of stages, adding stages following the previously
-described procedure, until $N'_{last} > N'_{requested}$ and $N''_{last} <
-N''_{requested}$. (Note that $N'_{last}$ corresponds to the product assay of the
-last enrichment stage, and $N''_{last}$ to the tail assay of the last stripping
-stage). This allows to determine the number of enriching and stripping stages as
+configuration and number of stages, adding stages until the product assay of the final stage is greater than or equal to than the desired assay, and the tails assay is similarly less than or equal to the desired tails assay. This determines the number of enriching and stripping stages as
 well as their enrichment properties ($N_{i}$, $N'_{i}$,
 $N''_{i}$,$\theta_{i}$i).
-% might be more useful to the reader to say this in words instead of variables,
-% i.e. adding stages until the product assay of the final stage is greater than
-% or equal to than the desired assay, and the tails assay is similarly less than
-% or equal to the desired tails assay
+
 
 The second step determines how to populate the cascade with the user-defined
-maximum number of centrifuges. One first solves the linear flow equation to
+maximum number of centrifuges. One then solves the linear flow equation to
 determine the theoretical flow in the cascade.
 %%
 %% \begin{strip}
@@ -187,18 +180,18 @@ being fed a feed enrichment that does not match its ideal enrichment.
 
 The tuning method outlined here does not re-optimize $\theta_i$ based on the
 true flow enrichment. As $\delta U$ and $\alpha$ do not depend on the stage feed
-assay $N'$ and the feed to product ratio $\alpha$ do not change from stage to
+assay ($N'$), they do not change from stage to
 stage. According to equation \eqref{eq:beta}, when $\alpha$ and $\theta$ are
-fixed, if the feed assay, $N$ changes, then $\beta$ will change accordingly.
-This brakes the ideal status of the cascade, i.e.  $N_{i} \neq N'_{i-1} \neq
+fixed, whenthe feed assay ($N$) changes, then $\beta$ will change accordingly.
+This breaks the ideal status of the cascade, i.e.  $N_{i} \neq N'_{i-1} \neq
 N''_{i+1}$.
 
-In order to compute the proper product and tails assay at each stages\, the
+In order to compute the proper product and tails assay at each stage, the
 tails and the product from respectively the next and the previous stage must be
 blended in order to determine the correct stage feed assay. As this is a obvious
-cycling problem, it has been chosen to solve it iteratively: all feed assay are
-iteratively updated, blending the proper product and tail, then using the
-updated feed assay, the new product and tail assay are recomputed. This process
+cycling problem, an iterative solution has been chosen: all feed assays are
+iteratively updated, blending the proper product and tails, then using the
+updated feed assay, the new product and tail assays are recomputed. This process
 is repeated until the change in assays is smaller than the set precision (1e-8
 by default).
 
@@ -213,20 +206,20 @@ enrich and over strip the product and the tail respectively.
 
 \section{The experiment}
 
-As explained previously, the goal of this work is to assess the rate of the
+As explained previously, the goal of this work is to assess the rate of
 highly-enriched uranium (HEU) production using enrichment cascades designed
-within the JCPOA agreement constraints. For this work, two different cases will
-be investigated and compared to the reference case.
+near, but not within, the JCPOA agreement constraints. For this work, two different cases will
+be investigated and compared to a reference case that is based on the most efficient use of the 5060 available centrifuges.
 
 All cases will be considered with and without tail recycling. Figure
-\ref{fig:flow} shows the different flows between the different facilities in the
-fleet, in a configuration with two different levels of cascade without tail
-recycling. When considering the tail recycling, all the flow going from a
+\ref{fig:flow} shows the material flows between the different facilities in the
+fleet, in a configuration with two "levels" of cascades without tail
+recycling. When considering the tail recycling, all of the flow going from a
 cascade to the waste, are going from the cascade $i$ to the cascade $i-1$.  The
-Storage are not required in Cyclus they have been added to ensure the proper
-material flow between the facilities (if a receiver facility input buffer is
-full then the sender facility will stop sending material to it, and will stop
-working when its own output buffer will be filled).
+Storage facilities are not required in Cyclus, but they have been added to ensure the proper
+material flow between the facilities.
+
+% you don't need this unless you want to explain how a buffer works (if a receiver facility input buffer is full then the sender facility will stop sending material to it, and will stop working when its own output buffer will be filled).
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
   \centering
@@ -241,8 +234,8 @@ working when its own output buffer will be filled).
 \subsection{Explored Cases}
 %\subsubsection{Reference Case}
 
-The reference case corresponds to the most ideal cascade design--utilizing all
-of the 5060 centrifuges available within JCPOA to produce an enriched product at
+The reference case corresponds to the most efficient cascade design--utilizing all
+of the 5060 centrifuges available within JCPOA in a single large cascade to produce an enriched product at
 $>90\%$ of U-235, stripping the tail product up to 0.28 $\%$ from a feed of
 natural uranium.  The design cascade in this case, includes 4 stripping stages,
 and 38 enriching stages. The Feed/Product/Tail (F/P/T) assays are respectively
@@ -250,21 +243,21 @@ and 38 enriching stages. The Feed/Product/Tail (F/P/T) assays are respectively
 
 %\subsubsection{Case 1}
 
-The case 1 is designed to configure 30 cascades in the scenario (the maximum
-allowable under the JCPOA agreement), all designed the same way. The basic
+The case 1 is designed to configure identical 30 cascades in the scenario (the maximum
+allowable under the JCPOA agreement). The basic
 properties are: less than 169 centrifuges per cascade, F/P/T assays of
-0.0071/0.035/0.003. The corresponding design includes 167 centrifuges, with
-respective F/P/T assays of 0.0071/0.0413/0.0029.
+0.0071/0.035/0.003. The corresponding cascade design includes 167 centrifuges, with
+respective F/P/T assays of 0.0071/0.0413/0.002.
 
 %\subsubsection{Case 2}
 
-Case 2 also limited to 30 cascades in the scenario (the maximum allowable under
-the JCPOA agreement), but this time each level of cascades are designed to take
-feed from the previous level's product. Each cascade has 4 stripping stages and
+Case 2 is also limited to 30 cascades in the scenario (the maximum allowable under
+the JCPOA agreement), but this time each level of cascades are optimized for the feed they recieve from the previous level's product. Each cascade has 4 stripping stages and
 10 enriching stages.
 
 \begin{table}[htb]
 \centering
+  \caption{Summary of cascade properties for each level}
 \begin{tabular}{cllll}
 \toprule
 
@@ -279,7 +272,7 @@ Level   &           & Assay     &       & Machines  \\
 
 \bottomrule
 \end{tabular}
-  \caption{Summary of cascade properties for each level}
+
   \label{tab:cascadelvl}
 \end{table}
 
@@ -291,10 +284,8 @@ centrifuges in each stage, although the total number of stages remains constant.
 
 \subsection{Level optimization}
 
-A last round of optimization if then ran in order to limit the number of cascade
-level to the amount of level required produce HEU, and then to populate the
-different level with a total of 30 cascades in order to maximize the HEU
-production rate.
+One last round of optimization limits the number of cascade
+levels to the number of level required produce HEU, and then to populate each level with a total of 30 cascades in order to maximize the HEU production rate.
 
 \section{Results}
 \subsection{Enrichment}
@@ -338,6 +329,7 @@ effective cut value increase the product production rate but decrease the
 enrichment ratio.
 \begin{table}[htb]
 \centering
+\caption{Cascade effective $\theta$ by the level and case.}
 \begin{tabular}{cll}
 \toprule
 
@@ -351,14 +343,14 @@ Level   &  $\theta_{eff}^{C1}$   & $\theta_{eff}^{C2}$ \\
 
 \bottomrule
 \end{tabular}
-  \caption{Cascade effective $\theta$ by the level and case.}
+
   \label{tab:cascade_theta}
 \end{table}
 
-\subsubsection{tails recycling}
-When recycling the tails from the different cascade levels, both cases behave
-the same way. As the tails have an higher enrichment than the product then are
-blended to, recycling the tail has the effect to bump up the enrichment of the
+\subsubsection{Recycling tails}
+When recycling the tails from the each cascade level, both cases behave
+the same way. As the tails have an higher enrichment than the product they are
+blended to, recycling the tails has bumps up the enrichment of the
 product at each level (see Figure \ref{fig:assay_c1_r} and \ref{fig:assay_c2_r}).
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
@@ -368,8 +360,7 @@ product at each level (see Figure \ref{fig:assay_c1_r} and \ref{fig:assay_c2_r})
   the case 1 with recycling. }\label{fig:assay_c1_r}
 \end{figure}
 
-Note that for the case 2, where the fourth stage could appear as useless only the
-blending of its tail allows the product of the third one to pass the $90\%$ threshold.
+Note that for case 2, a fourth level is needed while blending the tails for the product of the third level to pass the $90\%$ threshold.
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
   \centering
@@ -380,10 +371,9 @@ blending of its tail allows the product of the third one to pass the $90\%$ thre
 
 
 \subsection{HEU flow rate}
-As shown Figure \ref{fig:heu_prod}, if using all the centrifuges available to
-build a big cascade dedicated to HEU production, only 8 months are required to
-produce 1 Significant Quantity (SQ) of HEU. Also it take significantly longer to
-build 1 SQ of HEU, without recycling the tails respectively 13 years and 3.5 year
+As shown Figure \ref{fig:heu_prod}, if all of the available centrifuges are dedicated to HEU production in one massive cascade, only 8 months are required to
+produce 1 Significant Quantity (SQ) of HEU. It also takes significantly longer to
+stockpile 1 SQ of HEU without recycling the tails, respectively 13 years and 3.5 years
 for the case 1 and 2 versus about 2 years with tail recycling.
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
@@ -395,11 +385,11 @@ for the case 1 and 2 versus about 2 years with tail recycling.
   case.}\label{fig:heu_prod}
 \end{figure}
 
-It is also interesting to note that despite requiring more level of cascade to
-reach an enrichment of $90\%$ the second case with tail recycling produces HEU
-at a equivalent rate than the case 1. The production rate seems to be faster but
-require more time to reach the maximum production rate (the material have to
-flow through more levels to reach the final level).
+Despite requiring more levels of cascades to
+reach an enrichment of $90\%$, the second case with tail recycling produces HEU
+at a equivalent rate to case 1. The production rate is faster, but
+require more times to reach the maximum production rate. This is because the material has to
+flow through more levels to reach its final level.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
