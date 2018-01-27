@@ -29,19 +29,19 @@ $^{*}$University of Wisconsin-Madison, WI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-The Joint Comprehensive Plan of Action (JCPOA)\cite{ref} %cite JCPOA agreement
+The Joint Comprehensive Plan of Action (JCPOA)\cite{jcpoa} %cite JCPOA agreement
 limits the Iranian nuclear program and, in return, lifts many of the economic
 sanctions that had been placed on Iran. Under the JCPOA, Iran is severely
 limited in its ability to enrich Uranium. This paper presents a model to probe
 the enriching ability of various cascade configurations that are related to
 JCPOA agreement limits. This analysis was performed using the Cyclus fuel cycle
-simulator\cite{ref} %cite Fundamental concepts in the Cyclus nuclear fuel cycle
+simulator\cite{cyclus} %cite Fundamental concepts in the Cyclus nuclear fuel cycle
 simulation framework in order to demonstrate that such analysis can be
 integrated into a fuel cycle with material flowing among multiple facilities.
 
 The Cyclus fuel cycle simulator is designed to support the dynamic addition
 novel facility models into fuel cycles both declared and undeclared facilities.
-The CascadeEnrich archetype\cite{ref} was developed to model gas centrifuge
+The CascadeEnrich archetype\cite{mbmore.2018} was developed to model gas centrifuge
 enrichment cascades at a higher fidelity than previous enrichment models,
 relying on individual centrifuge and cascade design parameters to build an ideal
 cascade configuration instead of integral facility parameters. Once a
@@ -71,12 +71,12 @@ these differences and reveal patterns useful for a safeguards program.
 \section{Cascade Enrich Construction}
 \subsection{Centrifuge properties}
 
-The present work uses the analytical solution by R\"aetz \cite{ref} of the
-differential equation for the gas centrifuge as described in \cite{Glaser2008}.
+The present work uses the analytical solution by R\"aetz \cite{raetz.phd} of the
+differential equation for the gas centrifuge as described in \cite{glaser.2008}.
 Centrifuge parameters, such as average gas temperature, rotation speed, height,
 feed flow rate, diameter, pressure ratio, counter-current flow ratio, and
 efficiency have been chosen to match the cascade design describe in
-\cite{glaser2008} and \cite{Walker2017}. These parameters for a P1-type
+\cite{glaser.2008} and \cite{walker.2017}. These parameters for a P1-type
 centrifuge are used to estimate the JCPOA-compliant IR-1 centrifuge.
 
 
@@ -109,7 +109,7 @@ Since $\alpha_{i}$ and $\beta_{i}$ remain constant, only the value of the cut,
 $\theta_{i}$, changes in each stage of a cascade.
 
 It can be shown that $\theta_{i}$ can be computed from $\alpha$,
-$\beta$ values and the feed assay, $N_{i}$ \cite{ref}:
+$\beta$ values and the feed assay, $N_{i}$:
 \begin{eqnarray}
     \theta_{i} &=& \dfrac{N_{i} - N''_{i}}{N'_{i}-N''_{i}}\nonumber\\
            &=& \dfrac{N_{i} - \dfrac{1}{1 + \beta/R_{i}}}{ \dfrac{\alpha R_{i}}{1 + \alpha R_{i}} -
@@ -205,7 +205,7 @@ by default).
 Other hypotheses will be explored in the future, such as maintaining the ideal
 stage of the cascade through tuning the cut values $\theta_{i}$ of each stage of
 the cascade, or maintaining $\alpha*\beta = const$ as described in
-\cite{walker2017}.
+\cite{walker.2017}.
 
 Note that as a consequence of our design method, the cascade product and tail
 assay will not necessary match the targeted values, and usually slightly over
