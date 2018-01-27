@@ -182,7 +182,7 @@ The tuning method outlined here does not re-optimize $\theta_i$ based on the
 true flow enrichment. As $\delta U$ and $\alpha$ do not depend on the stage feed
 assay ($N'$), they do not change from stage to
 stage. According to equation \eqref{eq:beta}, when $\alpha$ and $\theta$ are
-fixed, whenthe feed assay ($N$) changes, then $\beta$ will change accordingly.
+fixed, when the feed assay ($N$) changes, then $\beta$ will change accordingly.
 This breaks the ideal status of the cascade, i.e.  $N_{i} \neq N'_{i-1} \neq
 N''_{i+1}$.
 
@@ -208,16 +208,17 @@ enrich and over strip the product and the tail respectively.
 
 As explained previously, the goal of this work is to assess the rate of
 highly-enriched uranium (HEU) production using enrichment cascades designed
-near, but not within, the JCPOA agreement constraints. For this work, two different cases will
-be investigated and compared to a reference case that is based on the most efficient use of the 5060 available centrifuges.
+near, but not within, the JCPOA agreement constraints. For this work, two
+different cases will be investigated and compared to a reference case that is
+based on the most efficient use of the 5060 available centrifuges.
 
 All cases will be considered with and without tail recycling. Figure
 \ref{fig:flow} shows the material flows between the different facilities in the
-fleet, in a configuration with two "levels" of cascades without tail
-recycling. When considering the tail recycling, all of the flow going from a
-cascade to the waste, are going from the cascade $i$ to the cascade $i-1$.  The
-Storage facilities are not required in Cyclus, but they have been added to ensure the proper
-material flow between the facilities.
+fleet, in a configuration with two "levels" of cascades without tail recycling.
+When considering the tail recycling, all of the flow going from a cascade to the
+waste, are going from the cascade $i$ to the cascade $i-1$.  The Storage
+facilities are not required in Cyclus, but they have been added to ensure the
+proper material flow between the facilities.
 
 % you don't need this unless you want to explain how a buffer works (if a receiver facility input buffer is full then the sender facility will stop sending material to it, and will stop working when its own output buffer will be filled).
 
@@ -234,12 +235,12 @@ material flow between the facilities.
 \subsection{Explored Cases}
 %\subsubsection{Reference Case}
 
-The reference case corresponds to the most efficient cascade design--utilizing all
-of the 5060 centrifuges available within JCPOA in a single large cascade to produce an enriched product at
-$>90\%$ of U-235, stripping the tail product up to 0.28 $\%$ from a feed of
-natural uranium.  The design cascade in this case, includes 4 stripping stages,
-and 38 enriching stages. The Feed/Product/Tail (F/P/T) assays are respectively
-0.0071/0.903/0.0028.
+The reference case corresponds to the most efficient cascade design--utilizing
+all of the 5060 centrifuges available within JCPOA in a single large cascade to
+produce an enriched product at $>90\%$ of U-235, stripping the tail product up
+to 0.28 $\%$ from a feed of natural uranium.  The design cascade in this case,
+includes 4 stripping stages, and 38 enriching stages. The Feed/Product/Tail
+(F/P/T) assays are respectively 0.0071/0.903/0.0028.
 
 %\subsubsection{Case 1}
 
@@ -251,9 +252,10 @@ respective F/P/T assays of 0.0071/0.0413/0.002.
 
 %\subsubsection{Case 2}
 
-Case 2 is also limited to 30 cascades in the scenario (the maximum allowable under
-the JCPOA agreement), but this time each level of cascades are optimized for the feed they recieve from the previous level's product. Each cascade has 4 stripping stages and
-10 enriching stages.
+Case 2 is also limited to 30 cascades in the scenario (the maximum allowable
+under the JCPOA agreement), but this time each level of cascades are optimized
+for the feed they receive from the previous level's product. Each cascade has 4
+stripping stages and 10 enriching stages.
 
 \begin{table}[htb]
 \centering
@@ -284,8 +286,9 @@ centrifuges in each stage, although the total number of stages remains constant.
 
 \subsection{Level optimization}
 
-One last round of optimization limits the number of cascade
-levels to the number of level required produce HEU, and then to populate each level with a total of 30 cascades in order to maximize the HEU production rate.
+One last round of optimization limits the number of cascade levels to the number
+of level required produce HEU, and then to populate each level with a total of
+30 cascades in order to maximize the HEU production rate.
 
 \section{Results}
 \subsection{Enrichment}
@@ -360,7 +363,8 @@ product at each level (see Figure \ref{fig:assay_c1_r} and \ref{fig:assay_c2_r})
   the case 1 with recycling. }\label{fig:assay_c1_r}
 \end{figure}
 
-Note that for case 2, a fourth level is needed while blending the tails for the product of the third level to pass the $90\%$ threshold.
+Note that for case 2, a fourth level is needed while blending the tails for the
+product of the third level to pass the $90\%$ threshold.
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
   \centering
@@ -371,10 +375,12 @@ Note that for case 2, a fourth level is needed while blending the tails for the 
 
 
 \subsection{HEU flow rate}
-As shown Figure \ref{fig:heu_prod}, if all of the available centrifuges are dedicated to HEU production in one massive cascade, only 8 months are required to
-produce 1 Significant Quantity (SQ) of HEU. It also takes significantly longer to
-stockpile 1 SQ of HEU without recycling the tails, respectively 13 years and 3.5 years
-for the case 1 and 2 versus about 2 years with tail recycling.
+As shown Figure \ref{fig:heu_prod}, if all of the available centrifuges are
+dedicated to HEU production in one massive cascade, only 8 months are required
+to produce 1 Significant Quantity (SQ) of HEU. It also takes significantly
+longer to stockpile 1 SQ of HEU without recycling the tails, respectively 13
+years and 3.5 years for the case 1 and 2 versus about 2 years with tail
+recycling.
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
   \centering
@@ -385,11 +391,11 @@ for the case 1 and 2 versus about 2 years with tail recycling.
   case.}\label{fig:heu_prod}
 \end{figure}
 
-Despite requiring more levels of cascades to
-reach an enrichment of $90\%$, the second case with tail recycling produces HEU
-at a equivalent rate to case 1. The production rate is faster, but
-require more times to reach the maximum production rate. This is because the material has to
-flow through more levels to reach its final level.
+Despite requiring more levels of cascades to reach an enrichment of $90\%$, the
+second case with tail recycling produces HEU at a equivalent rate to case 1. The
+production rate is faster, but require more times to reach the maximum
+production rate. This is because the material has to flow through more levels to
+reach its final level.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
