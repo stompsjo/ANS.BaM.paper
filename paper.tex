@@ -25,6 +25,13 @@ $^{*}$University of Wisconsin-Madison, WI
 \newcommand{\grad}{\vec{\nabla}} % gradient
 \newcommand{\ud}{\mathop{}\!\mathrm{d}} % upright derivative symbol
 
+
+\usepackage[acronym]{glossaries}
+\newacronym{UOX}{UOX}{uranium oxide fuel}
+\newacronym{MOX}{MOX}{mixed oxide fuel}
+\newacronym{LWR}{LWR}{light water reactor}
+\newacronym{FBR}{FBR}{fast breeder reactor}
+
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
@@ -62,30 +69,81 @@ operational parameters of their different facility.  Table
 different facilities present in Cycamore and CyCLASS.
 
 
- \begin{table}[htb]
- \centering
-   \caption{Summary of facility modification per source package.}
- \begin{tabular}{cll}
- \toprule
- 
- Packae   & Facility   & Parameters                \\
- \midrule
- Cycamore & Enrichment & Tail Assay                \\
-          & Separation & Separation efficiency     \\
-          & Storage    & Residence Time            \\
- \midrule
- CyCLASS  & Reactor    & Cycle Length              \\
-          &            & Power                     \\
-          &            & Fuel Enrichment (PWR-UOX) \\
- 
- \bottomrule
- \end{tabular}
- 
-   \label{tab:package_uncertainty}
- \end{table}
+\begin{table}[htb]
+\centering
+  \caption{Summary of facility modification per source package.}
+\begin{tabular}{cll}
+\toprule
+
+Package   & Facility   & Parameters                \\
+\midrule
+Cycamore & Enrichment & Tail Assay                \\
+         & Separation & Separation efficiency     \\
+         & Storage    & Residence Time            \\
+\midrule
+CyCLASS  & Reactor    & Cycle Length              \\
+         &            & Power                     \\
+         &            & Fuel Enrichment (PWR-UOX) \\
+
+\bottomrule
+\end{tabular}
+
+  \label{tab:package_uncertainty}
+\end{table}
 
 \section{The Experiment}
+\subsection{The Fuel Cycle}
+This work aims to assess the impact of the functional uncertainties of a
+simple transition (see Figure \ref{fig:cycle}) inspired from the EG23 of the Screening And
+Evaluation Group\cite{FCO}: a transition from light water reactors fleet loaded
+with \glspl{UOX} fuel to a sodium fast reactors fleet loaded \glspl{MOX} fuel, considering an
+$1\%/$y grows of the generated power (Figure \ref{fig:power}).
+\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
+  \centering
+  \includegraphics[scale=0.31]{cycle.png}
+  \caption{Illustration of the material flow between the different facilities,
+  with in green each operational parameters associated with an
+  uncertainty.}\label{fig:cycle}
+\end{figure}
 
+As illustrated on Figure \ref{fig:power}, the transition starts with a fleet
+fully composed by \glspl{LWR} loaded with enriched \glspl{UOX} fuel. The actual
+transition starts around year 35, with the deployment of \glspl{FBR}, loaded
+with Mixed oxide fuel (MOX), consisting of plutonium blended with natural
+uranium. Once the transition to a full \glspl{FBR} fleet is completed, the
+\glspl{FBR} fleet is slowly replaced with \glspl{FBR} with a lower breeding
+ratio. 
+
+\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
+  \centering
+  \includegraphics[scale=0.32]{power.png}
+  \caption{Electric power generated over time, with in blue the full production,
+      in orange the \glspl{LWR} contribution, in green the hight breeding ratio
+    \glspl{FBR} and in red the low breeding ratio \glspl{FBR}.}
+    \label{fig:power}
+\end{figure}
+
+
+The plutonium, required for the \glspl{MOX} fabrication, is reprocessed
+from all used fuel, at first only used UOX, then used MOX fuel as they start to
+be available for reprocessing.
+
+Both fuel reprocessing and fabrication are done at a constant rate (constrained
+by the feed materials availabilities). The enrichment of the UOX is processed on
+demand. Buffer storages (not shown on Figure \ref{fig:cycle}) is present between
+all facilities with constant processing rates.
+
+\subsection{Uncertainty Measurements}
+In this specific study, one will only focus on the uncertainty on the produced
+electric power as a function of time, on the total quantity of natural uranium
+used and on the total unused fissile inventory (unused reprocessed plutonium).
+In order to estimate the total uncertainty on those 3 parameters as well as the
+individual contribution of the operational parameters several set of (199) simulations
+have been completed.
+
+In addition to the set with all parameters are sampled according to their
+uncertainty, a set a have been computed for each parameter, with all the other
+remaining fixed to the reference value.
 
 
 
