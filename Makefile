@@ -15,7 +15,7 @@ bib:
 	pdflatex paper.tex
 
 tidy:
-	rm -vf *.aux *.log *.blg *.bbl
+	rm -vf *.out *.aux *.log *.blg *.bbl
 
 clean: tidy
 	rm -vf paper.pdf
