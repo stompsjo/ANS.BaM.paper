@@ -1,6 +1,6 @@
 \documentclass{anstrans}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Modeling potential JCPOA diversion scenarios with Cyclus}
+\title{}
 \author{Baptiste Mouginot,$^{*}$ Kathryn Mummah,$^{*}$ Paul P.H. Wilson$^{*}$}
 
 \institute{
@@ -29,16 +29,62 @@ $^{*}$University of Wisconsin-Madison, WI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
+Fuel cycle simulations, as any simulation process, do not produce results
+without errors. Those errors have different sources: data uncertainties (when
+the simulation relies on previously estimated/measured metrics), modeling
+uncertainties (produced by the simplification made by the simulator) and the
+``functional`` uncertainty (uncertainty on the operation parameters of the
+different facilities).
+
+Some treaty verification scenarios require estimating historical fissile
+material production based on records of facility operation and material
+transfer.  If the measurements of facility operation and material transfer are
+subject to uncertainty, the total production quantities will then also be
+uncertain, creating an opportunity for undetected diversion.  This study seeks
+to understand which measures of facility operation have the most impact on the
+uncertainty of fissile material production across a complete fuel cycle.  A
+``Total Monte Carlo'' approach will be applied to the Cyclus fuel cycle simulator
+\cite{cyclus} to estimate output metrics uncertainty caused by individual
+facility uncertainties.
+
+\section{Method}
+
+To estimate the uncertainty on fuel cycle output metrics, a ``Total Monte
+Carlo'' approach has been applied. In the following, output metric uncertainty
+corresponds to the Standard Deviation of the output metrics over about 200
+different simulations. For each uncertainty associated parameter, an
+artificially large uncertainty of $10\%$ have been Normally distributed.
+
+To pursuit this work, both the Cycamore\cite{cycamore} package and the
+CyCLASS\cite{cyclass} have been updated to deal with uncertainty in different
+operational parameters of their different facility.  Table
+\ref{tab:package_uncertainty} summarize all the modification implemented in the
+different facilities present in Cycamore and CyCLASS.
 
 
-\section{Cascade Enrich Construction}
-\subsection{Centrifuge properties}
+ \begin{table}[htb]
+ \centering
+   \caption{Summary of facility modification per source package.}
+ \begin{tabular}{cll}
+ \toprule
+ 
+ Packae   & Facility   & Parameters                \\
+ \midrule
+ Cycamore & Enrichment & Tail Assay                \\
+          & Separation & Separation efficiency     \\
+          & Storage    & Residence Time            \\
+ \midrule
+ CyCLASS  & Reactor    & Cycle Length              \\
+          &            & Power                     \\
+          &            & Fuel Enrichment (PWR-UOX) \\
+ 
+ \bottomrule
+ \end{tabular}
+ 
+   \label{tab:package_uncertainty}
+ \end{table}
 
-
-
-
-\subsection{Explored Cases}
-
+\section{The Experiment}
 
 
 
