@@ -115,12 +115,11 @@ uranium. Once the transition to a full \glspl{FBR} fleet is completed, the
 ratio. 
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
-  \centering
-  \includegraphics[scale=0.32]{power.png}
-  \caption{Electric power generated over time, with in blue the full production,
-      in orange the \glspl{LWR} contribution, in green the hight breeding ratio
-    \glspl{FBR} and in red the low breeding ratio \glspl{FBR}.}
-    \label{fig:power}
+    \centering
+    \includegraphics[scale=0.32]{power.png}
+    \caption{Electric power generated over time, with in blue the full production,
+        in orange the \glspl{LWR} contribution, in green the hight breeding ratio
+        \glspl{FBR} and in red the low breeding ratio \glspl{FBR}.}\label{fig:power}
 \end{figure}
 
 
@@ -133,35 +132,50 @@ by the feed materials availabilities). The enrichment of the UOX is processed on
 demand. Buffer storages (not shown on Figure \ref{fig:cycle}) is present between
 all facilities with constant processing rates.
 
+
 \subsection{Uncertainty Measurements}
 In this specific study, one will only focus on the uncertainty on the produced
 electric power as a function of time, on the total quantity of natural uranium
 used and on the total unused fissile inventory (unused reprocessed plutonium).
 In order to estimate the total uncertainty on those 3 parameters as well as the
-individual contribution of the operational parameters several set of (199) simulations
-have been completed.
+individual contribution of the operational parameters several set of (199)
+simulations have been completed.  All uncertainty are computed as the standard
+deviation over over all the calculations in the set.
 
 In addition to the set with all parameters are sampled according to their
 uncertainty, a set a have been computed for each parameter, with all the other
 remaining fixed to the reference value.
 
+
 \subsection{Generated Power}
-By construction, the very low uncertainty (Figure \ref{fig:power_full}) on the generated power is expected. The
-transition scenario has been design to allow all the reactors to receive the
-fuel as needed allowing them to be producing power all the time.
- \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
-   \centering
-   \includegraphics[scale=0.37]{power_full}
-   \caption{Electric power generated as a function of time. The black line
-   represents the reference calculation(wihtout uncertainty), and the blue zone
-   represents the 1 $\sigma$ distribution uncertainty induced by the
-   uncertainty of all the operational parameters.}\label{fig:power_full}
- \end{figure}
- %%  \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
- %%    \centering
- %%    \includegraphics[scale=0.37]{power_uncer}
- %%    \caption{}\label{fig:power_uncer}
- %%  \end{figure}
+By construction, the very low uncertainty (Figure \ref{fig:power_full}) on the
+generated power is expected. 
+
+\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
+    \centering
+    \includegraphics[scale=0.35]{power_full}
+    \caption{Electric power generated as a function of time. The black line
+        represents the reference calculation and the blue zone
+        represents the 1 $\sigma$ uncertainty distribution.}\label{fig:power_full}
+\end{figure}
+
+Indeed the transition scenario has been design to allow
+all the reactors to receive the fuel as needed allowing them to be producing
+power all the time. This ensure that the uncertainty measured on other
+parameters are not influence by the reactors miss-loadings.
+
+%%  \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
+%%    \centering
+%%    \includegraphics[scale=0.37]{power_uncer}
+%%    \caption{}\label{fig:power_uncer}
+%%  \end{figure}
+
+\subsection{Natural Uranium Consumption}
+
+Figure \ref{fig:unat_full}| represents the cumulative natural uranium
+consumption as a function of time.
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% \appendix
 %% \section{Appendix}
