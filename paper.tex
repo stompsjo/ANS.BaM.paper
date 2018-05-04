@@ -172,26 +172,53 @@ parameters are not influence by the reactors miss-loadings.
 
 \subsection{Natural Uranium Consumption}
 
-Figure \ref{fig:unat_full}| represents the cumulative natural uranium
-consumption as a function of time.
+Figure \ref{fig:unat_full} represents the cumulative natural uranium
+consumption as a function of time. The uncertainty on the cumulative uranium
+consumption grows as expected with the time and the loading of the \glspl{LWR}.
+The increase stops around year 125y with the decommissioning of the last
+\glspl{LWR}.
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
     \centering
-    \includegraphics[scale=0.35]{power_full}
+    \includegraphics[scale=0.35]{unat_full}
     \caption{Cumulative consumption of natural uranium as a function of time. The black line
         represents the reference calculation and the blue zone
         represents the 1 $\sigma$ uncertainty distribution.}\label{fig:unat_full}
 \end{figure}
 
-\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
+
+The fluctuation of the full relative uncertainty at low time are because of the
+sensitivity to the fuel loading: all reactors at the beginning have synchronised
+cycle, this phenomenon disappear with the gradual decommissioning of the initial
+reactor, spread on 50 years. 
+
+
+\begin{figure}[h!!] % replace 't' with 'b' to force it to be on the bottom
     \centering
-    \includegraphics[scale=0.37]{unat_uncer}
+    \includegraphics[scale=0.35]{unat_uncer}
     \caption{Cumulative natural uranium consumption relative uncertainty, with
     in black the total uncertainty at 1$\sigma$, and in color the uncertainty
     contribution of each parameter: cooling time (blue), fuel enrichment (red),
-    cycle time (green), thermal power(brown), separation efficiency (light blue)}
-    \label{fig:unatr_uncer}
+    cycle time (green), thermal power(brown), separation efficiency (light
+    blue).}\label{fig:unatr_uncer}
 \end{figure}
+The relative uncertainty of the total uranium consumption starts at about
+$5.5\%$ a slowly drops and stabilise around $3\%$.
+
+As expected, cooling time, separation efficiency and thermal power does
+not affect the natural uranium consumption.
+The uncertainty on the natural uranium consumption is dominated by the
+\glspl{LWR} cycle length: shorter the cycle length is, the more fuel will be
+loaded.  
+
+As the number of deployed \glspl{LWR} reactors increases, as each parameters is
+sampled once for each facilities, the average length of the cycle (as well as
+the number of loaded batches) converges to the reference value.
+The fuel enrichment and the tail assay contribution follow a smoother behavior,
+so as the total relative uncertainty decrease, their contribution increases over
+time.
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% \appendix
 %% \section{Appendix}
