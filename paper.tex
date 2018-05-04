@@ -103,16 +103,15 @@ calculates the fissile fraction required in the fuel to reach a target
 burnup at the end of irradiation. In this study, the uncertainty on the fuel
 enrichment is not applied directly on the effective enrichment but on the target
 parameter (the burnup), which leads to to a fuel enrichment uncertainty close to
-$10\%$. 
+$10\%$.
 
 \subsection{The Fuel Cycle}
-This work estimates the impact of the operational parameters uncertainty on a simple
-transition (see Figure \ref{fig:cycle}) inspired from the EG23 of the Screening
-And Evaluation Group\cite{ES}: a transition from light water reactors fleet
-loaded with \glspl{UOX} fuel to a sodium fast reactors fleet loaded \glspl{MOX}
-fuel, considering an $1\%/$y grows of the generated power (Figure
-\ref{fig:power}).
-
+This work aims to assess the impact of the functional uncertainties of a simple
+transition as shown in Figure \ref{fig:cycle}, inspired from the EG23 fuel cycle
+of the Nuclear Fuel Cycle Evaluation and Screening Report\cite{ES}: a
+transition from light water reactors fleet loaded with \glspl{UOX} fuel to a
+sodium fast reactor fleet loaded \glspl{MOX} fuel, considering an $1\%/$y growth
+of the generated power (Figure \ref{fig:power}).
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
   \centering
   \includegraphics[scale=0.31]{cycle.png}
@@ -121,22 +120,25 @@ fuel, considering an $1\%/$y grows of the generated power (Figure
   uncertainty.}\label{fig:cycle}
 \end{figure}
 
-As illustrated on Figure \ref{fig:power}, the transition starts with a fleet
-fully composed by \glspl{LWR} loaded with enriched \glspl{UOX} fuel. The actual
+As illustrated in Figure \ref{fig:power}, the transition starts with a fleet
+fully composed of \glspl{LWR} loaded with enriched \glspl{UOX} fuel. The actual
 transition starts around year 35, with the deployment of \glspl{FBR}, loaded
-with Mixed oxide fuel (MOX), consisting of plutonium blended with natural
-uranium.
+with \glspl{MOX}, consisting of plutonium blended with natural
+uranium. Once the transition to a full \glspl{FBR} fleet is completed, the
+\glspl{FBR} fleet is slowly replaced with \glspl{FBR} with a lower breeding
+ratio.
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
     \centering
     \includegraphics[scale=0.18]{power.png}
     \caption{Electric power generated over time, with in blue the full production,
-        in orange the \glspl{LWR} contribution, in green the \glspl{FBR}.}\label{fig:power}
+        in orange the \glspl{LWR} contribution, in green the hight breeding ratio
+        \glspl{FBR} and in red the low breeding ratio \glspl{FBR}.}\label{fig:power}
 \end{figure}
 
 
-The plutonium, required for the \glspl{MOX} fabrication, is reprocessed from all
-used fuel, at first only used UOX, then used MOX fuel as they start to be
+The plutonium, required for \glspl{MOX} fabrication, is reprocessed from all
+used fuel. At first , it is sourced only from UOX, then used MOX fuel as it becomes
 available for reprocessing.
 
 Both fuel reprocessing and fabrication are done at a constant rate (constrained
