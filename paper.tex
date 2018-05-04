@@ -59,8 +59,9 @@ facility uncertainties.
 To estimate the uncertainty on fuel cycle output metrics, a ``Total Monte
 Carlo'' approach has been applied. In the following, output metric uncertainty
 corresponds to the Standard Deviation of the output metrics over about 200
-different simulations. For each uncertainty associated parameter, an
-artificially large uncertainty of $10\%$ have been Normally distributed.
+different simulations. For each deployed facilities, the uncertainty associated
+parameters have been a normally distributed with an artificially large standard
+deviation of $10\%$.
 
 To pursuit this work, both the Cycamore\cite{cycamore} package and the
 CyCLASS\cite{cyclass} have been updated to deal with uncertainty in different
@@ -132,9 +133,9 @@ ratio.
 \end{figure}
 
 
-The plutonium, required for the \glspl{MOX} fabrication, is reprocessed
-from all used fuel, at first only used UOX, then used MOX fuel as they start to
-be available for reprocessing.
+The plutonium, required for the \glspl{MOX} fabrication, is reprocessed from all
+used fuel, at first only used UOX, then used MOX fuel as they start to be
+available for reprocessing.
 
 Both fuel reprocessing and fabrication are done at a constant rate (constrained
 by the feed materials availabilities). The enrichment of the UOX is processed on
@@ -168,10 +169,10 @@ generated power is expected.
         represents the 1 $\sigma$ uncertainty distribution.}\label{fig:power_full}
 \end{figure}
 
-Indeed the transition scenario has been design to allow
-all the reactors to receive the fuel as needed allowing them to be producing
-power all the time. This ensure that the uncertainty measured on other
-parameters are not influence by the reactors miss-loadings.
+Indeed the transition scenario has been design to allow all the reactors to
+receive the fuel as needed allowing them to be producing power all the time.
+This ensure that the uncertainty measured on other parameters are not influence
+by the reactors miss-loadings.
 
 %%  \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
 %%    \centering
@@ -214,11 +215,10 @@ reactor, spread on 50 years.
 The relative uncertainty of the total uranium consumption starts at about
 $5.5\%$ a slowly drops and stabilise around $3\%$.
 
-As expected, cooling time, separation efficiency and thermal power does
-not affect the natural uranium consumption.
-The uncertainty on the natural uranium consumption is dominated by the
-\glspl{LWR} cycle length: shorter the cycle length is, the more fuel will be
-loaded.  
+As expected, cooling time, separation efficiency and thermal power does not
+affect the natural uranium consumption.  The uncertainty on the natural uranium
+consumption is dominated by the \glspl{LWR} cycle length: shorter the cycle
+length is, the more fuel will be loaded.  
 
 As the number of deployed \glspl{LWR} reactors increases, as each parameters is
 sampled once for each facilities, the average length of the cycle (as well as
@@ -302,12 +302,33 @@ parameters seems to have a lower contribution, the cycle time contribution
 picking at $10\%$ and stabilizing with the power contribution around $1\%$
 
 
+\section{Conclusion}
 
-
-Two main points can be deduced from this work. First of all, in a transitional
+Two main points can be deduced from this work. Firstly, in a transitional
 fuel cycle, the uncertainty contributions to an output metric can vary over time
 depending of various factors: deployment schedule artifact or pressure point in
 the material flows.
+
+Secondly, it is important to note the special character of the time related
+parameters uncertainty in a fuel cycle study, such as cooling time and cycle
+length. As the cycle length impact the discharge fuel burnup, it also affects
+the frequency of the fuel loads, this, as well as the cooling may imply a
+uncertainty on the material availability, which could lead to a large
+uncertainty. Those kind of uncertainties will need a special treatment on further
+uncertainty analysis.
+
+This study aims to be a proof-of-principle for uncertainty propagation in
+potential commercial fuel cycle transition and will to be extended to random
+uncertainty. 
+
+While the parameters contributing to natural uranium needs and fissile inventory
+uncertainties might be obvious, such study allows to estimate each parameters
+contribution, it could be less obvious for other parameters, such as
+plutonium quality, waste compositions. Such studies could also provide research
+guidance for nuclear archeology works, which aims to precisely estimate past
+fissile production by the different nuclear countries.
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% \appendix
