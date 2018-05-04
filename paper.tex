@@ -103,11 +103,13 @@ $10\%$.
 
 \section{The Experiment}
 \subsection{The Fuel Cycle}
-This work aims to assess the impact of the functional uncertainties of a
-simple transition (see Figure \ref{fig:cycle}) inspired from the EG23 of the Screening And
-Evaluation Group\cite{FCO}: a transition from light water reactors fleet loaded
-with \glspl{UOX} fuel to a sodium fast reactors fleet loaded \glspl{MOX} fuel, considering an
-$1\%/$y grows of the generated power (Figure \ref{fig:power}).
+This work estimates the impact of the operationnal parameters uncertainty on a simple
+transition (see Figure \ref{fig:cycle}) inspired from the EG23 of the Screening
+And Evaluation Group\cite{FCO}: a transition from light water reactors fleet
+loaded with \glspl{UOX} fuel to a sodium fast reactors fleet loaded \glspl{MOX}
+fuel, considering an $1\%/$y grows of the generated power (Figure
+\ref{fig:power}).
+
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
   \centering
   \includegraphics[scale=0.31]{cycle.png}
@@ -120,16 +122,13 @@ As illustrated on Figure \ref{fig:power}, the transition starts with a fleet
 fully composed by \glspl{LWR} loaded with enriched \glspl{UOX} fuel. The actual
 transition starts around year 35, with the deployment of \glspl{FBR}, loaded
 with Mixed oxide fuel (MOX), consisting of plutonium blended with natural
-uranium. Once the transition to a full \glspl{FBR} fleet is completed, the
-\glspl{FBR} fleet is slowly replaced with \glspl{FBR} with a lower breeding
-ratio. 
+uranium.
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
     \centering
-    \includegraphics[scale=0.32]{power.png}
+    \includegraphics[scale=0.18]{power.png}
     \caption{Electric power generated over time, with in blue the full production,
-        in orange the \glspl{LWR} contribution, in green the hight breeding ratio
-        \glspl{FBR} and in red the low breeding ratio \glspl{FBR}.}\label{fig:power}
+        in orange the \glspl{LWR} contribution, in green the \glspl{FBR}.}\label{fig:power}
 \end{figure}
 
 
@@ -143,7 +142,7 @@ demand. Buffer storages (not shown on Figure \ref{fig:cycle}) is present between
 all facilities with constant processing rates.
 
 
-\subsection{Uncertainty Measurements}
+\section{Results}
 In this specific study, one will only focus on the uncertainty on the produced
 electric power as a function of time, on the total quantity of natural uranium
 used and on the total unused fissile inventory (unused reprocessed plutonium).
@@ -158,16 +157,16 @@ remaining fixed to the reference value.
 
 
 \subsection{Generated Power}
-By construction, the very low uncertainty (Figure \ref{fig:power_full}) on the
-generated power is expected. 
 
-\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
+\begin{figure}[h!] % replace 't' with 'b' to force it to be on the bottom
     \centering
     \includegraphics[scale=0.35]{power_full}
     \caption{Electric power generated as a function of time. The black line
         represents the reference calculation and the blue zone
         represents the 1 $\sigma$ uncertainty distribution.}\label{fig:power_full}
 \end{figure}
+By construction, the very low uncertainty (Figure \ref{fig:power_full}) on the
+generated power is expected. 
 
 Indeed the transition scenario has been design to allow all the reactors to
 receive the fuel as needed allowing them to be producing power all the time.
@@ -285,7 +284,7 @@ length are conversion toward the power contribution, such as the increase of
 fuel loads effect tends to vanish and let its place to a discharge burnup
 effect (the power uncertainty only affects the burnup of the fuel at discharge).
 
-\section{Discussion}
+\subsection{Discussion}
 
 Even if for the two output metric analysed there is no surprise such as the
 identified uncertainty contributions, it is very interesting to be able to
