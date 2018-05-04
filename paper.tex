@@ -91,6 +91,15 @@ CyCLASS  & Reactor    & Cycle Length              \\
   \label{tab:package_uncertainty}
 \end{table}
 
+Note: the fuel enrichment is determined by a fuel fabrication model\cite{leniau} which
+express a fissile fraction required in the fuel to reach a target
+burnup at the end of irradiation. In this study, the uncertainty on the fuel
+enrichment is not applied directly on the effective enrichment but on the target
+parameter (the burnup), which leads to to a fuel enrichment uncertainty close to
+$10\%$. 
+
+
+
 \section{The Experiment}
 \subsection{The Fuel Cycle}
 This work aims to assess the impact of the functional uncertainties of a
@@ -189,7 +198,7 @@ The increase stops around year 125y with the decommissioning of the last
 
 The fluctuation of the full relative uncertainty at low time are because of the
 sensitivity to the fuel loading: all reactors at the beginning have synchronised
-cycle, this phenomenon disappear with the gradual decommissioning of the initial
+cycle, this phenomenon disappears with the gradual decommissioning of the initial
 reactor, spread on 50 years. 
 
 
@@ -218,6 +227,87 @@ The fuel enrichment and the tail assay contribution follow a smoother behavior,
 so as the total relative uncertainty decrease, their contribution increases over
 time.
 
+\subsection{Fissile Inventory}
+As observed on Figure \ref{fig:pu_full}, the fissile inventory starts to grow on
+year 40, with the deployment of the first reprocessing facility. It grows
+during the first period of the \glspl{LWR} to \glspl{FBR}-A transition until
+year 90, then decrease slightly as the last \glspl{LWR} are decommissioned.
+When he steady state is reached (full \glspl{FBR} fleet), the plutonium
+inventory starts to increase, as the breading ratio of the \glspl{FBR} is higher
+than the deployment needs.
+
+\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
+    \centering
+    \includegraphics[scale=0.35]{pu_full}
+    \caption{Fissile (plutonium) inventory as a function of time. The black line
+        represents the reference calculation and the blue zone
+        represents the 1 $\sigma$ uncertainty distribution.}\label{fig:pu_full}
+\end{figure}
+
+\begin{figure}[h!!] % replace 't' with 'b' to force it to be on the bottom
+    \centering
+    \includegraphics[scale=0.35]{pu_uncer}
+    \caption{Fissile (plutonium) inventory relative uncertainty, with
+    in black the total uncertainty at 1$\sigma$, and in color the uncertainty
+    contribution of each parameter: cooling time (blue), fuel enrichment (red),
+    cycle time (green), thermal power(brown), separation efficiency (light
+    blue).}\label{fig:pu_uncer}
+\end{figure}
+
+Regarding the uncertainty, beside the low inventory artefact observable around
+year 40, the relative uncertainty starts at about $5\%$, and grows until year
+125 to decrease up to $10\%$ at the end of the simulation time (180y), it seems
+it will reach an equilibrium between $5$ and $10\%$...
+Between year 40 and 70, the main contributor to the fissile inventory
+uncertainty is the cycle length, as for the uranium needs, lower cycle length
+implies more fuel loads. Never the less, around year 65 (see Figure
+\ref{fig:used_fuel}), the stock of used fuel available for reprocessing starts
+to lack, and the availability of the used fuel starts to dictate the evolution
+of fissile in storage. The uncertainty weight is then slowly transferred from
+the cycle length to the fuel cooling time.
+
+\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
+    \centering
+    \includegraphics[scale=0.17]{used_fuel}
+    \caption{Used fuel inventory.}\label{fig:used_fuel}
+\end{figure}
+Between year 90 and 120, the \glspl{FBR} deployment speed increases, it has to
+compensate the non replacement of the decommissioned \glspl{LWR} as well as
+follow the power demand. During this period the needs in plutonium are higher
+than its productions, explaining the observed decrease of the total amount, and
+the increase associated relative uncertainty.
+
+As the transition ends, the plutonium breed from the \glspl{FBR} starts to be
+sufficient to sustain the new \glspl{FBR} deployment to follow the power demand. 
+
+It is also interesting to note that, the uncertainty contribution from the cycle
+length are conversion toward the power contribution, such as the increase of
+fuel loads effect tends to vanish and let its place to a discharge burnup
+effect (the power uncertainty only affects the burnup of the fuel at discharge).
+
+\section{Discussion}
+
+Even if for the two output metric analysed there is no surprise such as the
+identified uncertainty contributions, it is very interesting to be able to
+measure them and rank them.
+
+In this study, we can estimate than the cycle length uncertainty of $10\%$
+varies from $3\%$ to $5\%$ on the total uranium needs uncertainty, where $\approx10\%$
+on the enrichment implies a almost flat uncertainty of $2\%$, and the enrichment
+tails uncertainty have an even lower contributions of $1\%$.
+
+It is also very interesting to observe that while the plutonium inventory uncertainty
+reach a pick at $30\%$, lead by the cooling time uncertainty contribution, the reactor
+parameters seems to have a lower contribution, the cycle time contribution
+picking at $10\%$ and stabilizing with the power contribution around $1\%$
+
+
+
+
+Two main points can be deduced from this work. First of all, in a transitional
+fuel cycle, the uncertainty contributions to an output metric can vary over time
+depending of various factors: deployment schedule artifact or pressure point in
+the material flows.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% \appendix
