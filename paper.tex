@@ -49,25 +49,28 @@ transfer.  If the measurements of facility operation and material transfer are
 subject to uncertainty, the total production quantities will then also be
 uncertain, creating an opportunity for undetected diversion.  This study seeks
 to understand which measures of facility operation have the most impact on the
-uncertainty of fissile material production across a complete fuel cycle.  A
-``Total Monte Carlo'' approach will be applied to the Cyclus fuel cycle simulator
+uncertainty of fissile material production across a complete fuel cycle.  An
+approaching using Total Monte Carlo methodology will be applied to the Cyclus
+fuel cycle simulator
 \cite{cyclus} to estimate output metrics uncertainty caused by individual
 facility uncertainties.
 
+% I don't think Total Monte Carlo should be in quotes
+
 \section{Method}
 
-To estimate the uncertainty on fuel cycle output metrics, a ``Total Monte
-Carlo'' approach has been applied. In the following, output metric uncertainty
+To estimate the uncertainty on fuel cycle output metrics, a Total Monte
+Carlo approach has been applied. In the following, output metric uncertainty
 corresponds to the Standard Deviation of the output metrics over about 200
 different simulations. For each deployed facilities, the uncertainty associated
 parameters have been a normally distributed with an artificially large standard
 deviation of $10\%$.
 
 To pursuit this work, both the Cycamore\cite{cycamore} package and the
-CyCLASS\cite{cyclass} have been updated to deal with uncertainty in different
-operational parameters of their different facility.  Table
-\ref{tab:package_uncertainty} summarize all the modification implemented in the
-different facilities present in Cycamore and CyCLASS.
+CyCLASS\cite{cyclass} have been updated to deal with uncertainty in several
+operational parameters of their associated facilities.  Table
+\ref{tab:package_uncertainty} summarizes all modificatiosn implemented in the
+range of facilities present in Cycamore and CyCLASS.
 
 
 \begin{table}[htb]
@@ -92,8 +95,9 @@ CyCLASS  & Reactor    & Cycle Length              \\
   \label{tab:package_uncertainty}
 \end{table}
 
-Note: the fuel enrichment is determined by a fuel fabrication model\cite{leniau} which
-express a fissile fraction required in the fuel to reach a target
+It must be noted that for this work, the fuel enrichment was determined by a
+fuel fabrication model\cite{leniau} which
+calculates the fissile fraction required in the fuel to reach a target
 burnup at the end of irradiation. In this study, the uncertainty on the fuel
 enrichment is not applied directly on the effective enrichment but on the target
 parameter (the burnup), which leads to to a fuel enrichment uncertainty close to
@@ -122,7 +126,7 @@ transition starts around year 35, with the deployment of \glspl{FBR}, loaded
 with Mixed oxide fuel (MOX), consisting of plutonium blended with natural
 uranium. Once the transition to a full \glspl{FBR} fleet is completed, the
 \glspl{FBR} fleet is slowly replaced with \glspl{FBR} with a lower breeding
-ratio. 
+ratio.
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
     \centering
@@ -159,7 +163,7 @@ remaining fixed to the reference value.
 
 \subsection{Generated Power}
 By construction, the very low uncertainty (Figure \ref{fig:power_full}) on the
-generated power is expected. 
+generated power is expected.
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
     \centering
@@ -200,7 +204,7 @@ The increase stops around year 125y with the decommissioning of the last
 The fluctuation of the full relative uncertainty at low time are because of the
 sensitivity to the fuel loading: all reactors at the beginning have synchronised
 cycle, this phenomenon disappears with the gradual decommissioning of the initial
-reactor, spread on 50 years. 
+reactor, spread on 50 years.
 
 
 \begin{figure}[h!!] % replace 't' with 'b' to force it to be on the bottom
@@ -218,7 +222,7 @@ $5.5\%$ a slowly drops and stabilise around $3\%$.
 As expected, cooling time, separation efficiency and thermal power does not
 affect the natural uranium consumption.  The uncertainty on the natural uranium
 consumption is dominated by the \glspl{LWR} cycle length: shorter the cycle
-length is, the more fuel will be loaded.  
+length is, the more fuel will be loaded.
 
 As the number of deployed \glspl{LWR} reactors increases, as each parameters is
 sampled once for each facilities, the average length of the cycle (as well as
@@ -278,7 +282,7 @@ than its productions, explaining the observed decrease of the total amount, and
 the increase associated relative uncertainty.
 
 As the transition ends, the plutonium breed from the \glspl{FBR} starts to be
-sufficient to sustain the new \glspl{FBR} deployment to follow the power demand. 
+sufficient to sustain the new \glspl{FBR} deployment to follow the power demand.
 
 It is also interesting to note that, the uncertainty contribution from the cycle
 length are conversion toward the power contribution, such as the increase of
@@ -319,7 +323,7 @@ uncertainty analysis.
 
 This study aims to be a proof-of-principle for uncertainty propagation in
 potential commercial fuel cycle transition and will to be extended to random
-uncertainty. 
+uncertainty.
 
 While the parameters contributing to natural uranium needs and fissile inventory
 uncertainties might be obvious, such study allows to estimate each parameters
@@ -376,7 +380,7 @@ fissile production by the different nuclear countries.
 %%   \caption{Summary of cascade properties for each level.}
 %% \begin{tabular}{cllll}
 %% \toprule
-%% 
+%%
 %% Level   &           & Assay     &       & Machines  \\
 %%         & Feed      & Product   & Feed  &           \\
 %% \midrule
@@ -385,10 +389,10 @@ fissile production by the different nuclear countries.
 %% 2       & 0.2043    & 0.5941    & 0.0971 & 168       \\
 %% 3       & 0.5941    & 0.8834    & 0.3915 & 168       \\
 %% 4       & 0.8834    & 0.9735    & 0.7746 & 169       \\
-%% 
+%%
 %% \bottomrule
 %% \end{tabular}
-%% 
+%%
 %%   \label{tab:cascadelvl}
 %% \end{table}
 
