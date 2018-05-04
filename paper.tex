@@ -51,13 +51,13 @@ uncertain, creating an opportunity for undetected diversion.  This study seeks
 to understand which measures of facility operation have the most impact on the
 uncertainty of fissile material production across a complete fuel cycle.  An
 approaching using Total Monte Carlo methodology will be applied to the Cyclus
-fuel cycle simulator
-\cite{cyclus} to estimate output metrics uncertainty caused by individual
-facility uncertainties.
+fuel cycle simulator \cite{cyclus} to estimate output metrics uncertainty caused
+by individual facility uncertainties.
 
 % I don't think Total Monte Carlo should be in quotes
+\section{The Experiment}
 
-\section{Method}
+\subsection{Method}
 
 To estimate the uncertainty on fuel cycle output metrics, a Total Monte
 Carlo approach has been applied. In the following, output metric uncertainty
@@ -66,10 +66,13 @@ different simulations. For each deployed facilities, the uncertainty associated
 parameters have been a normally distributed with an artificially large standard
 deviation of $10\%$.
 
-To pursuit this work, both the Cycamore\cite{cycamore} package and the
-CyCLASS\cite{cyclass} have been updated to deal with uncertainty in several
+To pursuit this work, both the Cycamore\cite{cycamore} package\footnote{Low
+fidelity facilities package for Cyclus} and the
+CyCLASS\footnote{Reactor and Fuel fabrication facility based on
+    CLASS\cite{CLASS}  models} have been
+updated\cite{mouginot_2018, cyclass} to deal with uncertainty in several
 operational parameters of their associated facilities.  Table
-\ref{tab:package_uncertainty} summarizes all modificatiosn implemented in the
+\ref{tab:package_uncertainty} summarizes all modification implemented in the
 range of facilities present in Cycamore and CyCLASS.
 
 
@@ -81,8 +84,7 @@ range of facilities present in Cycamore and CyCLASS.
 
 Package   & Facility   & Parameters                \\
 \midrule
-Cycamore & Enrichment & Tail Assay                \\
-         & Separation & Separation efficiency     \\
+Cycamore & Separation & Separation efficiency     \\
          & Storage    & Residence Time            \\
 \midrule
 CyCLASS  & Reactor    & Cycle Length              \\
@@ -96,20 +98,17 @@ CyCLASS  & Reactor    & Cycle Length              \\
 \end{table}
 
 It must be noted that for this work, the fuel enrichment was determined by a
-fuel fabrication model\cite{leniau} which
+fuel fabrication model\cite{Leniau2015125} which
 calculates the fissile fraction required in the fuel to reach a target
 burnup at the end of irradiation. In this study, the uncertainty on the fuel
 enrichment is not applied directly on the effective enrichment but on the target
 parameter (the burnup), which leads to to a fuel enrichment uncertainty close to
 $10\%$. 
 
-
-
-\section{The Experiment}
 \subsection{The Fuel Cycle}
-This work estimates the impact of the operationnal parameters uncertainty on a simple
+This work estimates the impact of the operational parameters uncertainty on a simple
 transition (see Figure \ref{fig:cycle}) inspired from the EG23 of the Screening
-And Evaluation Group\cite{FCO}: a transition from light water reactors fleet
+And Evaluation Group\cite{ES}: a transition from light water reactors fleet
 loaded with \glspl{UOX} fuel to a sodium fast reactors fleet loaded \glspl{MOX}
 fuel, considering an $1\%/$y grows of the generated power (Figure
 \ref{fig:power}).
@@ -226,9 +225,8 @@ length is, the more fuel will be loaded.
 As the number of deployed \glspl{LWR} reactors increases, as each parameters is
 sampled once for each facilities, the average length of the cycle (as well as
 the number of loaded batches) converges to the reference value.
-The fuel enrichment and the tail assay contribution follow a smoother behavior,
-so as the total relative uncertainty decrease, their contribution increases over
-time.
+The fuel enrichment contribution follow a smoother behavior, so as the total
+relative uncertainty decrease, their contribution increases over time.
 
 \subsection{Fissile Inventory}
 As observed on Figure \ref{fig:pu_full}, the fissile inventory starts to grow on
@@ -271,7 +269,7 @@ the cycle length to the fuel cooling time.
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
     \centering
-    \includegraphics[scale=0.17]{used_fuel}
+    \includegraphics[scale=0.18]{used_fuel}
     \caption{Used fuel inventory.}\label{fig:used_fuel}
 \end{figure}
 Between year 90 and 120, the \glspl{FBR} deployment speed increases, it has to
