@@ -112,45 +112,45 @@ $10\%$.
 
 \subsection{The Fuel Cycle}
 This work aims to assess the impact of the operational uncertainties of a simple
-transition as shown in Figure \ref{fig:cycle}, inspired from the EG23 fuel cycle
-of the Nuclear Fuel Cycle Evaluation and Screening Report\cite{ES}: a
-transition from light water reactors fleet loaded with \glspl{UOX} fuel to a
-sodium fast reactor fleet loaded \glspl{MOX} fuel, considering an $1\%/$y growth
+transition, inspired from the EG23 fuel cycle
+of the Nuclear Fuel Cycle Evaluation and Screening Report\cite{ES}. As shown in Figure \ref{fig:cycle}, this is a
+transition from a light water reactor fleet loaded with \gls{UOX} fuel to a
+sodium fast reactor fleet loaded \gls{MOX} fuel, considering a $1\%/$y growth
 of the generated power (Figure \ref{fig:power}).
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
   \centering
   \includegraphics[scale=0.31]{cycle.png}
   \caption{Illustration of the material flow between the different facilities,
-  with in green each operational parameters associated with an
-  uncertainty.}\label{fig:cycle}
+  with each operational parameter associated with an
+  uncertainty labeled in green.}\label{fig:cycle}
 \end{figure}
 
 As illustrated in Figure \ref{fig:power}, the transition starts with a fleet
-fully composed of \glspl{LWR} loaded with enriched \glspl{UOX} fuel.  The actual
-transition starts around year 35, with the deployment of \glspl{FBR}, loaded
-with \glspl{MOX}, consisting of plutonium blended with natural
+composed of only \glspl{LWR} loaded with enriched \gls{UOX} fuel.  The actual
+transition starts around year 35, with the deployment of \glspl{FBR}. The \glspl{FBR} are loaded
+with \gls{MOX}, which consists of plutonium blended with natural
 uranium.
 
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
     \centering
     \includegraphics[scale=0.18]{power.png}
-    \caption{Electric power generated over time, with in blue the full production,
-        in orange the \glspl{LWR} contribution, in green the \glspl{FBR}.}
+    \caption{Electric power generated over time, with the full production,
+        the \glspl{LWR} contribution, the \glspl{FBR} labelled in blue, orange, and green, respectively.}
     \label{fig:power}
 \end{figure}
 
 
-The plutonium, required for \glspl{MOX} fabrication, is reprocessed from all
-used fuel.  At first , it is sourced only from \glspl{UOX}, then used MOX fuel
+The plutonium, required for \gls{MOX} fabrication, is reprocessed from all
+used fuel.  At first, it is sourced only from \gls{UOX}, then used \gls{MOX} fuel
 as it becomes available for reprocessing.
 
 Both fuel reprocessing and fabrication are done at a constant rate (constrained
-by the feed materials availabilities).  The enrichment of the UOX is processed
-on demand.  Buffer storages (not shown on Figure \ref{fig:cycle}) is present
+by the feed material availability).  The enrichment of the \gls{UOX} is processed
+on demand.  Buffer storages (not shown in Figure \ref{fig:cycle}) is present
 between all facilities with constant processing rates.
 
-In this works, a time step of 1 month have been considered, i.e. each output
-metrics are reported one each month and decay process have not be taking into
+In this work, a time step of 1 month has been considered, i.e., each output
+metric is reported once per month. Additionally, decay processes have not be taken into
 account.
 
 \section{Results}
