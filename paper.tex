@@ -36,23 +36,23 @@ $^{*}$University of Wisconsin-Madison, WI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-Fuel cycle simulations, as any simulation process, do not produce results
-without errors.  Those errors have different sources: data uncertainties (when
-the simulation relies on previously estimated/measured metrics), modeling
-uncertainties (produced by the simplification made by the simulator) and the
-``operational`` uncertainty (uncertainty on the operation parameters of the
+Fuel cycle simulations, as with any simulation process, do not produce results
+without errors.  Those errors have different sources: data uncertainties (from
+the simulator's reliance on previously estimated/measured metrics), modeling
+uncertainties (from simplifications made by the simulator) and the
+``operational`` uncertainty (from the operation parameter uncertainties of
 different facilities).
 
-Some treaty verification scenarios require estimating historical fissile
+Simulation errors are important in the context of treaty verification. 
+Some scenarios require estimating historical fissile
 material production based on records of facility operation and material
 transfer.  If the measurements of facility operation and material transfer are
 subject to uncertainty, the total production quantities will then also be
 uncertain, creating an opportunity for undetected diversion.  This study seeks
 to understand which measures of facility operation have the most impact on the
-uncertainty of fissile material production across a complete fuel cycle.  An
-approaching using Total Monte Carlo methodology will be applied to the Cyclus
-fuel cycle simulator \cite{cyclus} to estimate output metrics uncertainty caused
-by individual facility uncertainties.
+uncertainty of fissile material production across a complete fuel cycle.
+To accomplish this, a Total Monte Carlo methodology will be applied to the Cyclus
+fuel cycle simulator \cite{cyclus} to estimate the effect of individual facility uncertainties on the output metrics.
 
 % I don't think Total Monte Carlo should be in quotes
 \section{The Experiment}
@@ -61,24 +61,24 @@ by individual facility uncertainties.
 
 To estimate the uncertainty on fuel cycle output metrics, a Total Monte
 Carlo approach has been applied.  In the following, output metric uncertainty
-corresponds to the Standard Deviation of the output metrics over about 200
-different simulations.  For each deployed facilities, the uncertainty associated
-parameters have been a normally distributed with an artificially large standard
+corresponds to the standard deviation of the output metrics over about 200
+different simulations.  For each deployed facility, the
+parameters are normally distributed with an artificially large standard
 deviation of $10\%$.
 
-To pursuit this work, both the Cycamore\cite{cycamore} package\footnote{Low
+To pursue this work, both the Cycamore\cite{cycamore} package\footnote{Low
 fidelity facilities package for Cyclus} and the
-CyCLASS\footnote{Reactor and Fuel fabrication facility based on
-    CLASS\cite{CLASS}  models} have been
-updated\cite{mouginot_2018, cyclass} to deal with uncertainty in several
-operational parameters of their associated facilities.  Table
-\ref{tab:package_uncertainty} summarizes all modification implemented in the
-range of facilities present in Cycamore and CyCLASS.
+CyCLASS\footnote{Reactor and fuel fabrication facility based on
+    CLASS\cite{CLASS}  models} were
+updated\cite{mouginot_2018, cyclass} to evaluate uncertainty of several
+operational parameters in their associated facilities.  Table
+\ref{tab:package_uncertainty} summarizes all uncertainty-tracking modifications implemented in the
+facilities of Cycamore and CyCLASS.
 
 
 \begin{table}[htb]
 \centering
-  \caption{Summary of facility modification per source package.}
+  \caption{Summary of facility modifications according to their source package.}
 \begin{tabular}{cll}
 \toprule
 
@@ -97,17 +97,17 @@ CyCLASS  & Reactor    & Cycle Length              \\
   \label{tab:package_uncertainty}
 \end{table}
 
-The uncertainty on the different parameters have been considered for this study
-as systematic for each new deployed facilities: each time a new facility is
-deployed (such as a reactor or a fuel fabrication facility) a new set a
-parameter is computed.
+The uncertainty of the different parameters in this study
+are systematic for each new deployed facility: each time a new facility is
+deployed (such as a reactor or a fuel fabrication facility) a new set of
+parameters are computed.
 
 It must be noted that for this work, the fuel enrichment was determined by a
 fuel fabrication model\cite{Leniau2015125} which
 calculates the fissile fraction required in the fuel to reach a target
-burnup at the end of irradiation.  In this study, the uncertainty on the fuel
-enrichment is not applied directly on the effective enrichment but on the target
-parameter (the burnup), which leads to a fuel enrichment uncertainty close to
+burnup at the end of irradiation.  Therefore, the uncertainty of the fuel
+enrichment is not applied directly to the effective enrichment. It is instead applied to the
+burnup, which leads to a fuel enrichment uncertainty close to
 $10\%$.
 
 \subsection{The Fuel Cycle}
