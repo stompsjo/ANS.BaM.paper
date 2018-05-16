@@ -61,20 +61,18 @@ fuel cycle simulator \cite{cyclus} to estimate the effect of individual facility
 
 To estimate the uncertainty on fuel cycle output metrics, a Total Monte
 Carlo approach has been applied.  In the following, output metric uncertainty
-corresponds to the standard deviation of the output metrics over about 200
+corresponds to the standard deviation of the output metrics 199
 different simulations.  For each deployed facility, the
 parameters are normally distributed with an artificially large standard
 deviation of $10\%$.
 
 To pursue this work, both the Cycamore\cite{cycamore} package\footnote{Low
 fidelity facilities package for Cyclus} and the
-CyCLASS\footnote{Reactor and fuel fabrication facility based on
-    CLASS\cite{CLASS}  models} were
+CyCLASS\footnote{Reactor and fuel fabrication facility based on CLASS\cite{CLASS} models} were
 updated\cite{mouginot_2018, cyclass} to evaluate uncertainty of several
 operational parameters in their associated facilities.  Table
 \ref{tab:package_uncertainty} summarizes all uncertainty-tracking modifications implemented in the
 facilities of Cycamore and CyCLASS.
-
 
 \begin{table}[htb]
 \centering
@@ -110,7 +108,7 @@ enrichment is not applied directly to the effective enrichment. It is instead ap
 burnup, which leads to a fuel enrichment uncertainty close to
 $10\%$.
 
-\subsection{The Fuel Cycle}
+\subsection{The Fuel Cycle Scenario}
 This work aims to assess the impact of the operational uncertainties of a simple
 transition, inspired from the EG23 fuel cycle
 of the Nuclear Fuel Cycle Evaluation and Screening Report\cite{ES}. As shown in Figure \ref{fig:cycle}, this is a
@@ -153,6 +151,14 @@ In this work, a time step of 1 month has been considered, i.e., each output
 metric is reported once per month. Additionally, decay processes have not be taken into
 account.
 
+It must be noted that for this work, the fuel enrichment was determined by a
+fuel fabrication model\cite{Leniau2015125} which
+calculates the fissile fraction required in the fuel to reach a target
+burnup at the end of irradiation.  In this study, the uncertainty on the fuel
+enrichment is not applied directly on the effective enrichment but on the target
+parameter (the burnup), which leads to a fuel enrichment uncertainty close to
+$10\%$.
+
 \section{Results}
 
 As nuclear archaeology main interests are high enrich uranium production and
@@ -165,13 +171,15 @@ uncertainty study will not be contaminated with fuel miss loading, which could
 be interesting but are not the focus on this work.
 
 For this study 6 set of 199 simulations, and a reference calculation have been
-computed: One for each of the 5 uncertain parameters, one varying parameter the
-4 others remaining fix, one with all 5 parameters varying and one single
-simulation where all the 5 parameters were fixed at the mean value. 
+computed: One for each of the 5 uncertain parameters,Tab.
+\ref{tab:package_uncertainty}  (separation efficiency, residence time, UOX fuel
+enrichment, reactor cycle length, reactor thermal power), one varying parameter
+the 4 others remaining fix, one with all 5 parameters varying and one single
+simulation where all the 5 parameters were fixed at the mean value.  
 
 In the following, each total uncertainty is reported at $\pm1\sigma$ around the
-mean values of the corresponding uncertainty set at each time step. The time
-dependant relative uncertainty are computed as the standard deviation of a
+mean values of the corresponding uncertainty set at each time step.  The time
+dependant relative uncertainties are computed as the standard deviation of a
 single set over its mean value at the corresponding time.
 
 
@@ -188,16 +196,15 @@ generated power is expected.
         represents the 1 $\sigma$ uncertainty distribution.}\label{fig:power_full}
 \end{figure}
 
-Indeed the transition scenario has been design to allow all the reactors to
+Indeed the transition scenario has been designed to allow all the reactors to
 receive the fuel as needed allowing them to be producing power all the time.
 This ensures that the uncertainty measured any other parameters is not
-influenced by the reactors miss-loadings.
-
-%%  \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
-%%    \centering
-%%    \includegraphics[scale=0.37]{power_uncer}
-%%    \caption{}\label{fig:power_uncer}
-%%  \end{figure}
+influenced by the reactors miss-loadings.  As \glspl{FBR} fuel is built from
+reprocessed used fuels, the availability of those used fuels may impact the
+capability to build the required MOX-FBR fuel.  Having reactor miss-loads, may
+impact more miss-loading later during a simulation and lead to a snow-ball
+effect.  Having a small uncertainty on the power generation ensures large miss
+load effects are not to be considered here.  
 
 \subsection{Natural Uranium Consumption dedicated to PWR-UOX fabrication}
 
@@ -216,10 +223,10 @@ decommissioning of the last \glspl{LWR}.
 \end{figure}
 
 
-The fluctuation of the full relative uncertainty at low time are induced by the
-fuel loading: all reactors at the beginning of the simulation have synchronised
-cycle, this phenomenon disappears with the gradual decommissioning of the
-initial reactors, spread on 50 years.
+As expected, cooling time, separation efficiency and thermal power don't
+affect the natural uranium consumption.  The uncertainty on the natural uranium
+consumption is dominated by the \glspl{LWR} cycle length: shorter the cycle
+length is, the more fuel will be loaded.
 
 
 \begin{figure}[h!!] % replace 't' with 'b' to force it to be on the bottom
@@ -234,15 +241,19 @@ initial reactors, spread on 50 years.
 The relative uncertainty of the total uranium consumption starts at about
 $5.5\%$ a slowly drops and stabilise around $3\%$.
 
-As expected, cooling time, separation efficiency and thermal power don't
-affect the natural uranium consumption.  The uncertainty on the natural uranium
-consumption is dominated by the \glspl{LWR} cycle length: shorter the cycle
-length is, the more fuel will be loaded.
+Uncertainty fluctuation of the full relative uncertainty can be observed before
+year 50.  Those fluctuation are induced by the fuel loading: all reactors at the
+beginning of the simulation have synchronised cycle, this phenomenon disappears
+with the gradual decommissioning of the initial reactors, spread on 50 years.
 
-With the increase of deployed reactors, the number of batches of \glspl{LWR}
-fuel loaded converges to the references one (a random cycle length
-values if randomly determined for each deployed reactors), reducing its impact
-on the uncertainty on the total uranium consumption.
+The decrease of the cycle time uncertainty contribution, from year 30 to year
+90, can be understand as an averaging effect.  As the uncertainty are considered
+as systematic per deployed facility, each reactor will have a different cycle
+length value, so a different number of loaded batches per year.With the increase
+of deployed reactors, the number of batches of \glspl{LWR} fuel loaded converges
+to the references one, reducing its impact on the uncertainty on the total
+uranium consumption.
+
 The fuel enrichment contribution follow a close to constant uncertainty
 contribution of $2\%$, so as the total relative uncertainty decrease, its
 relative contribution increases over time.
@@ -293,7 +304,9 @@ the cycle length to the fuel cooling time.
 \begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
     \centering
     \includegraphics[scale=0.18]{used_fuel}
-    \caption{Used fuel inventory.}\label{fig:used_fuel}
+    \caption{Used fuel inventory, corresponding to the amount of used
+    \glspl{LWR} and \glspl{FBR} fuel, cooled and waiting to be reprocessed.}
+    \label{fig:used_fuel}
 \end{figure}
 Between year 90 and 120, the \glspl{FBR} deployment speed increases, it has to
 compensate the non replacement of the decommissioned \glspl{LWR} as well as
@@ -307,13 +320,13 @@ sufficient to sustain the new \glspl{FBR} deployment to follow the power demand.
 It is also interesting to note that, the uncertainty contribution from the cycle
 length is between year 40 and 70 comes mainly from fuel batch loading
 frequencies, and after it relative contributions follows closely the thermal
-power one, suggesting a contributions through fuel discharge burnup (i.e. fuel
+power one, suggesting a contributions through fuel discharge burnup (i.e.  fuel
 discharge composition).
 
 \subsection{Discussion}
 
 Uranium consumption and separated fissile inventory are two important metrics
-regarding to non proliferation and nuclear archaeology. In this study, we have
+regarding to non proliferation and nuclear archaeology.  In this study, we have
 been able to estimate than the cycle length uncertainty of $10\%$ implies a
 variation of $3\%$ to $5\%$ on the total uranium needs uncertainty, where $\approx10\%$
 on the enrichment implies a almost flat uncertainty of $2\%$.
@@ -322,10 +335,15 @@ Regarding the reprocessed fissile inventory, this study has shown the limited
 impact of the reprocessed fuel compositions (through burnup variations) it
 limited to $5\%$, where fuel availability constrains, fuel loading frequency (cycle
 time), or fissile materials available for fuel fabrication (cooling time) can lead to higher
-uncertainties, respectively up to $10\%$ and to $30\%$. Moreover it is very
+uncertainties, respectively up to $10\%$ and to $30\%$.  Moreover it is very
 interesting to observe the pressure transition from one to the other around
 year 70.
 
+This preliminary study may suggest that the most important contribution to
+natural uranium consumption and fissile inventory is coming from the time when
+occurs the different material exchange between facilities, and not necessary
+from the physical parameters such as thermal power or fuel enrichment. Further
+analysis should allow us to confirm or denies it.
 
 \section{Conclusion}
 
@@ -336,10 +354,10 @@ the material flows.
 
 Secondly, it is important to note the special character of the time related
 parameters uncertainty in a fuel cycle study, such as cooling time and cycle
-length. Where some of those time related parameter will on the first order only
+length.  Where some of those time related parameter will on the first order only
 impact material availability (as the cooling time will do), some other, like
 cycle length, will also have a impact as physical parameters such as fuel
-enrichment or thermal power. 
+enrichment or thermal power.  
 
 Cycle length impacts the discharge fuel burnup, it also affects the frequency of
 the fuel loads, this, as well as the cooling may imply a uncertainty on the
@@ -349,7 +367,7 @@ uncertainty analysis, in order to understand and measure accurately their
 contributions on uncertainties.
 
 This study aims to be a proof-of-principle for uncertainty propagation in
-potential commercial fuel cycle transition. While it has demonstrated the
+potential commercial fuel cycle transition.  While it has demonstrated the
 capability to measure the uncertainty on output fuel cycle metrics and their
 relative contributions, it has only been applied to systematic uncertainties per
 facilities (parameters randomly generated at each new facility deployment).
