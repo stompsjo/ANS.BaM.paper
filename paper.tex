@@ -1,481 +1,119 @@
-\documentclass{anstrans}
+\documentclass[12pt]{paper}
+\usepackage{mathptmx} % Nearly Times New Roman
+\usepackage[acronym,toc]{glossaries}
+\include{acros}
+%\makeglossaries
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Modeling potential JCPOA diversion scenarios with Cyclus}
-\author{Baptiste Mouginot,$^{*}$ Kathryn Mummah,$^{*}$ Paul P.H. Wilson$^{*}$}
 
-\institute{
-$^{*}$University of Wisconsin-Madison, WI
+\usepackage{color}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{booktabs} % nice rules for tables
+\usepackage{microtype} % if using PDF
+\usepackage{xspace}
+\usepackage{listings}
+\usepackage{textcomp}
+\usepackage{multicol,tabularx,capt-of}
+\usepackage{multirow}
+%\usepackage{ulem}
+\usepackage{pdflscape}
+% Page length commands go here in the preamble
+\setlength{\oddsidemargin}{-0.25in} % Left margin of 1 in + 0 in = 1 in
+\setlength{\textwidth}{7in}   % Right margin of 8.5 in - 1 in - 6.5 in = 1 in
+\setlength{\topmargin}{-.75in}  % Top margin of 2 in -0.75 in = 1 in
+\setlength{\textheight}{9.2in}  % Lower margin of 11 in - 9 in - 1 in = 1 in
+
+
+
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\definecolor{burgundy}{rgb}{0.5, 0.0, 0.13}
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
+\definecolor{chromeyellow}{rgb}{1.0, 0.65, 0.0}
+\definecolor{darkred}{rgb}{0.55, 0.0, 0.0}
+
+\lstset{
+    %backgroundcolor=\color{lbcolor},
+    language={C++},
+    tabsize=4,
+    rulecolor=\color{black},
+    upquote=true,
+    aboveskip={1.5\baselineskip},
+    belowskip={1.5\baselineskip},
+    columns=fixed,
+    extendedchars=true,
+    breaklines=true,
+    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=single,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    basicstyle=\scriptsize\ttfamily\color{green!40!black},
+    keywordstyle=\color[rgb]{0,0,1.0},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{0.627,0.126,0.941},
+    numberstyle=\color[rgb]{0,1,0},
+    identifierstyle=\color{black},
+    captionpos=t,
 }
 
-\email{mouginot@wisc.edu \and mummah@wisc.edu \and paul.wilson@wisc.edu}
-
-% Optional disclaimer: remove this command to hide
-% \disclaimer{Notice: this manuscript is a work of fiction. Any resemblance to
-% actual articles, living or dead, is purely coincidental.}
-
-%%%% packages and definitions (optional)
-\usepackage{graphicx} % allows inclusion of graphics
-\usepackage{booktabs} % nice rules (thick lines) for tables
-\usepackage{microtype} % improves typography for PDF
-\usepackage{float}
-
+\newcommand{\code}[1]{\lstinline[basicstyle=\ttfamily\color{green!40!black}]|#1|}
+\newcommand{\units}[1] {\:\text{#1}}%
 \newcommand{\SN}{S$_N$}
-\renewcommand{\vec}[1]{\bm{#1}} %vector is bold italic
-\newcommand{\vd}{\bm{\cdot}} % slightly bold vector dot
-\newcommand{\grad}{\vec{\nabla}} % gradient
-\newcommand{\ud}{\mathop{}\!\mathrm{d}} % upright derivative symbol
+\newcommand{\cyclus}{\textsc{Cyclus}\xspace}
+\newcommand{\Cyclus}{\cyclus}
+\newcommand{\citeme}{\textcolor{red}{CITE}\xspace}
+\newcommand{\TODO}[1] {{\color{red}\textbf{TODO: #1}}}%
 
+\newcommand{\comment}[1]{{\color{green}\textbf{#1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction}
 
-The Joint Comprehensive Plan of Action (JCPOA)\cite{jcpoa} %cite JCPOA agreement
-limits the Iranian nuclear program and, in return, lifts many of the economic
-sanctions that had been placed on Iran. Under the JCPOA, Iran is severely
-limited in its ability to enrich uranium. This paper presents a model to probe
-the enriching ability of various cascade configurations that are related to
-JCPOA agreement limits. The analysis was performed using the Cyclus fuel cycle
-\cite{cyclus} %cite Fundamental concepts in the Cyclus nuclear fuel cycle
-simulation simulator in order to demonstrate that such analysis can be
-integrated into a fuel cycle with material flowing among multiple facilities.
 
-The Cyclus fuel cycle simulator is designed to support the dynamic addition of
-novel facility models into fuel cycles with both declared and undeclared facilities.
-The CascadeEnrich archetype\cite{mbmore.2018} was developed to model gas centrifuge
-enrichment cascades at a higher fidelity than previous enrichment models,
-relying on individual centrifuge and cascade design parameters to build an ideal
-cascade configuration instead of integral facility parameters. Once a
-CascadeEnrich facility is deployed, it may be asked to participate in the fuel
-cycle at a variety of flow rates and enrichments over time, constrained by the
-initial design of the cascade.
-
-This analysis introduces a facility with parameters consistent with the
-JCPOA-defined capacity and explores its performance when asked to enrich
-material above JCPOA limits. Although the analytical aspect of this analysis can
-be performed using other tools, a fuel cycle simulator provides value in further
-extensions of this work. Studying the internal behavior of a cascade, or rather
-a set of cascades organized into levels that feed into each other, identifies
-the most effective ways that enrichments higher than the JCPOA-allowed 3.67\%
-U-235 could be produced. However, this is only one step in a safeguards program.
-
-Performing enrichment cascade analysis within a fuel cycle simulator offers the
-opportunity to study the \textit{external} behavior of an enrichment facility as
-well as internal. When an enrichment facility that is not complying with the
-JCPOA is forced to participate in a larger fuel cycle---where it must purchase
-natural uranium and interact with outside facilities, it will act differently
-than an enrichment facility that \textit{is} fully complying with the JCPOA. The
-levels of cascades developed in this paper will ultimately be used to probe
-these differences and reveal patterns useful for a safeguards program.
-
-
-\section{Cascade Enrich Construction}
-\subsection{Centrifuge properties}
-
-The present work uses the analytical solution by R\"aetz \cite{raetz.phd} of the
-differential equation for the gas centrifuge as described in \cite{glaser.2008}.
-Centrifuge parameters, such as average gas temperature, $T$, peripheral speed,
-$v$, height, $h$, diameter, $d$, pressure ratio, $x$, feed flow rate, $F$,
-counter-current flow ratio, $L/P$, and efficiency, $e$ have been chosen (Table
-\ref{tab:centrifuges}) to match the cascade design describe in
-\cite{glaser.2008} and \cite{walker.2017}.  These parameters for a P1-type
-centrifuge are used to estimate the JCPOA-compliant IR-1 centrifuge.
-
-\begin{table}[htb]
-\centering
-\caption{Summary of the centrifuge parameters.}
-\begin{tabular}{cccccccc}
-\toprule
-$T$[K] & $v$[m/s]    & $h$[m] & $d$[m]   & $x$   & $F$[mg/s]  & $L/F$ & $e$  \\
-\midrule
-320    & $320$           & $1.8$ & $0.105$ & $1e3$  & $13$      & 2     & 1.0  \\
-\bottomrule
-\end{tabular}
-
-  \label{tab:centrifuges}
-\end{table}
-
-\subsection{Cascade Design}
-
-The cascade is built to be ideal, defined by $\alpha =\beta = const$ for all
-stage of the cascade, where $\alpha$ and $\beta$ respectively represent the feed
-to product and the feed to tail enrichment factors.  $\alpha$ can be expressed
-as a function of the feed rate $F$, the separative performance $\delta
-U(\theta)$, the cut $\theta$, and $\beta$ as a function of $alpha$ and $\theta$:
-
-\begin{subequations} \label{eqs:alphabeta}
-    \begin{equation} \label{eq:alpha}
-    \alpha = \sqrt{\frac{2\delta U}{F} \frac{1-\theta}{\theta}}+1
-\end{equation}
-\\
-\begin{equation}\label{eq:beta}
-    \beta =   \left(1 - \dfrac{N - \theta \dfrac{\alpha R}{1+\alpha R}}{1 -
-              \theta}\right)
-              \left(\dfrac{R}{\dfrac{N - \theta \dfrac{\alpha R}{1+\alpha R}}{1
-              - \theta}}\right)
-\end{equation}
-\end{subequations}
-
-From equation \eqref{eq:alpha} and \eqref{eq:beta} it is possible to determine
-the cut, or the ratio of product flow to feed flow
-%(all other centrifuge parameters been fixed) allowing the have $\alpha=\beta$
-required to build an ideal cascade.
-
-Since $\alpha_{i}$ and $\beta_{i}$ remain constant, only the value of the cut,
-$\theta_{i}$, changes in each stage $i$ of a cascade.
-
-It can be shown that $\theta_{i}$ can be computed from $\alpha$,
-$\beta$ values and the feed assay, $N_{i}$:
-\begin{eqnarray}
-    \theta_{i} = \dfrac{N_{i} - \dfrac{1}{1 + \beta/R_{i}}}{ \dfrac{\alpha R_{i}}{1 + \alpha R_{i}} -
-           \dfrac{1}{1 + \beta/R_{i}}}
-%%    \theta_{i} &=& \dfrac{N_{i} - N''_{i}}{N'_{i}-N''_{i}}\nonumber\\
-%%           &=& \dfrac{N_{i} - \dfrac{1}{1 + \beta/R_{i}}}{ \dfrac{\alpha R_{i}}{1 + \alpha R_{i}} -
-%%           \dfrac{1}{1 + \beta/R_{i}}}
-\end{eqnarray}
-
-This algorithm assumes that the corresponding separative power $\delta U$ (not
-re-computed) can be achieved with the chosen centrifuge design. Once
-$\theta_{i}$ is determined, it is possible to compute the product and the tail
-assay.
-
-The design of the cascade is performed through 2 steps. First one determines the
-configuration and number of stages, adding stages until the product assay of the final stage is greater than or equal to than the desired assay, and the tails assay is similarly less than or equal to the desired tails assay. This determines the number of enriching and stripping stages as
-well as their enrichment properties ($N_{i}$, $N'_{i}$,
-$N''_{i}$,$\theta_{i}$i).
-
-
-The second step determines how to populate the cascade with the user-defined
-maximum number of centrifuges. One then solves the linear flow equation to
-determine the theoretical flow in the cascade.
-%%
-%% \begin{strip}
-%% \begin{equation}
-%% \setcounter{MaxMatrixCols}{20}
-%% \begin{bmatrix}
-%% -1         & 1-\theta_{S+1} & 0              & 0 & ... & 0 & 0            & 0   & 0              & 0 & ... & 0            & 0            & 0 \\
-%% \theta_{S} & -1             & 1-\theta_{S+2} & 0 & ... & 0 & 0            & 0   & 0              & 0 & ... & 0            & 0            & 0 \\
-%%            &                &                &   &     &   &              & ... &                &   &     &              &              &   \\
-%% 0          & 0              & 0              & 0 & ... & 0 & \theta_{-1}  & -1  & 1 - \theta_{1} & 0 & ... & 0            & 0            & 0 \\
-%%            &                &                &   &     &   &              & ... &                &   &     &              &              &   \\
-%% 0          & 0              & 0              & 0 & ... & 0 & 0            & 0   & 0              & 0 & ... & \theta_{E-2} & -1           & 1-\theta_{E} \\
-%% 0          & 0              & 0              & 0 & ... & 0 & 0            & 0   & 0              & 0 & ... & 0            & \theta_{E-1} & -1
-%% \end{bmatrix}
-%% \times
-%% \begin{bmatrix}
-%%      F_{S}   \\
-%%      F_{S+1} \\
-%%      \cdots  \\
-%%      F_{0}   \\
-%%     \cdots   \\
-%%     F_{E-1}  \\
-%%     F_{E}
-%% \end{bmatrix}
-%% =
-%% \begin{bmatrix}
-%%      0   \\
-%%      0 \\
-%%      \cdots  \\
-%%      F   \\
-%%     \cdots   \\
-%%     0  \\
-%%     0
-%% \end{bmatrix}
-%% %\caption{caption needed!}
-%% \label{eq:flow}
-%% \end{equation}
-%% \end{strip}
-Once the relative flow of each stage has been determined, the
-cascade can be populated with actual machines up the stages
-until either the maximum number available of machines or the maximum feed
-flow is reached.
-
-
-\subsection{Response to an non-ideal feed - $\theta_{i} = const$ hypothesis}
-
-Little information is available about the optimum way to tune a cascade that is
-being fed a feed enrichment that does not match its ideal enrichment.
-
-The tuning method outlined here does not re-optimize $\theta_i$ based on the
-true flow enrichment. As $\delta U$ and $\alpha$ do not depend on the stage feed
-assay ($N'$), they do not change from stage to
-stage. According to equation \eqref{eq:beta}, when $\alpha$ and $\theta$ are
-fixed, when the feed assay ($N$) changes, then $\beta$ will change accordingly.
-This breaks the ideal status of the cascade, i.e.  $N_{i} \neq N'_{i-1} \neq
-N''_{i+1}$.
-
-In order to compute the proper product and tails assay at each stage, the
-tails and the product from respectively the next and the previous stage must be
-blended in order to determine the correct stage feed assay. As this is a obvious
-cycling problem, an iterative solution has been chosen: all feed assays are
-iteratively updated, blending the proper product and tails, then using the
-updated feed assay, the new product and tail assays are recomputed. This process
-is repeated until the change in assays is smaller than the set precision (1e-8
-by default).
-
-Other hypotheses will be explored in the future, such as maintaining the ideal
-stage of the cascade through tuning the cut values $\theta_{i}$ of each stage of
-the cascade, or maintaining $\alpha*\beta = const$ as described in
-\cite{walker.2017}.
-
-Note that as a consequence of our design method, the cascade product and tail
-assay will not necessary match the targeted values, and usually slightly over
-enrich and over strip the product and the tail respectively.
-
-\section{The experiment}
-
-As explained previously, the goal of this work is to assess the rate of
-highly-enriched uranium (HEU) production using enrichment cascades designed
-near, but not within, the JCPOA agreement constraints. For this work, two
-different cases will be investigated and compared to a reference case that is
-based on the most efficient use of the 5060 available centrifuges.
-
-All cases will be considered with and without tail recycling. Figure
-\ref{fig:flow} shows the material flows between the different facilities in the
-fleet, in a configuration with two "levels" of cascades without tail recycling.
-When considering the tail recycling, all of the flow going from a cascade to the
-waste, are going from the cascade $i$ to the cascade $i-1$.  The Storage
-facilities are not required in Cyclus, but they have been added to ensure the
-proper material flow between the facilities.
-
-% you don't need this unless you want to explain how a buffer works (if a receiver facility input buffer is full then the sender facility will stop sending material to it, and will stop working when its own output buffer will be filled).
-
-\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
-  \centering
-  \includegraphics[scale=0.68]{flow_case_2_no_recy.pdf}
-  \caption{Illustration of the material flow between the different level of
-      cascades without tail recycling, in this diagram, nu\_src corresponds to
-      an infinite source of natural uranium, cascade\_ $\{n\}$ and storage\_
-      $\{n\}$ to the cascade and the storage getting the products of the
-      cascades at the level $\{n\}$.}\label{fig:flow}
-\end{figure}
-
-\subsection{Explored Cases}
-%\subsubsection{Reference Case}
-
-The reference case corresponds to the most efficient cascade design--utilizing
-all of the 5060 centrifuges available within JCPOA in a single large cascade to
-produce an enriched product at $>90\%$ of U-235, stripping the tail product up
-to 0.28 $\%$ from a feed of natural uranium.  The design cascade in this case,
-includes 4 stripping stages, and 38 enriching stages. The Feed/Product/Tail
-(F/P/T) assays are respectively 0.0071/0.903/0.0028.
-
-%\subsubsection{Case 1}
-
-The case 1 is designed to configure identical 30 cascades in the scenario (the maximum
-allowable under the JCPOA agreement). The basic
-properties are: less than 169 centrifuges per cascade, F/P/T assays of
-0.0071/0.035/0.003. The corresponding cascade design includes 167 centrifuges, with
-respective F/P/T assays of 0.0071/0.0413/0.002.
-
-%\subsubsection{Case 2}
-
-Case 2 is also limited to 30 cascades in the scenario (the maximum allowable
-under the JCPOA agreement), but this time each level of cascades are optimized
-for the feed they receive from the previous level's product. Each cascade has 4
-stripping stages and 10 enriching stages.
-
-\begin{table}[htb]
-\centering
-  \caption{Summary of cascade properties for each level.}
-\begin{tabular}{cllll}
-\toprule
-
-Level   &           & Assay     &       & Machines  \\
-        & Feed      & Product   & Feed  &           \\
-\midrule
-0       & 0.0071    & 0.0413    & 0.0029 & 167       \\
-1       & 0.0413    & 0.2043    & 0.0173 & 169       \\
-2       & 0.2043    & 0.5941    & 0.0971 & 168       \\
-3       & 0.5941    & 0.8834    & 0.3915 & 168       \\
-4       & 0.8834    & 0.9735    & 0.7746 & 169       \\
-
-\bottomrule
-\end{tabular}
-
-  \label{tab:cascadelvl}
-\end{table}
-
-The configuration of cascade levels can be found in table
-\ref{tab:cascadelvl}. Unlike case 1, the organization of centrifuges varies from
-level to level. Each level is re-optimized to have the most efficient number of
-centrifuges in each stage, although the total number of stages remains constant.
-
-
-\subsection{Level optimization}
-
-One last round of optimization limits the number of cascade levels to the number
-of level required produce HEU, and then to populate each level with a total of
-30 cascades in order to maximize the HEU production rate.
-
-\section{Results}
-\subsection{Enrichment}
-\subsubsection{Without tail recycling}
-
-\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
-  \centering
-  \includegraphics[width=0.5\textwidth]{assay_case_1_no_rec.png}
-  \caption{Evolution of the different product assays at each cascade level for
-  the case 1 without recycling. The blue line represents the $90\%$ enrichment
-  threshold.}\label{fig:assay_c1_nr}
-\end{figure}
-Despite the reconfiguration of each level occurring in the second case, the case
-1 is notably more effective in producing HEU than case 1. Indeed, as observed in
-Figure \ref{fig:assay_c1_nr} and \ref{fig:assay_c2_nr}, the first case is able
-to produce an uranium product enrich at $98\%$ while the second case is only
-able to reach an enrichment of $88.3\%$ with the same number of levels.
-
-
-Because the cut value $\theta_i$ at each stage is unchanged, case 2 artificially
-produces over-enriched tails when fed with higher enriched materials compared
-to a cascade feed with the same feed assay but with a cascade designed for it.
-\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
-  \centering
-  \includegraphics[width=0.5\textwidth]{assay_case_2_no_rec.png}
-  \caption{Evolution of the different product assays at each cascade level for
-  the case 2 without recycling. }\label{fig:assay_c2_nr}
-\end{figure}
-
-% ^ the above paragraph is confusing but I don't understand it enough to fix it
-
-The effective cut values for each cascade can be computed as :
-
-\begin{equation}\label{eq:theta_eff}
-    \theta = \dfrac{N - N''}{N'-N''}
-\end{equation}
-
-As illustrated in Table \ref{tab:cascade_theta}, the effective cut
-of each level increases up to $0.54$ for the fifth stage for case 2. The high
-effective cut value increase the product production rate but decrease the
-enrichment ratio.
-\begin{table}[htb]
-\centering
-\caption{Cascade effective $\theta$ by the level and case.}
-\begin{tabular}{cll}
-\toprule
-
-Level   &  $\theta_{eff}^{C1}$   & $\theta_{eff}^{C2}$ \\
-\midrule
-1       & 0.109375               & 0.109375     \\
-2       & 0.109375               & 0.128342     \\
-3       & 0.109375               & 0.215694     \\
-4       & 0.109375               & 0.411872     \\
-5       & 0.109375               & 0.547009     \\
-
-\bottomrule
-\end{tabular}
-
-  \label{tab:cascade_theta}
-\end{table}
-
-\subsubsection{With tail recycling}
-When recycling the tails from the each cascade level, both cases behave
-the same way. As the tails have an higher enrichment than the product they are
-blended to, recycling the tails has bumps up the enrichment of the
-product at each level (see Figure \ref{fig:assay_c1_r} and \ref{fig:assay_c2_r}).
-
-\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
-  \centering
-  \includegraphics[width=0.5\textwidth]{assay_case_1_rec.png}
-  \caption{Evolution of the different product assays at each cascade level for
-  the case 1 with recycling. }\label{fig:assay_c1_r}
-\end{figure}
-
-Note that for case 2, a fourth level is needed while blending the tails for the
-product of the third level to pass the $90\%$ threshold.
-
-\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
-  \centering
-  \includegraphics[width=0.5\textwidth]{assay_case_2_rec.png}
-  \caption{Evolution of the different product assays at each cascade level for
-  the case 2 with recycling.}\label{fig:assay_c2_r}
-\end{figure}
-
-
-\subsection{HEU flow rate}
-As shown Figure \ref{fig:heu_prod}, if all of the available centrifuges are
-dedicated to HEU production in one massive cascade, only 8 months are required
-to produce 1 Significant Quantity (SQ) of HEU. It also takes significantly
-longer to stockpile 1 SQ of HEU without recycling the tails, respectively 13
-years and 3.5 years for the case 1 and 2 versus about 2 years with tail
-recycling.
-
-\begin{figure}[ht] % replace 't' with 'b' to force it to be on the bottom
-  \centering
-  \includegraphics[width=0.5\textwidth]{HEU_prod.png} \caption{Evolution of the
-  amount of HEU in the storage. The blue line correspond to 1 SQ of HEU
-  ($25~$kg). Cx, RT(NRT) represents the different cases with (no)tail recycling
-  with the cascade population per level and REF the reference
-  case.}\label{fig:heu_prod}
-\end{figure}
-
-Despite requiring more levels of cascades to reach an enrichment of $90\%$, the
-second case with tail recycling produces HEU at a equivalent rate to case 1. The
-production rate is faster, but require more times to reach the maximum
-production rate. This is because the material has to flow through more levels to
-reach its final level.
-
+%\begin{frontmatter}
+\title{Evaluating computational methods for modeling off-normal operation of gas centrifuge cascades}
+
+% Authors. Separated by commas
+\input{authors}
+\date{}
+% Institutes of the authors
+\input{institutions}
+\maketitle
+
+% I.   Motivation
+\include{motivation}
+% II.  Theory
+%   a. cascade design
+%   b. miss-use model
+%       i.   case A
+%       ii.  case B
+%       iii. case C
+\include{theory}
+% III. Experiement
+%   a.  cycle 
+%   b.  cascade per level optimisation
+\include{experiement}
+% IV.  results
+%   a. time step effects
+%   b. no tail recycling
+%   c. tail recycling
+\include{results}
+% V.  Discussion
+% VI. Conclusions and future plan
+\include{dis_clusion}
+
+
+\input{abstract}
+
+%\end{frontmatter}
+
+
+%\input{appendix}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusions}
-
-The JCPOA agreement limits the Natanz Fuel Enrichment Plant (NFEP) to 5060
-operating centrifuges, or about $10\%$ of its design capacity. The reference
-case, using all 5060 centrifuges in a single cascade, would lead to a stockpile
-of approximately $1$ SQ of HEU in 8 months, as opposed to 24 days without the
-JCPOA agreement limitations. However, the more realistic case 1 and the case 2
-will produce a $1$ SQ in about 2 years. Nevertheless, the diversion scenario
-from case 1 or 2 would be much more difficult to detect from the cascade
-configuration.
-
-While the results of this work might be limited, it aims to develop a
-methodology to study diversion scenarios from the fuel cycle perspective.
-Furthermore, additional methods to compute the CascadeEnrich response to
-non-ideal feed assays will be investigated in the future.  The CascadeEnrich
-facility will be improved in order to take advantage of the dynamic flow
-management of the Cyclus framework. This will include automatic cascade level
-assignment to optimize the analysis workflow.
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% \appendix
-%% \section{Appendix}
-%%
-%% Numbering in the appendix is different:
-%% \begin{equation} \label{eq:appendix}
-%%   2 + 2 = 5\,.
-%% \end{equation}
-%% and another equation:
-%% \begin{equation} \label{eq:appendix2}
-%%   a + b = c\,.
-%% \end{equation}
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% \section{Nomenclature}
-%%
-%% \begin{table}[H]
-%%     \centering
-%%     \begin{tabular}{l|l}
-%% %         &  \\
-%%         $N$ & Feed assay \\
-%%         $N'$ & Product assay \\
-%%         $N''$ & Tails assay \\
-%%         $\alpha$ & Feed to product enrichment factor \\
-%%         $\beta$ & Feed to tail enrichment factor \\
-%%         $\theta$ & Cut
-%%     \end{tabular}
-%% %    \caption{Caption}
-%%     \label{tab:my_label}
-%% \end{table}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Acknowledgments}
-This work was funded by the Consortium for Verification Technology under
-Department of Energy National Nuclear Security Administration award number
-DE-NA0002534
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{small}
 \bibliographystyle{ans}
-\bibliography{bibliography}
+\bibliography{refs}  % NO SPACES BETWEEN BIB FILENAMES!
+\end{small}
 \end{document}
