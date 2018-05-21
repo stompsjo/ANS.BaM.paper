@@ -3,7 +3,7 @@ paper=paper.pdf
 
 all: ${paper} 
 
-${paper}: paper.tex bibliography.bib 
+${paper}: *.tex refs.bib 
 	pdflatex paper.tex
 	pdflatex paper.tex
 	pdflatex paper.tex

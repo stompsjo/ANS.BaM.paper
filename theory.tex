@@ -26,70 +26,82 @@ $T$[K] & $v$[m/s]    & $h$[m] & $d$[m]   & $x$   & $F$[mg/s]  & $L/F$ & $e$  \\
 
 \subsection{Cascade Design}
 
-The cascade is built to be ideal, defined by $\alpha =\beta = const$ for all
+The cascade is built as an ideal cascade, with no losses in the separative
+work, which corresponds to $\alpha =\beta = const$ for all
 stage of the cascade, where $\alpha$ and $\beta$ respectively represent the feed
-to product and the feed to tail enrichment factors.  $\alpha$ can be expressed
-as a function of the feed rate $F$, the separative performance $\delta
-U(\theta)$, the cut $\theta$, and $\beta$ as a function of $alpha$ and $\theta$:
-
+to product and the feed to tail enrichment factors.  $\alpha$ and $\beta$ can be
+expressed as function of the abondance ($R$) or the enrichment ($N$) of respectively the
+product ($R'$,$N'$) and the feed,($R$,$N$) and the feed and the tails ($R''$,$N''$) such as:
 \begin{subequations} \label{eqs:alphabeta}
-    \begin{equation} \label{eq:alpha}
-    \alpha = \sqrt{\frac{2\delta U}{F} \frac{1-\theta}{\theta}}+1
+    \begin{equation} \label{eq:alpha_def}
+        \alpha = \frac{R'}{R} = \frac{N'}{1-N'}\frac{1-N}{N} 
 \end{equation}
 \\
-\begin{equation}\label{eq:beta}
-    \beta =   \left(1 - \dfrac{N - \theta \dfrac{\alpha R}{1+\alpha R}}{1 -
-              \theta}\right)
-              \left(\dfrac{R}{\dfrac{N - \theta \dfrac{\alpha R}{1+\alpha R}}{1
-              - \theta}}\right)
+\begin{equation}\label{eq:beta-def}
+        \beta = \frac{R}{R''} = \frac{N}{1-N}\frac{1-N''}{N''} 
 \end{equation}
 \end{subequations}
 
+As detailled in \cite{avery} it is also possible to derive $\alpha$ from the
+first principle, and express it as a function of the feed rate $F$ the separative performance $\delta
+U(\theta)$, the cut $\theta$:
+
+    \begin{equation} \label{eq:alpha}
+    \alpha = \sqrt{\frac{2\delta U}{F} \frac{1-\theta}{\theta}}+1
+\end{equation}
+
+From the mass conservation, $N = \theta N' + (1-\theta)N''$, and equations \eqref{eqs:alphabeta} it is
+possible to express $\beta$ as a function of the feed abondance, $R$, the cut
+$\theta$ and $\alpha$:
+
+\begin{equation}\label{eq:beta}
+    \beta =   R \left(\dfrac{1-\theta}
+                     {\dfrac{R}{R+1}- \theta \dfrac{\alpha R}{1+\alpha R}} -1\right)
+\end{equation}
+
+
 From equation \eqref{eq:alpha} and \eqref{eq:beta} it is possible to determine
-the cut, or the ratio of product flow to feed flow
-%(all other centrifuge parameters been fixed) allowing the have $\alpha=\beta$
-required to build an ideal cascade.
-
-Since $\alpha_{i}$ and $\beta_{i}$ remain constant, only the value of the cut,
-$\theta_{i}$, changes in each stage $i$ of a cascade.
-
-It can be shown that $\theta_{i}$ can be computed from $\alpha$,
+the cut, $\theta$, or the ratio of product flow to feed flow required to build an ideal
+cascade:
 $\beta$ values and the feed assay, $N_{i}$:
 \begin{eqnarray}
     \theta_{i} = \dfrac{N_{i} - \dfrac{1}{1 + \beta/R_{i}}}{ \dfrac{\alpha R_{i}}{1 + \alpha R_{i}} -
            \dfrac{1}{1 + \beta/R_{i}}}
-%%    \theta_{i} &=& \dfrac{N_{i} - N''_{i}}{N'_{i}-N''_{i}}\nonumber\\
-%%           &=& \dfrac{N_{i} - \dfrac{1}{1 + \beta/R_{i}}}{ \dfrac{\alpha R_{i}}{1 + \alpha R_{i}} -
-%%           \dfrac{1}{1 + \beta/R_{i}}}
 \end{eqnarray}
 
-This algorithm assumes that the corresponding separative power $\delta U$ (not
-re-computed) can be achieved with the chosen centrifuge design. Once
-$\theta_{i}$ is determined, it is possible to compute the product and the tail
-assay.
+Since $\alpha_{i}$ and $\beta_{i}$ remain constant, only the value of the cut,
+$\theta_{i}$, changes in each stage $i$ of a cascade.  This algorithm assumes
+that the corresponding separative power $\delta U$ (not re-computed) can be
+achieved with the chosen centrifuge design, tuning other operationnal paramter
+such as the rotation speed, the counter-current flow ratio...  Once $\theta_{i}$
+is determined, it is possible to compute the product and the tail assay.
 
-The design of the cascade is performed through 2 steps. First one determines the
-configuration and number of stages, adding stages until the product assay of the final stage is greater than or equal to than the desired assay, and the tails assay is similarly less than or equal to the desired tails assay. This determines the number of enriching and stripping stages as
-well as their enrichment properties ($N_{i}$, $N'_{i}$,
-$N''_{i}$,$\theta_{i}$i).
+The design of the cascade is performed through 2 steps.  First one determines the
+configuration and number of stages, adding stages until the product assay of the
+final stage is greater than or equal to than the desired assay, and the tails
+assay is similarly less than or equal to the desired tails assay.  This
+determines the number of enriching and stripping stages as well as their
+enrichment properties ($N_{i}$, $N'_{i}$, $N''_{i}$,$\theta_{i}$i).
 
 
 The second step determines how to populate the cascade with the user-defined
-maximum number of centrifuges. One then solves the linear flow equation to
-determine the theoretical flow in the cascade.
+maximum number of centrifuges.  
 
- \begin{equation}
- \setcounter{MaxMatrixCols}{20}
- \begin{bmatrix}
-     -1        & 1-\theta_{_{S+1}} & 0 & ... & 0              & 0              & 0                 & 0                 & 0                 & ... & 0               & 0 \\
- \theta_{_{S}} & -1                & 0 & ... & 0              & 0              & 0                 & 0                 & 0                 & ... & 0               & 0 \\
+One solves the linear flow equation, \eqref{eq:flow}, to determine the
+theoretical flow in the cascade.
+
+\begin{equation}
+\setcounter{MaxMatrixCols}{20}
+\begin{bmatrix}
+     -1        & 1-\theta_{_{S+1}} & 0 & ...  & 0              & 0              & 0                 & 0                 & 0                 & ...  & 0               & 0 \\
+ \theta_{_{S}} & -1                & 0 & ...  & 0              & 0              & 0                 & 0                 & 0                 & ...  & 0               & 0 \\
                &                   &   &     &                &                & ...               &                   &                   &     &                 &   \\
- 0             & 0                 & 0 & ... & \theta_{_{-2}} & -1             & 1 - \theta_{_{0}} & 0                 & 0                 & ... & 0               & 0 \\
- 0             & 0                 & 0 & ... & 0              & \theta_{_{-1}} & -1                & 1 - \theta_{_{1}} & 0                 & ... & 0               & 0 \\
- 0             & 0                 & 0 & ... & 0              & 0              & \theta_{_{0}}     & -1                & 1 - \theta_{_{2}} & 0   & ...             & 0 \\
+ 0             & 0                 & 0 & ...  & \theta_{_{-2}} & -1             & 1 - \theta_{_{0}} & 0                 & 0                 & ...  & 0               & 0 \\
+ 0             & 0                 & 0 & ...  & 0              & \theta_{_{-1}} & -1                & 1 - \theta_{_{1}} & 0                 & ...  & 0               & 0 \\
+ 0             & 0                 & 0 & ...  & 0              & 0              & \theta_{_{0}}     & -1                & 1 - \theta_{_{2}} & 0   & ...             & 0 \\
                &                   &   &     &                &                & ...               &                   &                   &     &                 &   \\
- 0             & 0                 & 0 & ... & 0              & 0              & 0                 & 0                 & 0                 & ... & -1              & 1-\theta_{_{E}} \\
- 0             & 0                 & 0 & ... & 0              & 0              & 0                 & 0                 & 0                 & ... & \theta_{_{E-1}} & -1
+ 0             & 0                 & 0 & ...  & 0              & 0              & 0                 & 0                 & 0                 & ...  & -1              & 1-\theta_{_{E}} \\
+ 0             & 0                 & 0 & ...  & 0              & 0              & 0                 & 0                 & 0                 & ...  & \theta_{_{E-1}} & -1
  \end{bmatrix}
  \times
  \begin{bmatrix}
@@ -114,11 +126,26 @@ determine the theoretical flow in the cascade.
      \cdots \\
      0      \\
      0
- \end{bmatrix}
- %\caption{caption needed!}
- \label{eq:flow}
- \end{equation}
-Once the relative flow of each stage has been determined, the
-cascade can be populated with actual machines up the stages
-until either the maximum number available of machines or the maximum feed
-flow is reached.
+\end{bmatrix}
+%\caption{caption needed!}
+\label{eq:flow}
+\end{equation}
+
+Once the relative flow of each stage has been determined, the cascade can be
+populated with actual machines up the stages until the maximum number available
+of machines is reached.
+
+
+\subsection{Miss-use models}
+Little information is available about optimising an existing enrichment cascade
+that is being fed with a feed enrichment that does not match the design one. So
+far 3 different methods have been investigated, the first one assumes that no
+change are been made on the cascade, the second one, assumes that the cut value
+at each stage is retuned to maintain the ideal state of the cascade, the last
+one, described in \cite{walker.2017} assumes the tails to product enriching
+factor remains constants ($\gamma = \alpha\times\beta$). Models behavior, and
+assumptions are summarized in Tab. \ref{tab:models}.
+
+
+
+
