@@ -146,6 +146,54 @@ one, described in \cite{walker.2017} assumes the tails to product enriching
 factor remains constants ($\gamma = \alpha\times\beta$). Models behavior, and
 assumptions are summarized in Tab. \ref{tab:models}.
 
+\begin{table}[htb]
+\centering
+  \caption{Summary of miss-use model properties.}
+\begin{tabular}{l|ccc}
+\toprule
+
+Model                &    A                 & B                  & C  \\
+\midrule
+Constant parameters  & $\alpha_i, \theta_i$ & $\alpha_i=\beta_i$ & $\gamma_i=\alpha_i*\beta_i, \theta_i$       \\
+Optimised parameters & $\beta_i$            & $\theta_i$         & $\alpha_i, \beta_i$                     \\
+Assays determination & blended              & ideal              & blended                  \\
+Flow                 & unchanged            & scaled             & unchanged       \\
+
+\bottomrule
+\end{tabular}
+  \label{tab:models}
+\end{table}
+
+\subsubsection{Case A}
+The tuning method A does not re-optimize $\theta_i$ based on the true flow
+enrichment. As $\delta U$ and $\alpha$ do not depend on the stage feed assay
+($N'$), they do not change from stage to stage. According to equation
+\eqref{eq:beta}, when $\alpha$ and $\theta$ are fixed, when the feed assay ($N$)
+changes, then $\beta$ will change accordingly.  This breaks the ideal status of
+the cascade, i.e.  $N_{i} \neq N'_{i-1} \neq N''_{i+1}$.
+
+In order to compute the proper product and tails assay at each stage, the
+tails and the product from respectively the next and the previous stage must be
+blended in order to determine the correct stage feed assay. As this is a obvious
+cycling problem, an iterative solution has been chosen: all feed assays are
+iteratively updated, blending the proper product and tails, then using the
+updated feed assay, the new product and tail assays are recomputed. This process
+is repeated until the change in assays is smaller than the set precision (1e-8
+by default).
+As the cut remain fixed at each stage the different flow do not need to be
+recomputed.
+
+
+\subsubsection{Case B}
+
+The second method the cut value at each stage $\theta_i$, is retuned in order to
+maintain the $\alpha_i$ and $\beta_i$ at their original values. As the cascade
+remains ideal, the product and tail assay at each stages (and for the overall
+cascade) is easily determined using equations \eqref{eqs:alphabeta}.
+
+As the cuts values change, the flow rate between the different stage has to be
+recomputed. Because the cascade is not reorganised (the number of cascade per
+stage remain the same as the original design). The new flow rate are computed as the flow rate of cascade   
 
 
 
