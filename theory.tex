@@ -1,0 +1,124 @@
+\section{theory}
+\subsection{Centrifuge properties}
+
+The present work uses the analytical solution by R\"aetz \cite{raetz.phd} of the
+differential equation for the gas centrifuge as described in \cite{glaser.2008}.
+Centrifuge parameters, such as average gas temperature, $T$, peripheral speed,
+$v$, height, $h$, diameter, $d$, pressure ratio, $x$, feed flow rate, $F$,
+counter-current flow ratio, $L/P$, and efficiency, $e$ have been chosen (Table
+\ref{tab:centrifuges}) to match the cascade design describe in
+\cite{glaser.2008} and \cite{walker.2017}.  These parameters for a P1-type
+centrifuge are used to estimate the JCPOA-compliant IR-1 centrifuge.
+
+\begin{table}[htb]
+\centering
+\caption{Summary of the centrifuge parameters.}
+\begin{tabular}{cccccccc}
+\toprule
+$T$[K] & $v$[m/s]    & $h$[m] & $d$[m]   & $x$   & $F$[mg/s]  & $L/F$ & $e$  \\
+\midrule
+320    & $320$           & $1.8$ & $0.105$ & $1e3$  & $13$      & 2     & 1.0  \\
+\bottomrule
+\end{tabular}
+
+  \label{tab:centrifuges}
+\end{table}
+
+\subsection{Cascade Design}
+
+The cascade is built to be ideal, defined by $\alpha =\beta = const$ for all
+stage of the cascade, where $\alpha$ and $\beta$ respectively represent the feed
+to product and the feed to tail enrichment factors.  $\alpha$ can be expressed
+as a function of the feed rate $F$, the separative performance $\delta
+U(\theta)$, the cut $\theta$, and $\beta$ as a function of $alpha$ and $\theta$:
+
+\begin{subequations} \label{eqs:alphabeta}
+    \begin{equation} \label{eq:alpha}
+    \alpha = \sqrt{\frac{2\delta U}{F} \frac{1-\theta}{\theta}}+1
+\end{equation}
+\\
+\begin{equation}\label{eq:beta}
+    \beta =   \left(1 - \dfrac{N - \theta \dfrac{\alpha R}{1+\alpha R}}{1 -
+              \theta}\right)
+              \left(\dfrac{R}{\dfrac{N - \theta \dfrac{\alpha R}{1+\alpha R}}{1
+              - \theta}}\right)
+\end{equation}
+\end{subequations}
+
+From equation \eqref{eq:alpha} and \eqref{eq:beta} it is possible to determine
+the cut, or the ratio of product flow to feed flow
+%(all other centrifuge parameters been fixed) allowing the have $\alpha=\beta$
+required to build an ideal cascade.
+
+Since $\alpha_{i}$ and $\beta_{i}$ remain constant, only the value of the cut,
+$\theta_{i}$, changes in each stage $i$ of a cascade.
+
+It can be shown that $\theta_{i}$ can be computed from $\alpha$,
+$\beta$ values and the feed assay, $N_{i}$:
+\begin{eqnarray}
+    \theta_{i} = \dfrac{N_{i} - \dfrac{1}{1 + \beta/R_{i}}}{ \dfrac{\alpha R_{i}}{1 + \alpha R_{i}} -
+           \dfrac{1}{1 + \beta/R_{i}}}
+%%    \theta_{i} &=& \dfrac{N_{i} - N''_{i}}{N'_{i}-N''_{i}}\nonumber\\
+%%           &=& \dfrac{N_{i} - \dfrac{1}{1 + \beta/R_{i}}}{ \dfrac{\alpha R_{i}}{1 + \alpha R_{i}} -
+%%           \dfrac{1}{1 + \beta/R_{i}}}
+\end{eqnarray}
+
+This algorithm assumes that the corresponding separative power $\delta U$ (not
+re-computed) can be achieved with the chosen centrifuge design. Once
+$\theta_{i}$ is determined, it is possible to compute the product and the tail
+assay.
+
+The design of the cascade is performed through 2 steps. First one determines the
+configuration and number of stages, adding stages until the product assay of the final stage is greater than or equal to than the desired assay, and the tails assay is similarly less than or equal to the desired tails assay. This determines the number of enriching and stripping stages as
+well as their enrichment properties ($N_{i}$, $N'_{i}$,
+$N''_{i}$,$\theta_{i}$i).
+
+
+The second step determines how to populate the cascade with the user-defined
+maximum number of centrifuges. One then solves the linear flow equation to
+determine the theoretical flow in the cascade.
+
+ \begin{equation}
+ \setcounter{MaxMatrixCols}{20}
+ \begin{bmatrix}
+     -1        & 1-\theta_{_{S+1}} & 0 & ... & 0              & 0              & 0                 & 0                 & 0                 & ... & 0               & 0 \\
+ \theta_{_{S}} & -1                & 0 & ... & 0              & 0              & 0                 & 0                 & 0                 & ... & 0               & 0 \\
+               &                   &   &     &                &                & ...               &                   &                   &     &                 &   \\
+ 0             & 0                 & 0 & ... & \theta_{_{-2}} & -1             & 1 - \theta_{_{0}} & 0                 & 0                 & ... & 0               & 0 \\
+ 0             & 0                 & 0 & ... & 0              & \theta_{_{-1}} & -1                & 1 - \theta_{_{1}} & 0                 & ... & 0               & 0 \\
+ 0             & 0                 & 0 & ... & 0              & 0              & \theta_{_{0}}     & -1                & 1 - \theta_{_{2}} & 0   & ...             & 0 \\
+               &                   &   &     &                &                & ...               &                   &                   &     &                 &   \\
+ 0             & 0                 & 0 & ... & 0              & 0              & 0                 & 0                 & 0                 & ... & -1              & 1-\theta_{_{E}} \\
+ 0             & 0                 & 0 & ... & 0              & 0              & 0                 & 0                 & 0                 & ... & \theta_{_{E-1}} & -1
+ \end{bmatrix}
+ \times
+ \begin{bmatrix}
+     F_{_{S}}   \\
+     F_{_{S+1}} \\
+     \cdots     \\
+     F_{_{-1}}  \\
+     F_{_{0} }  \\
+     F_{_{1} }  \\
+     \cdots     \\
+     F_{_{E-1}} \\
+     F_{_{E}}
+ \end{bmatrix}
+ =
+ \begin{bmatrix}
+     0      \\
+     0      \\
+     \cdots \\
+     0      \\
+     F      \\
+     0      \\
+     \cdots \\
+     0      \\
+     0
+ \end{bmatrix}
+ %\caption{caption needed!}
+ \label{eq:flow}
+ \end{equation}
+Once the relative flow of each stage has been determined, the
+cascade can be populated with actual machines up the stages
+until either the maximum number available of machines or the maximum feed
+flow is reached.
