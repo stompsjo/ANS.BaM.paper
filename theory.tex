@@ -26,12 +26,13 @@ $T$[K] & $v$[m/s]    & $h$[m] & $d$[m]   & $x$   & $F$[mg/s]  & $L/F$ & $e$  \\
 
 \subsection{Cascade Design}
 
-The cascade is built as an ideal cascade, with no losses in the separative
-work, which corresponds to $\alpha =\beta = const$ for all
-stage of the cascade, where $\alpha$ and $\beta$ respectively represent the feed
-to product and the feed to tail enrichment factors.  $\alpha$ and $\beta$ can be
-expressed as function of the abondance ($R$) or the enrichment ($N$) of respectively the
-product ($R'$,$N'$) and the feed,($R$,$N$) and the feed and the tails ($R''$,$N''$) such as:
+The cascade is built as an ideal cascade, with no losses in the separative work,
+which corresponds to $\alpha =\beta = const$ for all stage of the cascade, where
+$\alpha$ and $\beta$ respectively represent the feed to product and the feed to
+tail enrichment factors.  $\alpha$ and $\beta$ can be expressed as function of
+the abundance ($R$) or the enrichment ($N$) of respectively the product
+($R'$,$N'$) and the feed,($R$,$N$) and the feed and the tails ($R''$,$N''$) such
+as:
 \begin{subequations} \label{eqs:alphabeta}
     \begin{equation} \label{eq:alpha_def}
         \alpha = \frac{R'}{R} = \frac{N'}{1-N'}\frac{1-N}{N} 
@@ -42,17 +43,17 @@ product ($R'$,$N'$) and the feed,($R$,$N$) and the feed and the tails ($R''$,$N'
 \end{equation}
 \end{subequations}
 
-As detailled in \cite{avery} it is also possible to derive $\alpha$ from the
-first principle, and express it as a function of the feed rate $F$ the separative performance $\delta
-U(\theta)$, the cut $\theta$:
+As detailed in \cite{avery} it is also possible to derive $\alpha$ from the
+first principle, and express it as a function of the feed rate $F$ the
+separative performance $\delta U(\theta)$, the cut $\theta$:
 
     \begin{equation} \label{eq:alpha}
     \alpha = \sqrt{\frac{2\delta U}{F} \frac{1-\theta}{\theta}}+1
 \end{equation}
 
-From the mass conservation, $N = \theta N' + (1-\theta)N''$, and equations \eqref{eqs:alphabeta} it is
-possible to express $\beta$ as a function of the feed abondance, $R$, the cut
-$\theta$ and $\alpha$:
+From the mass conservation, $N = \theta N' + (1-\theta)N''$, and equations
+\eqref{eqs:alphabeta} it is possible to express $\beta$ as a function of the
+feed abundance, $R$, the cut $\theta$ and $\alpha$:
 
 \begin{equation}\label{eq:beta}
     \beta =   R \left(\dfrac{1-\theta}
@@ -72,7 +73,7 @@ $\beta$ values and the feed assay, $N_{i}$:
 Since $\alpha_{i}$ and $\beta_{i}$ remain constant, only the value of the cut,
 $\theta_{i}$, changes in each stage $i$ of a cascade.  This algorithm assumes
 that the corresponding separative power $\delta U$ (not re-computed) can be
-achieved with the chosen centrifuge design, tuning other operationnal paramter
+achieved with the chosen centrifuge design, tuning other operational parameter
 such as the rotation speed, the counter-current flow ratio...  Once $\theta_{i}$
 is determined, it is possible to compute the product and the tail assay.
 
@@ -206,7 +207,7 @@ one need to determine $\alpha$ and $\beta$ such as their product and
 $\theta$ remain fixed. 
 From equations \eqref{eqs:alphabeta} and the assay conservation equation $N =
 \theta N' + (1-\theta)N''$ it is possible to express the product $N'$ as a function of
-the feed assay $N$, $gamma$ and the cut $theta$ as one solution of the second
+the feed assay $N$, $\gamma$ and the cut $\theta$ as one solution of the second
 order equation \eqref{eq:gamma_p}:
 
 \begin{equation}\label{eq:gamma_p}
@@ -226,7 +227,14 @@ following :
             - \theta + 1}
         {2\theta(\gamma - 1)}
 \end{equation}
+Once the product assay is known, one can trivially determine the tail assay,
+$\alpha$ and $\beta$ using equations \eqref{eqs:alphabeta} and mass
+conservation.
 
-The last model is very similar to the model A.
+Similarly as model A, because the cut values remain constant, the flows don't
+need to be recomputed, and the correct assays, $\alpha$ and $\beta$ are
+determined through iterative blending of the product assays of the previous
+stage and the tails assay of the next stage using equation
+\eqref{eq:model_b_sol}.
 
 
