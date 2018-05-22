@@ -193,7 +193,40 @@ cascade) is easily determined using equations \eqref{eqs:alphabeta}.
 
 As the cuts values change, the flow rate between the different stage has to be
 recomputed. Because the cascade is not reorganised (the number of cascade per
-stage remain the same as the original design). The new flow rate are computed as the flow rate of cascade   
+stage remain the same as the original design). The new flow rate are computed as
+the flow rates of the reconfigured cascade scaled down by the possible
+flows of the original one: the flow rates of a reconfigured cascade are
+computed, the ratios of the flow stage by stage with the original are determined,
+the smaller ratio is used to scale down all the flow rates.
 
+\subsubsection{Case C}
+The last model assumes that the tail to product enrichment factor remains
+constant regardless to the feed assays. To compute the response of the cascade
+one need to determine $\alpha$ and $\beta$ such as their product and
+$\theta$ remain fixed. 
+From equations \eqref{eqs:alphabeta} and the assay conservation equation $N =
+\theta N' + (1-\theta)N''$ it is possible to express the product $N'$ as a function of
+the feed assay $N$, $gamma$ and the cut $theta$ as one solution of the second
+order equation \eqref{eq:gamma_p}:
+
+\begin{equation}\label{eq:gamma_p}
+\gamma(1-N')(P\theta-N) - N'(1-(N'\theta-N)/(-1+\theta))(-1+\theta) = 0
+\end{equation}
+
+The only solution allowing product assay values ranging between 0 and 1 is the
+following :
+\begin{equation}\label{eq:model_b_sol}
+    \frac{\gamma(N + \theta) - N 
+            - \sqrt{\gamma^2(N^2 
+                            - 2N\theta 
+                            + \theta^2) 
+                    - \gamma(2N^2 - 2\theta^2 
+                            + 2N + 2\theta) 
+                    + N^2 + 2N\theta + \theta^2 - 2N - 2\theta + 1} 
+            - \theta + 1}
+        {2\theta(\gamma - 1)}
+\end{equation}
+
+The last model is very similar to the model A.
 
 
