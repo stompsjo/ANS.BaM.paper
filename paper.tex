@@ -37,32 +37,30 @@ $^{*}$University of Wisconsin-Madison, WI
 \section{Introduction}
 
 Fuel cycle simulations, as with any simulation process, do not produce results
-without errors.  Those errors have different sources: data uncertainties (from
-%% I'm not a fan of the use of the word ``errors'' here.  We should be careful
-%% since (in English) this can meam ``mistakes''.  Uncertainty is a better
-%% word, and then we'll have to distinguish between input uncertainties and
-%% output uncertainties.
+without uncertainties.  Those uncertainties have different sources: data uncertainties (from
 the simulator's reliance on previously estimated/measured data), modeling
-uncertainties (from simplifications made by the simulator) and the
-``operational'' uncertainty (from the expected behavior of the facilities
-being simulated).
-%% is this operational uncertainty really just a different kind of data?
+uncertainties (from simplifications made by the simulator). This work we will be
+focused a part of the data uncertainty related to the expected behavior of the
+facilities being simulated.
 
-Simulation errors could be important in the context of treaty verification. 
-Some scenarios require estimating historical fissile
-material production based on records of facility operation and material
-transfer.  If the measurements of facility operation and material transfer are
-subject to uncertainty, the total production quantities will then also be
-uncertain.  Any uncertainty in fissile production quantities poses a material
-accounting challenge, possibly
-creating an opportunity for undetected diversion.  This study seeks
-to understand which measures of facility operation have the most impact on the
-uncertainty of fissile material production across a complete fuel cycle.
-To accomplish this, a Total Monte Carlo methodology will be applied to the Cyclus
-fuel cycle simulator \cite{cyclus} to estimate the effect of individual facility uncertainties on the output metrics.
-%% should there be a reference for Total Monte Carlo?
+Simulation errors could be important in the context of treaty verification.
+Some scenarios require estimating historical fissile material production based
+on records of facility operation and material transfer.  If the measurements of
+facility operation and material transfer are subject to uncertainty, the total
+production quantities will then also be uncertain.  Any uncertainty in fissile
+production quantities poses a material accounting challenge, possibly creating
+an opportunity for undetected diversion.  
 
-% I don't think Total Monte Carlo should be in quotes
+This study seeks to understand which measures of facility operation have the
+most impact on the uncertainty of fissile material production across a complete
+fuel cycle.  Uncertainty propagation using a Monte Carlo method will be applied
+to the Cyclus fuel cycle simulator \cite{cyclus} to estimate the effect of
+individual facility uncertainties on the output metrics. The same simulation
+will be simulated $N$ times, for each simulation parameters affected with an
+uncertainty will be randomly determined, the distribution of each output metrics
+over the N iterations of the simulation, will be used to estimate their
+respective uncertainty.
+
 \section{The Experiment}
 
 \subsection{Method}
@@ -86,12 +84,12 @@ facilities of Cycamore and CyCLASS.
 \begin{table}[htb]
 \centering
   \caption{Summary of facility modifications according to their Cyclus archetype package.}
-\begin{tabular}{cll}
+\begin{tabular}{cl|l}
 \toprule
 
 Package   & Facility   & Parameters                \\
 \midrule
-Cycamore & Separation & Separation efficiency     \\ %% add hline in 2nd two columns
+Cycamore & Separation & Separation efficiency     \\\cmidrule{2-3} 
          & Storage    & Residence Time            \\
 \midrule
 CyCLASS  & Reactor    & Cycle Length              \\
@@ -125,7 +123,6 @@ of the nuclear generated power (Figure \ref{fig:power}).
   with each operational parameter associated with an
   uncertainty labeled in green.}\label{fig:cycle}
 \end{figure}
-%% Update this to match the one in the CVT poster?
 
 
 As illustrated in Figure \ref{fig:power}, the transition starts with a fleet
@@ -147,11 +144,9 @@ The plutonium, required for \gls{MOX} fabrication, is reprocessed from all
 used fuel.  At first, it is sourced only from \gls{UOX}, then used \gls{MOX} fuel
 as it becomes available for reprocessing.
 
-Both fuel reprocessing and fabrication are done at a constant rate (constrained
-by the feed material availability).  The enrichment of the \gls{UOX} is processed
-%% is it really a constant rate then?  Maybe we need a better word to describe this
+Both fuel reprocessing and fabrication rate are both limited by the facilities
+throughput and the ressource available.  The enrichment of the \gls{UOX} is processed
 on demand.  Buffer storage facilities (not shown in Figure \ref{fig:cycle}) are present
-%% You can't pluralize ``storage'' in English - it's considered uncountable
 between all facilities with constant processing rates.
 
 In this work, a time step of 1 month has been considered, i.e., each output
@@ -163,9 +158,8 @@ fuel fabrication model\cite{Leniau2015125} which
 calculates the fissile fraction required in the fuel to reach a given target
 burnup at the end of irradiation.  Therefore, the uncertainty of the fuel
 enrichment is not applied directly to the effective enrichment. It is instead applied to the
-burnup, which leads to a fuel enrichment uncertainty close to
+burnup, which appears to lead to a fuel enrichment uncertainty close to
 $10\%$.
-%% Did you have to experiment to find the burnup uncertainty that results in a 10% enrichment uncertainty?
 
 For each of the parameters in Table \ref{tab:package_uncertainty}, a set of
 199 simulations was performed with only that parameter being randomly varied.
@@ -180,13 +174,12 @@ with all five parameters fixed at the mean value.
 Because the main interests of nuclear archaeology involve highly enriched uranium production and
 fissile inventories, this study mainly focuses on the uncertainties of
 the total quantity of natural uranium used and the total unused fissile
-inventory (unused reprocessed plutonium).
-%% unused implies it's never used, but I don't think that's right.  You just mean the amount
-%% that is being stored in a separated state any point in time, right?
+inventory (separated plutonium).
 Generated power is also briefly investigated to ensure the overall
 uncertainty is not contaminated with a missed fuel loading, which could
-be interesting but is not the focus of this work.
-%% what do you mean by contaminated???  This probably deserves more explanation
+be interesting but is not the focus of this work. It is assumed that no reactor
+are unexpectedly shutdown because of fuel shortage, as such events should be well
+documented...
 
 At each time step, the $\pm1\sigma$ uncertainty due to the full set of varied
 parameters is reported.  In addition, the relative contribution to the total
@@ -262,8 +255,9 @@ per deployed facility, each reactor will have a different cycle
 length value, so a different number of batches loaded per year.  With the increase
 of deployed reactors, the number of batches of \gls{LWR} fuel loaded converges
 to the references one, reducing its impact on the uncertainty on the total
-uranium consumption.
-%% Why does the relative uncertainty due to cyle time not approach 0?
+uranium consumption. This uncertainty contribution to the overall uncertainty
+decrease is proportional to the number of \gls{LWR} reactors and stops with the
+decommission of the last one.
 
 The fuel enrichment contribution follow a close to constant uncertainty
 contribution of $2\%$, so as the total relative uncertainty decrease, it
@@ -302,17 +296,15 @@ than the deployment needs.
 Regarding the uncertainty, disregarding the artefact of a very low mean inventory
 observed at the onset of fissile material production, the relative uncertainty
 starts at about $5\%$, and grows until year
-125 to decrease up to $10\%$ at the end of the simulation time (180y), it seems
+125 to decrease to $10\%$ at the end of the simulation time (180y), it seems
 %% I don't see what you mean by decrease up to 10%?
 it would have reached an equilibrium between $5$ and $10\%$ with longer
 simulations...
 Between year 40 and 70, the main contributor to the fissile inventory
-uncertainty is the cycle length.  As with the uranium needs, lower cycle length
-implies more fuel loads.  Never the less, around year 65 (see Figure
-%% Aren't you varying the cycle length equally to be smaller and larger, so why
-%% focus on ``lower cycle lengths''?
+uncertainty is the cycle length.  As with the uranium needs, different cycle length
+implies different number of fuel loads, so different amount of resources used.  Never the less, around year 65 (see Figure
 \ref{fig:used_fuel}), the stock of used fuel available for reprocessing becomes
-small enough to start limiting producton of fissile material.
+small enough to start limiting production of fissile material.
 The uncertainty weight is then slowly transferred from
 the cycle length to the fuel cooling time.
 
