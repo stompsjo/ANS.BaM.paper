@@ -1,4 +1,4 @@
-\section{the experiment}
+\section{The experiment}
 This works focuses on comparing the different miss use models to a reference
 calculation in which a single large cascade is build and designed to directly
 produce \gls{HEU} from natural uranium.
@@ -86,4 +86,13 @@ number of cascade per level. When the tail are not recycled, the $(1-\theta)$
 terms are removed from the flow equation.  The results of the level population
 are summarized in Table \ref{tab:level}.
 
+\subsection{Timestep effect}
 
+As it can be observed on Figures \ref{fig:case1}, \ref{fig:case2} and
+\ref{fig:case3}, the different cascade levels required up to $2n+1$, with $n$ the
+level number to start enriching uranium. This corresponds to the time required
+for the material to propagate from the natural uranium source to the level,
+regardless of the duration of the timestep (hour, day, month,...). This is also
+true for the number of timestep required to reach the equilibrium assays value in
+the tail reprocessing cases. This is why one will only consider equilibrium
+values.

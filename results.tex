@@ -1,12 +1,6 @@
 \section{Results}
-As it can be observed on Figures \ref{fig:case1}, \ref{fig:case2} and
-\ref{fig:case3}, the different cascade levels required up to $2n+1$, with $n$ the
-level number to start enriching uranium. This corresponds to the time required
-for the material to propagate from the natural uranium source to the level,
-regardless of the duration of the timestep (hour, day, month,...). This is also
-true for the number of timestep required to reach the equilibrium assays value in
-the tail reprocessing cases. This is why one will only consider equilibrium
-values.
+
+\subsection{Miss-use modeling}
 
 \begin{table}[h!]
 \centering
@@ -14,8 +8,8 @@ values.
 \begin{tabular}{ccccccccc}
 \toprule
 
-Model       &        &           & A         & A         & B         & B       & C         & C          \\
-Recycling   &        &           & No        & yes       & No        & Yes     & No        & yes        \\
+Model       &        &           & A/NR      & A/R       & B/NR      & B/R      & C/NR       & C/R          \\
+%Recycling   &        &           & No        & yes       & No        & Yes     & No        & yes        \\
 \midrule                                                                                                 
         &            & Feed      & $0.71w\%$ & $1.3w\%$  & $0.71w\%$ & $0.94w\%$ & $0.71w\%$ & $1.66w\%$ \\
 Level 0 & Assay      & Product   & $4.13w\%$ & $7.7w\%$  & $4.13w\%$ & $5.43w\%$ & $4.13w\%$ & $9.53w\%$ \\
@@ -41,18 +35,25 @@ Level 3 & Assay      & Product   & $98.2w\%$ & N.A.      & $90.4w\%$ & $95.0w\%$
   \label{tab:level}
 \end{table}
 
+As illustrated on Figures \ref{sfig:case1_NR}, \ref{sfig:case2_NR} and
+\ref{sfig:case3_NR} and summarized on Tab \ref{tab:level}, the different model
+don't have the same effect on the cascade behavior. While the models A and C,
+allow a quick enrichment gain, with the cascades chaining, respectively
+4/23/78/98 and 4/23/82/99, the model B, the enrichment gain is only
+4/21/61/90...  The same effect is observed when recycling the tails\ldots
+
 
 \begin{figure}[h!]
     \centering
     \begin{subfigure}[t]{0.45\textwidth}
         \centering
-        \includegraphics[scale=0.18]{NR_case1}
+        \includegraphics[scale=0.17]{NR_case1}
         \caption{No tail recycling}
         \label{sfig:case1_NR}
     \end{subfigure}%
     \begin{subfigure}[t]{0.45\textwidth}
         \centering
-        \includegraphics[scale=0.18]{R_case1}
+        \includegraphics[scale=0.17]{R_case1}
         \caption{Tail recycling}
         \label{sfig:case1_R}
     \end{subfigure}
@@ -61,26 +62,18 @@ Level 3 & Assay      & Product   & $98.2w\%$ & N.A.      & $90.4w\%$ & $95.0w\%$
     \label{fig:case1}
 \end{figure}
 
-\subsection{Miss-use modeling}
-As illustrated on Figures \ref{sfig:case1_NR}, \ref{sfig:case2_NR} and
-\ref{sfig:case3_NR} and summarized on Tab \ref{tab:level}, the different model
-don't have the same effect on the cascade behavior. While the models A and C,
-allow a quick enrichment gain, when the chaining the enrichment cascades, respectively
-4/23/78/98 and 4/23/82/99, with model B, the enrichment gain is slower only
-4/21/61/90...
-The same effect is observed when recycling the tails\ldots
 
 \begin{figure}[h!]
     \centering
     \begin{subfigure}[t]{0.45\textwidth}
         \centering
-        \includegraphics[scale=0.18]{NR_case2}
+        \includegraphics[scale=0.17]{NR_case2}
         \caption{No tail recycling}
         \label{sfig:case2_NR}
     \end{subfigure}%
     \begin{subfigure}[t]{0.45\textwidth}
         \centering
-        \includegraphics[scale=0.18]{R_case2}
+        \includegraphics[scale=0.17]{R_case2}
         \caption{Tail recycling}
         \label{sfig:case2_R}
     \end{subfigure}
@@ -90,27 +83,28 @@ The same effect is observed when recycling the tails\ldots
 \end{figure}
 
 \subsection{Tails recycling}
+
 As demonstrated on Figures \ref{sfig:case1_R}, \ref{sfig:case2_R} and
-\ref{sfig:case3_R}, recycling the tails increases the overall product assay at all
-the different levels. As shown on Table \ref{tab:level}, the tail assay of level
-$n$ is always higher than the product assay of level $n-2$, recycling the tails
-of level $n$ will consequently increase the feed assay of level $n-1$. Moreover,
-as the feed assay of level $n-1$ increases, its tail and product assays increase as well,
-increasing de facto the feed assays of respectively cascade levels $n-2$ and $n$...
-This effect allow to reduce the number of cascade levels required to reach
-\gls{HEU} in case A and C.
+\ref{sfig:case3_R}, recycling the tails increases the overall product assay at
+all the different levels. As shown on Table \ref{tab:level}, the tail assay of
+level $n$ is always higher than the product assay of level $n-2$, recycling the
+tails of level $n$ will consequently increase the feed assay of level $n-1$.
+Moreover, as the feed assay of level $n-1$ increases, its tail and product
+assays increase as well, increasing de facto the feed assays of respectively
+cascade levels $n-2$ and $n$...  This effect allow to reduce the number of
+cascade levels required to reach \gls{HEU} in case A and C.
 
 \begin{figure}[h!]
     \centering
     \begin{subfigure}[t]{0.45\textwidth}
         \centering
-        \includegraphics[scale=0.18]{NR_case3}
+        \includegraphics[scale=0.17]{NR_case3}
         \caption{No tail recycling}
         \label{sfig:case3_NR}
     \end{subfigure}%
     \begin{subfigure}[t]{0.45\textwidth}
         \centering
-        \includegraphics[scale=0.18]{R_case3}
+        \includegraphics[scale=0.17]{R_case3}
         \caption{Tail recycling}
         \label{sfig:case3_R}
     \end{subfigure}
@@ -122,6 +116,7 @@ This effect allow to reduce the number of cascade levels required to reach
 
 
 \subsection{\gls{HEU} Production}
+
 As shown Figure \ref{fig:HEU_rate}, recycling increases the final \gls{HEU}
 production rate, from $2$ to almost $20$ kg/y when using model A and C, and from
 $17$ to $38$ kg/y with the model B. For the reference calculation where all the
