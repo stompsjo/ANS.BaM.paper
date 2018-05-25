@@ -62,6 +62,7 @@ ENTRY
     url
     volume
     year
+    DOI
   }
   {}
   { label }
@@ -390,44 +391,49 @@ FUNCTION {format.names}
   #1 'nameptr :=
   s num.names$ 'numnames :=
   numnames 'namesleft :=
-    { namesleft #0 > }
-    { s nameptr
-      "{f.~}{vv~}{ll}{, jj}"
-      format.name$
-      bib.name.font
-      bibinfo bibinfo.check
-      't :=
-      nameptr #1 >
-        {
-          namesleft #1 >
-            { ", " * t * }
-            {
-              s nameptr "{ll}" format.name$ duplicate$ "others" =
-                { 't := }
-                { pop$ }
-              if$
-              numnames #2 >
-                { "," * }
-                'skip$
-              if$
-              t "others" =
-                {
-                  " " * bbl.etal bib.name.font *
-                }
-                {
-                  bbl.and
-                  space.word * t *
-                }
-              if$
-            }
-          if$
-        }
-        't
-      if$
-      nameptr #1 + 'nameptr :=
-      namesleft #1 - 'namesleft :=
-    }
-  while$
+  numnames #5 >
+    { s #1 "{f.~}{vv~}{ll}{, jj}" format.name$ bib.name.font
+      " et~al." * }
+    {
+      { namesleft #0 > }
+      { s nameptr
+        "{f.~}{vv~}{ll}{, jj}"
+        format.name$
+        bib.name.font
+        bibinfo bibinfo.check
+        't :=
+        nameptr #1 >
+          {
+            namesleft #1 >
+              { ", " * t * }
+              {
+                s nameptr "{ll}" format.name$ duplicate$ "others" =
+                  { 't := }
+                  { pop$ }
+                if$
+                numnames #2 >
+                  { "," * }
+                  'skip$
+                if$
+                t "others" =
+                  {
+                    " " * bbl.etal bib.name.font *
+                  }
+                  {
+                    bbl.and
+                    space.word * t *
+                  }
+                if$
+              }
+            if$
+          }
+          't
+        if$
+        nameptr #1 + 'nameptr :=
+        namesleft #1 - 'namesleft :=
+      }
+      while$
+    } if$
   } if$
 }
 FUNCTION {format.names.ed}
@@ -465,6 +471,24 @@ FUNCTION {format.note}
         }
       if$
       note #2 global.max$ substring$ * "note" bibinfo.check
+    }
+  if$
+}
+FUNCTION {format.doi}
+{
+ DOI empty$
+    { "" }
+    { DOI #1 #1 substring$
+      duplicate$ "{" =
+        'skip$
+        { output.state mid.sentence =
+          { "l" }
+          { "u" }
+        if$
+        change.case$
+        }
+      if$
+      DOI #2 global.max$ substring$ * "DOI" bibinfo.check
     }
   if$
 }
@@ -1112,6 +1136,7 @@ FUNCTION {misc}
   howpublished "howpublished" bibinfo.check output
   format.date output
   format.note output
+  format.doi output
   fin.entry
   empty.misc.check
 }
