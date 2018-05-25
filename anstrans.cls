@@ -25,7 +25,8 @@
 \ProvidesClass{anstrans}[2011/06/07 v1.1.4 ANS Transaction class]
 
 %%%%%%%%%%% TYPE AND GEOMETRY %%%%%%%%%%%
-\LoadClass[twocolumn,10pt]{article}
+%\LoadClass[twocolumn,10pt]{article}
+\LoadClass[onecolumn,10pt]{article}
 
 \pagestyle{empty}						%no page numbering
 

@@ -1,7 +1,7 @@
-\documentclass[12pt]{paper}
+\documentclass[12pt]{article}
 \usepackage{mathptmx} % Nearly Times New Roman
-\usepackage[acronym,toc]{glossaries}
-\include{acros}
+\usepackage[affil-it]{authblk}
+
 %\makeglossaries
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -15,6 +15,8 @@
 \usepackage{textcomp}
 \usepackage{multicol,tabularx,capt-of}
 \usepackage{multirow}
+
+\usepackage{fancyhdr} % allows headers and footers
 %\usepackage{ulem}
 \usepackage{pdflscape}
 % Page length commands go here in the preamble
@@ -68,27 +70,30 @@
 \newcommand{\comment}[1]{{\color{green}\textbf{#1}}}
 
 \usepackage[acronym]{glossaries}
+
 \input{glossary}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{document}
-
-
 %\begin{frontmatter}
 \title{Evaluating computational methods for modeling off-normal operation of gas centrifuge cascades}
-
 % Authors. Separated by commas
 \input{authors}
 \date{}
 % Institutes of the authors
 \input{institutions}
+\pagestyle{fancy}
+\begin{document}
+
+
+
 \maketitle
 
 
 % 0.Abstract
 \input{abstract}
-
+\nopagebreak[4]
 % I.   Motivation
 \include{motivation}
+\nopagebreak[4]
 
 % II.  Theory
 %   a. cascade design
@@ -97,21 +102,25 @@
 %       ii.  case B
 %       iii. case C
 \include{theory}
+\nopagebreak[4]
 
 % III. Experiement
 %   a.  cycle 
 %   b.  cascade per level optimisation
 \include{experiement}
+\nopagebreak[4]
 
 % IV.  results
 %   a. time step effects
 %   b. no tail recycling
 %   c. tail recycling
 \include{results}
+\nopagebreak[4]
 
 % V.  Discussion
 % VI. Conclusions and future plan
 \include{dis_clusion}
+\nopagebreak[4]
 
 
 \section{Acknowledgments}
