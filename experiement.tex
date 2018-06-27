@@ -1,10 +1,10 @@
 \section{The experiment}
-This works focuses on comparing the different miss-use models to a reference
+This works focuses on comparing the different misuse models to a reference
 calculation in which a single large cascade is build and designed to directly
 produce \gls{HEU} from natural uranium.
 This works uses the Cyclus fuel cycle simulator to allow material exchange
 between facilities. The enrichment cascade algorithm have been implemented in
-the mbmore package \cite{mbmore.2018}.
+the $mbmore$ package \cite{mbmore.2018}.
 In each cases, 5060 centrifuges have been used and spread across up to 30
 different gas enrichment cascades. 
 
@@ -16,14 +16,14 @@ different gas enrichment cascades.
 As mentioned, all the further calculations will be compared to the most
 favorable configuration to produce \gls{HEU}, where all the available
 centrifuges are used in a single large cascade designed to directly produce
-\gls{HEU} from natural uranium, with a tail assay close to $0.3w\%$. The design
+\gls{HEU} from natural uranium, with a tails assay close to $0.3w\%$. The design
 characteristic of the reference cascade are summarized in Table
 \ref{tab:cascade_config}.
 
 \subsubsection{default cascade}
 
 The default cascade is the cascade design for normal civilian enrichment
-operation, enriching natural uranium to about $3.5w\%$, with a tail assay close
+operation, enriching natural uranium to about $3.5w\%$, with a tails assay close
 to $0.3w\%$. This cascade will be layered and fed with uranium at higher
 enrichment to evaluate the possibility to used them, with few or no tuning, to
 produce \gls{HEU}. The characteristics of the default cascade are summarized in
@@ -35,14 +35,14 @@ Table \ref{tab:cascade_config}.
 \begin{tabular}{cccc}
 \toprule
 
-Cascade Design &       & Reference  & Default    \\
+Cascade Design &       & Reference   & Default    \\
 \midrule
-Targeted  & Feed       & $0.71w\%$  & $0.71w\%$  \\
-Assays    & Product    & $90w\%$    & $4.0w\%$   \\
-          & Tail       & $0.3w\%$   & $0.3w\%$   \\
+Targeted  & Feed       & $0.71w\%$   & $0.71w\%$  \\
+Assays    & Product    & $90w\%$     & $3.5w\%$   \\
+          & Tails      & $0.3w\%$   & $0.3w\%$   \\
 \midrule
-Effective & Product    & $90.35w\%$ & $4.13w\%$  \\
-Assays    & Tail       & $0.28w\%$  & $0.28w\%$  \\ 
+Effective & Product    & $90.35w\%$  & $4.13w\%$  \\
+Assays    & Tails      & $0.29w\%$   & $0.29w\%$  \\ 
 \midrule
 Stages    & Enriching  & 4          & 4          \\
 Number    & Stripping  & 39         & 10         \\
@@ -61,12 +61,12 @@ of an enrichment cascade when used outside of its designed scope :
 \begin{itemize}
 \item one as the reference calculation, with a single centrifuges designed to
     directly produce \gls{HEU} from natural uranium,
-\item three calculations (one per miss-use model) were default cascade are
+\item three calculations (one per misuse model) were default cascade are
     chained to produce \gls{HEU}, without recycling the tails of each cascade,
     the cascade tails are directly sent to the waste,
-\item three calculations (one per miss-use model) were default cascade are
+\item three calculations (one per misuse model) were default cascade are
     chained to produce \gls{HEU}, and the tails of each cascade are recycled, blending
-    the tail of one level in the feed of the previous level of
+    the tails of one level in the feed of the previous level of
     cascades (see Figure \ref{fig:cascade_level}).
 \end{itemize}
 
@@ -74,9 +74,9 @@ of an enrichment cascade when used outside of its designed scope :
     \centering
     \includegraphics[scale=0.45]{flow}
     \caption{Schematic representation of the chained cascades with three levels,
-    with the feed, product and the tail flows, respectively in blue, green and
-    red. The dashed orange line represent the alternative tail flow when
-    tail recycling is considered.}
+    with the feed, product and the tails flows, respectively in blue, green and
+    red. The dashed orange line represent the alternative tails flow when
+    tails recycling is considered.}
     \label{fig:cascade_level}
 \end{figure}
 
@@ -88,16 +88,16 @@ been computed as:
     \theta^{v}_{j} = \frac{F_{j}-N''_{j}}{N'_{j}-N''_{j}},
 \end{equation}
 where, $j$ represents a level of cascade and $N_{j}$, $N'_{j}$ and $N''_{j}$
-respectively the feed, product and tail assay of the cascades at this level.
+respectively the feed, product and tails assay of the cascades at this level.
 
 A flow equation similar to \eqref{eq:flow} is then solve to get the optimum
-number of cascade per level. When the tail are not recycled, the $(1-\theta)$
+number of cascade per level. When the tails are not recycled, the $(1-\theta)$
 terms are removed from the flow equation.  The results of the level population
 are summarized in Table \ref{tab:level}.
 
 As it is not possible to assign a fraction of an enrichment cascade, cascade per
-level are rounded up, to the first level is attibuted the remaining available
-cascades.
+level are rounded up for each level but the first one. To the first level is
+attributed the remaining available cascades.
 
 
 \subsection{Timestep effect}
@@ -108,6 +108,6 @@ before it starts to enrich uranium, where $n$ corresponds to the level number.
 This corresponds to the time required for the material to propagate from the
 natural uranium source to the n-th level, regardless of the duration of the
 timestep (hour, day, month,...). This is also true for the number of timesteps
-required to reach the equilibrium assays value in the tail reprocessing cases.
+required to reach the equilibrium assays value in the tails reprocessing cases.
 As timestep can be artificially small or large, one will only be considering
 equilibrium values flow rates and assays in the following analysis.

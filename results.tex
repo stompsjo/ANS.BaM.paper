@@ -13,22 +13,22 @@ Model       &        &           & A/NR      & A/R       & B/NR      & B/R      
 \midrule                                                                                                 
         &            & Feed      & $0.71w\%$ & $1.3w\%$  & $0.71w\%$ & $0.94w\%$ & $0.71w\%$ & $1.66w\%$ \\
 Level 0 & Assay      & Product   & $4.13w\%$ & $7.7w\%$  & $4.13w\%$ & $5.43w\%$ & $4.13w\%$ & $9.53w\%$ \\
-        &            & Tail      & $0.29w\%$ & $0.5w\%$  & $0.29w\%$ & $0.39w\%$ & $0.29w\%$ & $0.69w\%$  \\
+        &            & Tails      & $0.29w\%$ & $0.5w\%$  & $0.29w\%$ & $0.39w\%$ & $0.29w\%$ & $0.69w\%$  \\
         & Cascades   &           & 26.73     & 26.45     & 26.6      & 25.8      & 26.73     & 26.45      \\
 \midrule                                                                                                 
         &            & Feed      & $4.13w\%$ & $11.9w\%$ & $4.13w\%$ & $6.84w\%$ & $4.13w\%$ & $13.0w\%$ \\
 Level 1 & Assay      & Product   & $22.8w\%$ & $55.7w\%$ & $20.6w\%$ & $30.7w\%$ & $22.9w\%$ & $69.8w\%$ \\
-        &            & Tail      & $1.8w\%$  & $6.6w\%$  & $1.72w\%$ & $2.91w\%$ & $1.81w\%$ & $9.43w\%$  \\
+        &            & Tails      & $1.8w\%$  & $6.6w\%$  & $1.72w\%$ & $2.91w\%$ & $1.81w\%$ & $9.43w\%$  \\
         & Cascades   &           & 2.92       & 3.20      & 2.91      & 3.41     & 2.92      & 3.20       \\
 \midrule                                                                                                 
         &            & Feed      & $22.8w\%$ & $55.7w\%$ & $20.6w\%$ & $34.3w\%$ & $22.9w\%$ & $72.6w\%$ \\
 Level 2 & Assay      & Product   & $78.5w\%$ & $95.0w\%$ & $61.0w\%$ & $75.8w\%$ & $82.0w\%$ & $98.4w\%$ \\
-        &            & Tail      & $4.12w\%$ & $50.9w\%$ & $9.56w\%$ & $17.5w\%$ & $15.7w\%$ & $69.4w\%$ \\
+        &            & Tails      & $4.12w\%$ & $50.9w\%$ & $9.56w\%$ & $17.5w\%$ & $15.7w\%$ & $69.4w\%$ \\
         & Cascades   &           & 0.31      & 0.35      & 0.37      & 0.64      & 0.32      & 0.35      \\
 \midrule                                                                                                 
         &            & Feed      & $78.5w\%$ & N.A.      & $61.0w\%$ & $75.8w\%$ & $82.3w\%$ & N.A.      \\
 Level 3 & Assay      & Product   & $98.2w\%$ & N.A.      & $90.4w\%$ & $95.0w\%$ & $99.1w\%$ & N.A.      \\
-        &            & Tail      & $76.1w\%$ & N.A.      & $79.3w\%$ & $56.1w\%$ & $80.3w\%$ & N.A.      \\
+        &            & Tails      & $76.1w\%$ & N.A.      & $79.3w\%$ & $56.1w\%$ & $80.3w\%$ & N.A.      \\
         & Cascades   &           & 0.03      & N.A.      & 0.080     & 0.18      & 0.03      & N.A.      \\
 \bottomrule
 \end{tabular}
@@ -48,17 +48,17 @@ allow a quick enrichment gain, with the cascades chaining, respectively
     \begin{subfigure}[t]{0.45\textwidth}
         \centering
         \includegraphics[scale=0.17]{NR_case1}
-        \caption{No tail recycling}
+        \caption{No tails recycling}
         \label{sfig:case1_NR}
     \end{subfigure}%
     \begin{subfigure}[t]{0.45\textwidth}
         \centering
         \includegraphics[scale=0.17]{R_case1}
-        \caption{Tail recycling}
+        \caption{Tails recycling}
         \label{sfig:case1_R}
     \end{subfigure}
     \caption{Evolution of the product assays at each level with considering
-    miss-use model A, with (right) and without recycling (left).}
+    misuse model A, with (right) and without recycling (left).}
     \label{fig:case1}
 \end{figure}
 
@@ -68,17 +68,17 @@ allow a quick enrichment gain, with the cascades chaining, respectively
     \begin{subfigure}[t]{0.45\textwidth}
         \centering
         \includegraphics[scale=0.17]{NR_case2}
-        \caption{No tail recycling}
+        \caption{No tails recycling}
         \label{sfig:case2_NR}
     \end{subfigure}%
     \begin{subfigure}[t]{0.45\textwidth}
         \centering
         \includegraphics[scale=0.17]{R_case2}
-        \caption{Tail recycling}
+        \caption{Tails recycling}
         \label{sfig:case2_R}
     \end{subfigure}
     \caption{Evolution of the product assays at each level with considering
-    miss-use model B, with (right) and without recycling (left).}
+    misuse model B, with (right) and without recycling (left).}
     \label{fig:case2}
 \end{figure}
 
@@ -86,10 +86,10 @@ allow a quick enrichment gain, with the cascades chaining, respectively
 
 As shown on Figures \ref{sfig:case1_R}, \ref{sfig:case2_R} and
 \ref{sfig:case3_R}, recycling the tails increases the overall product assay at
-all the different levels. As the tail assay of a level $n$ is always higher than
+all the different levels. As the tails assay of a level $n$ is always higher than
 the product assay of the level $n-2$, recycling the tails of level $n$ will
 consequently increase the feed assay of level $n-1$ (see Table \ref{tab:level}).
-Moreover, with an increased feed assay, tail and product assays increase as
+Moreover, with an increased feed assay, tails and product assays increase as
 well, increasing de facto the feed assays of respectively cascade levels $n-2$
 and $n$...  This effect reduces the number of cascade levels required to reach
 \gls{HEU} in case A and C.
@@ -99,17 +99,17 @@ and $n$...  This effect reduces the number of cascade levels required to reach
     \begin{subfigure}[t]{0.45\textwidth}
         \centering
         \includegraphics[scale=0.17]{NR_case3}
-        \caption{No tail recycling}
+        \caption{No tails recycling}
         \label{sfig:case3_NR}
     \end{subfigure}%
     \begin{subfigure}[t]{0.45\textwidth}
         \centering
         \includegraphics[scale=0.17]{R_case3}
-        \caption{Tail recycling}
+        \caption{Tails recycling}
         \label{sfig:case3_R}
     \end{subfigure}
     \caption{Evolution of the product assays at each level with considering
-    miss-use model C, with (right) and without recycling (left).}
+    misuse model C, with (right) and without recycling (left).}
     \label{fig:case3}
 \end{figure}
 
@@ -132,8 +132,8 @@ repartition across the different levels and the same \gls{HEU} production rate.
     \centering
     \includegraphics[scale=0.25]{HEU_prod_rate}
     \caption{Production rate for the different model configuration, with in blue
-    the case without tail recycling, in orange with tail recycling, and in green
+    the case without tails recycling, in orange with tails recycling, and in green
     the reference one. Where A-B-C represent the model used, and NR-R
-    respectively the case without tail recycling and the case with tail recycling}
+    respectively the case without tails recycling and the case with tails recycling}
     \label{fig:HEU_rate}
 \end{figure}

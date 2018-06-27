@@ -16,7 +16,7 @@ counter-current flow ratio, $L/P$, and efficiency, $e$ have been chosen (Table
 \toprule
 $T$[K] & $v$[m/s]    & $h$[m] & $d$[m]   & $x$   & $F$[mg/s]  & $L/F$ & $e$  \\
 \midrule
-320    & $320$           & $1.8$ & $0.105$ & $1e3$  & $13$      & 2     & 1.0  \\
+320    & $320$       & $1.8$  & $0.105$  & $1^{3}$ & $13$       & 2     & 1.0  \\
 \bottomrule
 \end{tabular}
 
@@ -28,11 +28,11 @@ $T$[K] & $v$[m/s]    & $h$[m] & $d$[m]   & $x$   & $F$[mg/s]  & $L/F$ & $e$  \\
 The cascade is built as an ideal cascade, with no losses in the separative work,
 which corresponds to $\alpha =\beta = const$ for all stages of the cascade, where
 $\alpha$ and $\beta$ respectively represent the feed to product and the feed to
-tail enrichment factors.  $\alpha$ and $\beta$ can be expressed as function of
+tails enrichment factors.  $\alpha$ and $\beta$ can be expressed as function of
 the abundance ($R$) or the enrichment ($N$) of respectively the product
 ($R'$, $N'$) and the feed ($R$, $N$) and the feed and the tails ($R''$, $N''$) such
 as:
-\begin{subequations} \label{eqs:alphabeta}
+\begin{subequations} \label{eq:alphabeta}
     \begin{equation} \label{eq:alpha_def}
         \alpha = \frac{R'}{R} = \frac{N'}{1-N'}\frac{1-N}{N} 
 \end{equation}
@@ -51,7 +51,7 @@ separative performance $\delta U(\theta)$ and the cut $\theta$:
 \end{equation}
 
 From the mass conservation, $N = \theta N' + (1-\theta)N''$, and equations
-\eqref{eqs:alphabeta} it is possible to express $\beta$ as a function of the
+\eqref{eq:alphabeta} it is possible to express $\beta$ as a function of the
 feed abundance, $R$, the cut $\theta$ and $\alpha$:
 
 \begin{equation}\label{eq:beta}
@@ -61,19 +61,18 @@ feed abundance, $R$, the cut $\theta$ and $\alpha$:
 
 
 From equation \eqref{eq:alpha} and \eqref{eq:beta} it is possible to determine
-the cut, $\theta$, or the ratio of product flow to feed flow required to build an ideal
-cascade:
-$\beta$ values and the feed assay, $N_{i}$:
+the cut, $\theta$ required to build an ideal cascade:
 \begin{eqnarray}
     \theta_{i} = \dfrac{N_{i} - \dfrac{1}{1 + \beta/R_{i}}}{ \dfrac{\alpha R_{i}}{1 + \alpha R_{i}} -
            \dfrac{1}{1 + \beta/R_{i}}}
+           \label{eq:theta}
 \end{eqnarray}
 
 As $\alpha_{i}$ and $\beta_{i}$ remain constant, only the value of the cut,
 $\theta_{i}$, changes across the different stages of a cascade.  This algorithm
 assumes that the corresponding separative power $\delta U$ (not re-computed) can
 be achieved with the chosen centrifuge design, tuning other operational
-parameter such as the rotation speed, the counter-current flow ratio...  Once
+parameter such as the rotation speed, the counter-current flow ratio, etc.  Once
 $\theta_{i}$ is determined, it is possible to compute the product and the tail
 assay.
 
@@ -133,7 +132,7 @@ available of machines is reached.
 
 
 
-\subsection{Miss-use models}
+\subsection{Misuse models}
 
 Little information is available about optimising an existing enrichment cascade
 that is being fed with a feed enrichment that does not match the design one. So
@@ -149,16 +148,16 @@ assumes the tails to product enriching factor and the cut remain constants ($\ga
 
 \begin{table}[htb]
 \centering
-  \caption{Summary of miss-use model properties.}
+  \caption{Summary of misuse model properties.}
 \begin{tabular}{l|ccc}
 \toprule
 
 Model                &    A                 & B                  & C  \\
 \midrule
-Constant parameters  & $\alpha_i, \theta_i$ & $\alpha_i=\beta_i$ & $\gamma_i=\alpha_i*\beta_i, \theta_i$       \\
-Optimised parameters & $\beta_i$            & $\theta_i$         & $\alpha_i, \beta_i$                     \\
+Constant parameters  & $\alpha_i, \theta_i$ & $\alpha_i=\beta_i$ & $\gamma_i=\alpha_i .\beta_i, \theta_i$       \\
+Varying parameters   & $\beta_i$            & $\theta_i$         & $\alpha_i, \beta_i$                     \\
 Assays determination & blended              & ideal              & blended                  \\
-Flow                 & unchanged            & scaled             & unchanged       \\
+Flow                 & unchanged            & reduced            & unchanged       \\
 
 \bottomrule
 \end{tabular}
@@ -176,36 +175,34 @@ assay ($N$) changes, $\beta$ will change accordingly.  This breaks the
 ideal status of the cascade, i.e. $N_{i} \neq N'_{i-1} \neq N''_{i+1}$.
 
 In order to compute the proper product and tails assay at each stage, the tails
-and the product from respectively the next and the previous stage must be
-blended in order to determine the correct stage feed assay. As this is a obvious
-cycling problem, an iterative solution has been chosen: all feed assays are
+and the product from the next and the previous stage respectively must be
+blended in order to determine the correct stage feed assay. All feed assays are
 iteratively updated, blending the proper product and tails, then using the
-updated feed assay, the new product and tail assays are recomputed. This process
-is repeated until the sum of the square difference in assays is smaller than the
-precision (1e-8).  As the cut remain fixed at each stage the different flow do
-not need to be recomputed.
+updated feed assay, the new product and tails assays are recomputed. This
+process is repeated until the sum of the square difference in assays is smaller
+than $1^{-8}$.  As the cut remain fixed at each stage the flows do not need to
+be recomputed.
 
 
 \subsubsection{Model B}
 
-The second method the cut value at each stage $\theta_i$, is retuned in order to
-maintain the $\alpha_i$ and $\beta_i$ at their original values. As the cascade
-remains ideal, the product and tail assay at each stages (and for the overall
-cascade) is easily determined using equations \eqref{eqs:alphabeta}.
+Using the second method, the cut value at each stage $\theta_i$, is retuned in
+order to maintain the $\alpha_i$ and $\beta_i$ at their original values
+(equation \eqref{eq:theta}). As the cascade remains ideal, the product and tails
+assay at each stages are easily determined using equations \eqref{eq:alphabeta}.
 
-As the cuts values change, the flow rate between the different stage has to be
-recomputed. Because the cascade is not reorganised (the number of cascade per
-stage remain the same as the original design). The new flow rate are computed as
-the flow rates of the reconfigured cascade scaled down to match the allowed
-flows of the original one: the flow rates at each stage of a miss-used cascade
-have to be inferior or equal to the initial cascade design.
+As the cut values change, the relative flow rates between the different stage
+are recomputed using equation \eqref{eq:flow}. The new flows are also
+constrained by the fixed design of the cascade, number of centrifuges limiting
+the flow at each level.
+
 
 \subsubsection{Model C}
-The last model assumes that the tail to product enrichment factor remains
+The last model assumes that the tails to product enrichment factor remains
 constant regardless to the feed assays. To compute the response of the cascade
 one need to determine $\alpha$ and $\beta$ such as their product and
 $\theta$ remain fixed. 
-From equations \eqref{eqs:alphabeta} and the assay conservation equation $N =
+From equations \eqref{eq:alphabeta} and the assay conservation equation $N =
 \theta N' + (1-\theta)N''$ it is possible to express the product $N'$ as a function of
 the feed assay $N$, $\gamma$ and the cut $\theta$ as one solution of the second
 order equation \eqref{eq:gamma_p}:
@@ -227,8 +224,8 @@ following :
             - \theta + 1}
         {2\theta(\gamma - 1)}
 \end{equation}
-Once the product assay is known, one can trivially determine the tail assay,
-$\alpha$ and $\beta$ using equations \eqref{eqs:alphabeta} and mass
+Once the product assay is known, one can trivially determine the tails assay,
+$\alpha$ and $\beta$ using equations \eqref{eq:alphabeta} and mass
 conservation.
 
 Similarly as model A, because the cut values remain constant, the flows don't
