@@ -16,7 +16,7 @@ counter-current flow ratio, $L/P$, and efficiency, $e$ have been chosen (Table
 \toprule
 $T$[K] & $v$[m/s]    & $h$[m] & $d$[m]   & $x$   & $F$[mg/s]  & $L/F$ & $e$  \\
 \midrule
-320    & $320$       & $1.8$  & $0.105$  & $1^{3}$ & $13$       & 2     & 1.0  \\
+320    & $320$       & $1.8$  & $0.105$  & $10^{3}$ & $13$       & 2     & 1.0  \\
 \bottomrule
 \end{tabular}
 
@@ -180,7 +180,7 @@ blended in order to determine the correct stage feed assay. All feed assays are
 iteratively updated, blending the proper product and tails, then using the
 updated feed assay, the new product and tails assays are recomputed. This
 process is repeated until the sum of the square difference in assays is smaller
-than $1^{-8}$.  As the cut remain fixed at each stage the flows do not need to
+than $10^{-8}$.  As the cut remain fixed at each stage the flows do not need to
 be recomputed.
 
 
@@ -188,13 +188,13 @@ be recomputed.
 
 Using the second method, the cut value at each stage $\theta_i$, is retuned in
 order to maintain the $\alpha_i$ and $\beta_i$ at their original values
-(equation \eqref{eq:theta}). As the cascade remains ideal, the product and tails
+(equation \eqref{eq:theta}). The cascade remaining ideal, the product and tails
 assay at each stages are easily determined using equations \eqref{eq:alphabeta}.
 
 As the cut values change, the relative flow rates between the different stage
-are recomputed using equation \eqref{eq:flow}. The new flows are also
-constrained by the fixed design of the cascade, number of centrifuges limiting
-the flow at each level.
+are recomputed using equation \eqref{eq:flow}. The flow rates are determinted as
+the largest flow rates allowed by the cascade design, number of centrifuges
+limiting the flow at each stage.
 
 
 \subsubsection{Model C}
