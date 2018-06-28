@@ -208,27 +208,24 @@ the feed assay $N$, $\gamma$ and the cut $\theta$ as one solution of the second
 order equation \eqref{eq:gamma_p}:
 
 \begin{equation}\label{eq:gamma_p}
-\gamma(1-N')(P\theta-N) - N'(1-(N'\theta-N)/(-1+\theta))(-1+\theta) = 0
+    \theta(\gamma-1)N'^2+((N+\theta)(\gamma-1)+1)N'-N\gamma = 0
 \end{equation}
+
 
 The only solution allowing product assay to range between 0 and 1 is the
 following :
 \begin{equation}\label{eq:model_b_sol}
-    \frac{\gamma(N + \theta) - N 
-            - \sqrt{\gamma^2(N^2 
-                            - 2N\theta 
-                            + \theta^2) 
-                    - \gamma(2N^2 - 2\theta^2 
-                            + 2N + 2\theta) 
-                    + N^2 + 2N\theta + \theta^2 - 2N - 2\theta + 1} 
-            - \theta + 1}
-        {2\theta(\gamma - 1)}
+    N' = \frac{N+\theta}{2\theta} +
+         \frac{1 - \sqrt{\gamma^{2}(N-\theta)^{2}
+                         + 2\gamma( N^{2} + N - \theta^{2} + \theta)
+                         + (N + \theta + 1)^{2}}}
+              {2\theta(\gamma - 1)}
 \end{equation}
 Once the product assay is known, one can trivially determine the tails assay,
 $\alpha$ and $\beta$ using equations \eqref{eq:alphabeta} and mass
 conservation.
 
-Similarly as model A, because the cut values remain constant, the flows don't
+Similar to model A, because the cut values remain constant, the flows don't
 need to be recomputed, and the correct assays, $\alpha$ and $\beta$ are
 determined through iterative blending of the product assays of the previous
 stage and the tails assay of the next stage using equation
