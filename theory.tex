@@ -174,6 +174,7 @@ equation \eqref{eq:beta}, when $\alpha$ and $\theta$ are fixed, if the feed
 assay ($N$) changes, $\beta$ will change accordingly.  This breaks the
 ideal status of the cascade, i.e. $N_{i} \neq N'_{i-1} \neq N''_{i+1}$.
 
+
 In order to compute the proper product and tails assay at each stage, the tails
 and the product from the next and the previous stage respectively must be
 blended in order to determine the correct stage feed assay. All feed assays are
@@ -183,6 +184,9 @@ process is repeated until the sum of the square difference in assays is smaller
 than $10^{-8}$.  As the cut remain fixed at each stage the flows do not need to
 be recomputed.
 
+This model assumes that it is possible to maintain the separative power of a
+centrifuges, $\delta U$, for any feed assays $N$ while maintaining its cut
+$\theta$ and feed flow $F$.
 
 \subsubsection{Model B}
 
@@ -195,6 +199,12 @@ As the cut values change, the relative flow rates between the different stage
 are recomputed using equation \eqref{eq:flow}. The flow rates are determinted as
 the largest flow rates allowed by the cascade design, number of centrifuges
 limiting the flow at each stage.
+
+This model assumes that it is possible to tune a centrifuge separative power
+$\delta U$, for any feed assay $N$, cut $\theta$ and feed flow $F$, in order to
+maintain its constant feed to product enrichment factor $\alpha$.
+
+
 
 
 \subsubsection{Model C}
@@ -231,4 +241,8 @@ determined through iterative blending of the product assays of the previous
 stage and the tails assay of the next stage using equation
 \eqref{eq:model_b_sol}.
 
+This model assumes that it is possible to tune the centrifuge separative power
+$\delta U$ in order to maintain, for any feed assay $N$, its tails to product
+enrichment factor $\gamma$, while maintaining its cut $\theta$ and feed flow
+$F$.
 
