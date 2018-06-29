@@ -35,57 +35,45 @@ Level 3 & Assay      & Product   & $98.2w\%$ & N.A.      & $90.4w\%$ & $95.0w\%$
   \label{tab:level}
 \end{table}
 
-As illustrated in Figures \ref{sfig:case1_NR}, \ref{sfig:case2_NR} and
-\ref{sfig:case3_NR} and summarized on Tab \ref{tab:level}, the different model
-don't have the same effect on the cascade behavior. While the models A and C,
-allow a quick enrichment gain, with the cascades chaining, respectively
-4/23/78/98 and 4/23/82/99, the model B, the enrichment gain is only
-4/21/61/90. 
+As illustrated in Figures \ref{fig:assays} and summarized on Tab
+\ref{tab:level}, the different model don't have the same effect on the cascade
+behavior. While the models A and C, allow a quick enrichment gain, with the
+cascades chaining, respectively 4/23/78/98 and 4/23/82/99, the model B, the
+enrichment gain is only 4/21/61/90. 
 
 
 \begin{figure}[h!]
     \centering
     \begin{subfigure}[t]{0.45\textwidth}
         \centering
-        \includegraphics[scale=0.17]{NR_case1}
-        \caption{No tails recycling}
-        \label{sfig:case1_NR}
+        \includegraphics[scale=0.2]{feed_assays}
+        \caption{Feed Assays.}
+        \label{sfig:feed_assay}
     \end{subfigure}%
     \begin{subfigure}[t]{0.45\textwidth}
         \centering
-        \includegraphics[scale=0.17]{R_case1}
-        \caption{Tails recycling}
-        \label{sfig:case1_R}
+        \includegraphics[scale=0.2]{product_assays}
+        \caption{Product Assays.}
+        \label{sfig:product_assay}
     \end{subfigure}
-    \caption{Evolution of the product assays at each level with considering
-    misuse model A, with (right) and without recycling (left).}
-    \label{fig:case1}
+    \begin{subfigure}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[scale=0.2]{tails_assays}
+        \caption{Tails Assays.}
+        \label{sfig:tails_assay}
+    \end{subfigure}
+    \caption{Feed (\subref{sfig:feed_assay}), product
+        (\subref{sfig:product_assay}) and tails assays (\subref{sfig:tails_assay})
+        in $m\%$ of $^{235}$U, per cascade level from 0 to 3 (red, green, orange,
+        blue), per model (A/B/C) and without/with tails recycling (NR/R).}
+    \label{fig:assays}
 \end{figure}
 
 
-\begin{figure}[h!]
-    \centering
-    \begin{subfigure}[t]{0.45\textwidth}
-        \centering
-        \includegraphics[scale=0.17]{NR_case2}
-        \caption{No tails recycling}
-        \label{sfig:case2_NR}
-    \end{subfigure}%
-    \begin{subfigure}[t]{0.45\textwidth}
-        \centering
-        \includegraphics[scale=0.17]{R_case2}
-        \caption{Tails recycling}
-        \label{sfig:case2_R}
-    \end{subfigure}
-    \caption{Evolution of the product assays at each level with considering
-    misuse model B, with (right) and without recycling (left).}
-    \label{fig:case2}
-\end{figure}
 
 \subsection{Tails recycling}
 
-As shown in Figures \ref{sfig:case1_R}, \ref{sfig:case2_R} and
-\ref{sfig:case3_R}, recycling the tails increases the overall product assay at
+As shown in Figures \ref{fig:assays}, recycling the tails increases the overall product assay at
 all the different levels. As the tails assay of a level $n+1$ is always higher than
 the product assay of the level $n-1$, recycling the tails of level $n+1$ will
 consequently increase the feed assay of level $n$ (see Table \ref{tab:level}).
@@ -93,25 +81,6 @@ Moreover, with an increased feed assay, tails and product assays increase as
 well, increasing de facto the feed assays of respectively cascade levels $n-1$
 and $n+1$, etc.  This effect reduces the number of cascade levels required to reach
 \gls{HEU} in case A and C.
-
-\begin{figure}[h!]
-    \centering
-    \begin{subfigure}[t]{0.45\textwidth}
-        \centering
-        \includegraphics[scale=0.17]{NR_case3}
-        \caption{No tails recycling}
-        \label{sfig:case3_NR}
-    \end{subfigure}%
-    \begin{subfigure}[t]{0.45\textwidth}
-        \centering
-        \includegraphics[scale=0.17]{R_case3}
-        \caption{Tails recycling}
-        \label{sfig:case3_R}
-    \end{subfigure}
-    \caption{Evolution of the product assays at each level with considering
-    misuse model C, with (right) and without recycling (left).}
-    \label{fig:case3}
-\end{figure}
 
 
 
