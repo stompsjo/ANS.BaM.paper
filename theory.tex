@@ -196,9 +196,15 @@ order to maintain the $\alpha_i$ and $\beta_i$ at their original values
 assay at each stages are easily determined using equations \eqref{eq:alphabeta}.
 
 As the cut values change, the relative flow rates between the different stage
-are recomputed using equation \eqref{eq:flow}. The flow rates are determinted as
-the largest flow rates allowed by the cascade design, number of centrifuges
-limiting the flow at each stage.
+are recomputed using equation \eqref{eq:flow}. 
+The new relative flow rates are compared stage by stage to the flow rates allowed by the
+cascade design, the number of centrifuges per stage limiting the flow. The new
+absolute flow rates are computed by scaling the relative flow rates using the most
+limiting stage. 
+
+%% The flow rates are determinted as
+%% the largest flow rates allowed by the cascade design, number of centrifuges
+%% limiting the flow at each stage.
 
 This model assumes that it is possible to tune a centrifuge separative power
 $\delta U$, for any feed assay $N$, cut $\theta$ and feed flow $F$, in order to
