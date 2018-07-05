@@ -1,12 +1,12 @@
 \section{The experiment}
-This works focuses on comparing the different misuse models to a reference
+This work focuses on comparing the different misuse models to a reference
 calculation in which a single large cascade is build and designed to directly
 produce \gls{HEU} from natural uranium.
 This works uses the Cyclus fuel cycle simulator to allow material exchange
 between facilities. The enrichment cascade algorithm have been implemented in
 the $mbmore$ package \cite{mbmore.2018}.
 In each cases, 5060 centrifuges have been used and spread across up to 30
-different gas enrichment cascades. 
+different gas centrifuge enrichment cascades. 
 
 
 \subsection{The cascade configuration}
@@ -44,8 +44,8 @@ Assays    & Product    & $90w\%$     & $3.5w\%$   \\
 Effective & Product    & $90.35w\%$  & $4.13w\%$  \\
 Assays    & Tails      & $0.29w\%$   & $0.29w\%$  \\ 
 \midrule
-Stages    & Enriching  & 4          & 4          \\
-Number    & Stripping  & 39         & 10         \\
+Stages    & Stripping  & 4          & 4          \\
+Number    & Enriching  & 39         & 10         \\
 \bottomrule
 \end{tabular}
   \label{tab:cascade_config}
@@ -56,7 +56,7 @@ Number    & Stripping  & 39         & 10         \\
 In the following, cascades can be connected in tandem, where each set of cascade
 in parallel is called a ``level``, as illustrated in Figure
 \ref{fig:cascade_level}.
-Seven different simulations have been simulated, to evaluate the effectiveness
+The reseults from seven different simulations have been compared, to evaluate the effectiveness
 of an enrichment cascade when used outside of its designed scope :
 \begin{itemize}
 \item one as the reference calculation, with a single cascade designed to
@@ -82,10 +82,10 @@ of an enrichment cascade when used outside of its designed scope :
 
 
 \subsection{Level population}
-In order to assign the optimum number of cascades to each level, a virtual cut as
+In order to assign the optimum number of cascades to each level, a ``level cut'' as
 been computed as:
 \begin{equation}
-    \theta^{v}_{j} = \frac{F_{j}-N''_{j}}{N'_{j}-N''_{j}},
+    \Omega_{j} = \frac{N_{j}-N''_{j}}{N'_{j}-N''_{j}},
 \end{equation}
 where, $j$ represents a level of cascade and $N_{j}$, $N'_{j}$ and $N''_{j}$
 the feed, product and tails assay, respectively, of the cascades at this level.
@@ -97,17 +97,17 @@ are summarized in Table \ref{tab:level}.
 
 As it is not possible to assign a fraction of an enrichment cascade, cascade per
 level are rounded up for each level but the first one. The remaining available
-cascades is attributed to the first level.
+cascades are attributed to the first level.
 
 
-\subsection{Timestep effect}
-
-The different cascade levels required up to $2n+1$ timesteps
-before it starts to enrich uranium, where $n$ corresponds to the level number.
-This corresponds to the number of timesteps required for the material to
-propagate from the natural uranium source to the $n$-th level, regardless of the
-duration of the timestep (hour, day, month, etc.). This is also true for the
-number of timesteps required to reach the equilibrium assays value in the tails
-reprocessing cases.  As timestep can be artificially small or large, one will
-only be considering equilibrium values of flow rates and assays in the following
-analysis.
+%% \subsection{Timestep effect}
+%% 
+%% The different cascade levels required up to $2n+1$ timesteps
+%% before it starts to enrich uranium, where $n$ corresponds to the level number.
+%% This corresponds to the number of timesteps required for the material to
+%% propagate from the natural uranium source to the $n$-th level, regardless of the
+%% duration of the timestep (hour, day, month, etc.). This is also true for the
+%% number of timesteps required to reach the equilibrium assays value in the tails
+%% reprocessing cases.  As timestep can be artificially small or large, one will
+%% only be considering equilibrium values of flow rates and assays in the following
+%% analysis.

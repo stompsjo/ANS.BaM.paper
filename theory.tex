@@ -27,8 +27,8 @@ $T$[K] & $v$[m/s]    & $h$[m] & $d$[m]   & $x$   & $F$[mg/s]  & $L/F$ & $e$  \\
 
 The cascade is built as an ideal cascade, with no losses in the separative work,
 which corresponds to $\alpha =\beta = const$ for all stages of the cascade, where
-$\alpha$ and $\beta$ respectively represent the feed to product and the feed to
-tails enrichment factors.  $\alpha$ and $\beta$ can be expressed as function of
+$\alpha$ and $\beta$ represent the feed to product and the feed to
+tails enrichment factors respectively.  $\alpha$ and $\beta$ can be expressed as function of
 the abundance ($R$) or the enrichment ($N$) of respectively the product
 ($R'$, $N'$) and the feed ($R$, $N$) and the feed and the tails ($R''$, $N''$) such
 as:
@@ -92,15 +92,15 @@ available of machines is reached.
 \begin{equation}
 \setcounter{MaxMatrixCols}{20}
 \begin{bmatrix}
-     -1        & 1-\theta_{_{S+1}} & 0 & ...  & 0              & 0              & 0                 & 0                 & 0                 & ...  & 0               & 0 \\
- \theta_{_{S}} & -1                & 0 & ...  & 0              & 0              & 0                 & 0                 & 0                 & ...  & 0               & 0 \\
-               &                   &   &     &                &                & ...               &                   &                   &     &                 &   \\
- 0             & 0                 & 0 & ...  & \theta_{_{-2}} & -1             & 1 - \theta_{_{0}} & 0                 & 0                 & ...  & 0               & 0 \\
- 0             & 0                 & 0 & ...  & 0              & \theta_{_{-1}} & -1                & 1 - \theta_{_{1}} & 0                 & ...  & 0               & 0 \\
- 0             & 0                 & 0 & ...  & 0              & 0              & \theta_{_{0}}     & -1                & 1 - \theta_{_{2}} & 0   & ...             & 0 \\
-               &                   &   &     &                &                & ...               &                   &                   &     &                 &   \\
- 0             & 0                 & 0 & ...  & 0              & 0              & 0                 & 0                 & 0                 & ...  & -1              & 1-\theta_{_{E}} \\
- 0             & 0                 & 0 & ...  & 0              & 0              & 0                 & 0                 & 0                 & ...  & \theta_{_{E-1}} & -1
+     -1      & 1-\theta_{_{S+1}} & 0                 & ...  & 0            & 0            & 0             & 0             & 0             & ... & 0               & 0  & 0 \\
+\theta_{_S}  & -1                & 1-\theta_{_{S+2}} & ...  & 0            & 0            & 0             & 0             & 0             & ... & 0               & 0  & 0 \\
+             &                   &                   &      &              &              & ...           &               &               &     &                 &    &   \\
+ 0           & 0                 & 0                 & ...  & \theta_{_-2} & -1           & 1-\theta_{_0} & 0             & 0             & ... & 0               & 0  & 0 \\
+ 0           & 0                 & 0                 & ...  & 0            & \theta_{_-1} & -1            & 1-\theta_{_1} & 0             & ... & 0               & 0  & 0 \\
+ 0           & 0                 & 0                 & ...  & 0            & 0            & \theta_{_0}   & -1            & 1-\theta_{_2} & ... & 0               & 0  & 0 \\
+             &                   &                   &      &              &              & ...           &               &               &     &                 &    &   \\
+ 0           & 0                 & 0                 & ...  & 0            & 0            & 0             & 0             & 0             & ... & \theta_{_{E-2}} & -1 & 1-\theta_{_E} \\
+ 0           & 0                 & 0                 & ...  & 0            & 0            & 0             & 0             & 0             & ... & 0               & \theta_{_{E-1}} & -1
  \end{bmatrix}
  \times
  \begin{bmatrix}
@@ -135,10 +135,10 @@ available of machines is reached.
 \subsection{Misuse models}
 
 Little information is available about optimising an existing enrichment cascade
-that is being fed with a feed enrichment that does not match the design one. So
-far 3 different methods have been investigated. 
+that is being fed with a feed enrichment that does not match the design
+enrichment. So far 3 different methods have been investigated. 
 
-The first one assumes that no change are been made on the cascade, i.e $\delta
+The first one assumes that no change are been made to the cascade, i.e $\delta
 U$, $F$ and $\theta$ are fixed across all stages. The second one assumes the cut
 value at each stage is retuned to maintain the ideal state of the cascade,
 $\alpha$ and $\beta$ remain fixed. The last one, described in \cite{walker.2017}
