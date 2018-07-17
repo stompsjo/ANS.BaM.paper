@@ -195,12 +195,13 @@ order to maintain the $\alpha_i$ and $\beta_i$ at their original values
 (equation \eqref{eq:theta}). The cascade remaining ideal, the product and tails
 assay at each stages are easily determined using equations \eqref{eq:alphabeta}.
 
-As the cut values change, the relative flow rates between the different stage
-are recomputed using equation \eqref{eq:flow}. 
-The new relative flow rates are compared stage by stage to the flow rates allowed by the
-cascade design, the number of centrifuges per stage limiting the flow. The new
-absolute flow rates are computed by scaling the relative flow rates using the most
-limiting stage. 
+As the cut values change, the relative flow rates between the different stages
+are recomputed using equation \eqref{eq:flow}.  Under this model, the flow at
+each stage of the original ideal cascade is assumed to be the maximum flow
+allowed at that stage.  Therefore, all of the recomputed flow rates are scaled
+together to ensure that no stage experiences a flow rate larger than that of
+the original cascade.  Some stages may now experience flow rates much lower
+than the original cascade.
 
 %% The flow rates are determinted as
 %% the largest flow rates allowed by the cascade design, number of centrifuges
