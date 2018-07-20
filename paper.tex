@@ -31,6 +31,7 @@ University of Wisconsin-Madison, Madison, WI
 \newacronym{MOX}{MOX}{mixed oxide fuel}
 \newacronym{LWR}{LWR}{light water reactor}
 \newacronym{SFR}{SFR}{fast breeder reactor}
+\newacronym{OFAT}{OFAT}{one-factor-at-a-time}
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -164,9 +165,8 @@ enrichment uncertainty that is also close to $10\%$.
 For each of the parameters in Table \ref{tab:package_uncertainty}, a set of 199
 simulations was performed with only that parameter being randomly varied.  An
 additional set of 199 simulations was performed in which all five parameters are
-randomly varied.  A reference simulation was performed with all five parameters
-fixed at the mean value.
-
+randomly varied, using \gls{OFAT} method.  A reference simulation was performed
+with all five parameters fixed at the mean value.
 
 \section{Results}
 
@@ -229,7 +229,7 @@ cycle length: shorter the cycle length is, the more fuel will be loaded, and
 \end{figure}
 
 The relative uncertainty of the total uranium consumption starts at about
-$5.5\%$ a slowly drops and stabilize around $3\%$.
+$7\%$ a slowly drops and stabilize around $3\%$.
 
 Uncertainty fluctuation of the full relative uncertainty can be observed before
 year 50.  Those fluctuation are induced by the fuel loading: all reactors at the
@@ -315,6 +315,13 @@ After 70 years this contribution follows the thermal power contribution closely,
 suggesting that fuel discharge burnup (\ie fuel discharge composition) is the
 mechanism of this contribution.
 
+
+Around the year 70, it is possible to observe the relative uncertainty related
+to cycle time being larger than the overall relative uncertainty. This effect is
+directly related to the \gls{OFAT} method used to estimate the individual
+uncertainty contribution. While allowing a quick access to the individual
+contribution, the \gls{OFAT} method does not capture coupling effect between the
+different parameters.
 
 \subsection{Discussion}
 
