@@ -39,47 +39,46 @@ University of Wisconsin-Madison, Madison, WI
 Fuel cycle simulations, as with any simulation process, do not produce results
 without uncertainties.  Those uncertainties have two main sources: modeling
 uncertainty due to the simplifications and approximations built in to the
-simulator itself, and data uncertainty from the quantities provided by the
-user. This work focuses on a subset the data uncertainty related to
-the user input that defines the performance of the simulated facilities.
+simulator itself, and data uncertainty from the quantities provided by the user.
+This work focuses on a subset the data uncertainty related to the user input
+that defines the performance of the simulated facilities.
 
 Such simulation uncertainties could be important in the context of treaty
 verification.  Some scenarios require estimating historical fissile material
-production based on records of facility operation and material transfer.  If
-the measurements of facility operation and material transfer are subject to
+production based on records of facility operation and material transfer.  If the
+measurements of facility operation and material transfer are subject to
 uncertainty, the total production quantities will then also be uncertain.  Any
 uncertainty in fissile production quantities poses a material accounting
 challenge, possibly creating an opportunity for undetected diversion.
 
-This study seeks to understand which characteristics of facility operation have the
-most impact on the uncertainty of fissile material production across a complete
-fuel cycle.  Uncertainty propagation using a Monte Carlo method will be applied
-to the Cyclus fuel cycle simulator \cite{cyclus} to estimate the effect of
-individual facility uncertainties on the output metrics. The same simulation
-will be performed $N$ times, with some input parameters randomly determined in each case.
-The distribution of each output metrics over the N trials of the simulation
-will be used to estimate their
-respective uncertainty.
+This study seeks to understand which characteristics of facility operation have
+the most impact on the uncertainty of fissile material production across a
+complete fuel cycle.  Uncertainty propagation using a Monte Carlo method will be
+applied to the Cyclus fuel cycle simulator \cite{cyclus} to estimate the effect
+of individual facility uncertainties on the output metrics. The same simulation
+will be performed $N$ times, with some input parameters randomly determined in
+each case.  The distribution of each output metrics over the N trials of the
+simulation will be used to estimate their respective uncertainty.
 
 \section{The Experiment}
 
 \subsection{Method}
 
-To estimate the uncertainty of fuel cycle output metrics, a Monte
-Carlo approach has been applied.  In each of 199 independent simulations,
-some of the parameters that define facility behavior are randomly selected
-from Normal distributions with standard deviations that are $10\%$ of the mean/nominal
+To estimate the uncertainty of fuel cycle output metrics, a Monte Carlo approach
+has been applied.  In each of 199 independent simulations, some of the
+parameters that define facility behavior are randomly selected from Normal
+distributions with standard deviations that are $10\%$ of the mean/nominal
 value.  This artificially large standard deviation is selected for the purpose
 of demonstrating the methodology.  The mean and standard deviation of some
 output metrics are calculated from the simulation output, as a function of time.
 
-To pursue this work, both the Cycamore\footnote{Low
-fidelity facilities package for Cyclus}\cite{cycamore} and the
-CyCLASS\footnote{Reactor and fuel fabrication facility based on CLASS\cite{CLASS} models}\cite{mouginot_2018, cyclass} packages were
-updated to evaluate the uncertainty of several
-operational parameters in their associated facilities.  Table
-\ref{tab:package_uncertainty} summarizes all uncertainty-tracking modifications implemented in the
-facilities of Cycamore and CyCLASS.
+To pursue this work, both the Cycamore\footnote{Low fidelity facilities package
+for Cyclus}\cite{cycamore} and the CyCLASS\footnote{Reactor and fuel fabrication
+facility based on CLASS\cite{CLASS} models}\cite{mouginot_2018, cyclass}
+packages were updated to evaluate the uncertainty of several operational
+parameters in their associated facilities.  Table \ref{tab:package_uncertainty}
+summarizes all uncertainty-tracking modifications implemented in the facilities
+of Cycamore and CyCLASS.
 
 \begin{table}[htb]
 \centering
@@ -103,20 +102,21 @@ CyCLASS  & Reactor    & Cycle Length              \\\cmidrule{3-3}
   \label{tab:package_uncertainty}
 \end{table}
 
-The uncertainty of the different parameters in this study
-are systematic for each new deployed facility: each time a new facility is
-deployed (such as a reactor or a fuel fabrication facility) a new set of
-parameters are sampled, and those parameters are used throughout the life
-of that facility.
+The uncertainty of the different parameters in this study are systematic for
+each new deployed facility: each time a new facility is deployed (such as a
+reactor or a fuel fabrication facility) a new set of parameters are sampled, and
+those parameters are used throughout the life of that facility.
+
 
 \subsection{The Fuel Cycle Scenario}
+
 For demonstration purposes, a simple commercial fuel cycle transition is used,
-inspired from the EG23 fuel cycle
-of the Nuclear Fuel Cycle Evaluation and Screening Report\cite{ES}.
-Pictured in Figure \ref{fig:cycle}, this is a
-transition from a \gls{LWR} fleet loaded with \gls{UOX} fuel to a
-\gls{SFR} fleet loaded \gls{MOX} fuel, considering a $1\%/$y growth
-of the nuclear generated power (Figure \ref{fig:power}).
+inspired from the EG23 fuel cycle of the Nuclear Fuel Cycle Evaluation and
+Screening Report\cite{ES}.  Pictured in Figure \ref{fig:cycle}, this is a
+transition from a \gls{LWR} fleet loaded with \gls{UOX} fuel to a \gls{SFR}
+fleet loaded \gls{MOX} fuel, considering a $1\%/$y growth of the nuclear
+generated power (Figure \ref{fig:power}).
+
 \begin{figure}[b] % replace 't' with 'b' to force it to be on the bottom
   \centering
   \includegraphics[scale=0.31]{cycle.png}
@@ -128,9 +128,9 @@ of the nuclear generated power (Figure \ref{fig:power}).
 
 As illustrated in Figure \ref{fig:power}, the transition starts with a fleet
 composed of only \glspl{LWR} loaded with enriched \gls{UOX} fuel.  The actual
-transition starts around year 35, with the deployment of \glspl{SFR}. The \glspl{SFR} are loaded
-with \gls{MOX}, which consists of plutonium blended with natural
-uranium.
+transition starts around year 35, with the deployment of \glspl{SFR}. The
+\glspl{SFR} are loaded with \gls{MOX}, which consists of plutonium blended with
+natural uranium.
 
 \begin{figure}[t] % replace 't' with 'b' to force it to be on the bottom
     \centering
@@ -140,50 +140,51 @@ uranium.
 \end{figure}
 
 
-The plutonium, required for \gls{MOX} fabrication, is reprocessed from all
-used fuel.  At first, it is sourced only from \gls{UOX}, then used \gls{MOX} fuel
-as it becomes available for reprocessing.
+The plutonium, required for \gls{MOX} fabrication, is reprocessed from all used
+fuel.  At first, it is sourced only from \gls{UOX}, then used \gls{MOX} fuel as
+it becomes available for reprocessing.
 
-Both fuel reprocessing and fabrication have a constant maximum throughput, but may also be limited by the 
-availability input material.  The enrichment of the \gls{UOX} is processed
-on demand.  Buffer storage facilities (not shown in Figure \ref{fig:cycle}) are present
-between all facilities with constant throughput.
+Both fuel reprocessing and fabrication have a constant maximum throughput, but
+may also be limited by the availability input material.  The enrichment of the
+\gls{UOX} is processed on demand.  Buffer storage facilities (not shown in
+Figure \ref{fig:cycle}) are present between all facilities with constant
+throughput.
 
-In this work, a time step of 1 month has been considered, \ie each output
-metric is reported once per month. Additionally, decay processes have not be
-taken into account.  
+In this work, a time step of 1 month has been considered, \ie each output metric
+is reported once per month. Additionally, decay processes have not be taken into
+account.  
 
 It must be noted that for this work, the fuel enrichment was determined by a
-fuel fabrication model\cite{Leniau2015125} which
-calculates the fissile fraction required in the fuel to reach a given target
-burnup at the end of irradiation.  Therefore, the uncertainty of the fuel
-enrichment is not applied directly to the effective enrichment. It is instead applied to the
-burnup, resulting in a fuel enrichment uncertainty that is also close to
-$10\%$.
+fuel fabrication model\cite{Leniau2015125} which calculates the fissile fraction
+required in the fuel to reach a given target burnup at the end of irradiation.
+Therefore, the uncertainty of the fuel enrichment is not applied directly to the
+effective enrichment. It is instead applied to the burnup, resulting in a fuel
+enrichment uncertainty that is also close to $10\%$.
 
-For each of the parameters in Table \ref{tab:package_uncertainty}, a set of
-199 simulations was performed with only that parameter being randomly varied.
-An additional set of 199 simulations was performed in which all five
-parameters are randomly varied.  A reference simulation was performed
-with all five parameters fixed at the mean value.
+For each of the parameters in Table \ref{tab:package_uncertainty}, a set of 199
+simulations was performed with only that parameter being randomly varied.  An
+additional set of 199 simulations was performed in which all five parameters are
+randomly varied.  A reference simulation was performed with all five parameters
+fixed at the mean value.
+
 
 \section{Results}
 
-Because the main interests of nuclear archaeology involve highly enriched uranium production and
-fissile inventories, this study mainly focuses on the uncertainties of
-the total quantity of natural uranium used and the total unused fissile
-inventory (separated plutonium).
+Because the main interests of nuclear archaeology involve highly enriched
+uranium production and fissile inventories, this study mainly focuses on the
+uncertainties of the total quantity of natural uranium used and the total unused
+fissile inventory (separated plutonium).
 
 The total power generated in the simulation is reviewed to ensure that none of
 the compounded uncertainties result in material shortages substantial enough to
 cause long term facility shutdowns.  For example, since \gls{SFR} fuel is built
 from reprocessed used fuel, availability of that used fuel may impact the
-capability to build the required \gls{SFR}-\gls{MOX} fuel.  While there may be studies in
-which this would be an interesting result, in the context of this work, such
-shutdowns would be well-documented in the operational histories of the
-facilities and should not be characterized as an uncertainty.  Figure
-\ref{fig:power_full} shows that uncertainties in generated power are indeed
-very low.
+capability to build the required \gls{SFR}-\gls{MOX} fuel.  While there may be
+studies in which this would be an interesting result, in the context of this
+work, such shutdowns would be well-documented in the operational histories of
+the facilities and should not be characterized as an uncertainty.  Figure
+\ref{fig:power_full} shows that uncertainties in generated power are indeed very
+low.
 
 \begin{figure}[t] % replace 't' with 'b' to force it to be on the bottom
     \centering
@@ -196,18 +197,20 @@ parameters is reported.  In addition, the relative contribution to the total
 uncertainty from each of the parameters is calculated as the ratio of the
 $1\sigma$ uncertainty due to that parameter over the total uncertainty.
 
+
 \subsection{Natural Uranium Consumption Dedicated to \gls{LWR}-\gls{UOX} fabrication}
 
 Figure \ref{fig:unat_full} represents the cumulative natural uranium consumption
-dedicated to \gls{LWR}-\gls{UOX} fuel fabrication as a function of time.  The uncertainty on
-the cumulative uranium consumption grows as expected with the time and the
-loading of the \glspl{LWR}.  The increase stops around year 125y with the
-decommissioning of the last \glspl{LWR}.
+dedicated to \gls{LWR}-\gls{UOX} fuel fabrication as a function of time.  The
+uncertainty on the cumulative uranium consumption grows as expected with the
+time and the loading of the \glspl{LWR}.  The increase stops around year 125y
+with the decommissioning of the last \glspl{LWR}.
 
-As expected, cooling time, separation efficiency and thermal power do not
-affect the natural uranium consumption for \gls{LWR}-\gls{UOX} fuel production.  The uncertainty on the natural uranium
-consumption is dominated by the \gls{LWR} cycle length: shorter the cycle
-length is, the more fuel will be loaded, and \emph{vice versa}.
+As expected, cooling time, separation efficiency and thermal power do not affect
+the natural uranium consumption for \gls{LWR}-\gls{UOX} fuel production.  The
+uncertainty on the natural uranium consumption is dominated by the \gls{LWR}
+cycle length: shorter the cycle length is, the more fuel will be loaded, and
+\emph{vice versa}.
 
 
 \begin{figure}[t] % replace 't' with 'b' to force it to be on the bottom
@@ -224,40 +227,44 @@ length is, the more fuel will be loaded, and \emph{vice versa}.
     \caption{Relative uncertainty of the cumulative natural uranium consumption, including
       individual contributions from each varied parameter.}\label{fig:unatr_uncer}
 \end{figure}
+
 The relative uncertainty of the total uranium consumption starts at about
 $5.5\%$ a slowly drops and stabilize around $3\%$.
 
 Uncertainty fluctuation of the full relative uncertainty can be observed before
 year 50.  Those fluctuation are induced by the fuel loading: all reactors at the
-beginning of the simulation have synchronized fuel cycles, reloading in the same time step.
-This phenomenon disappears
-with the gradual decommissioning of the initial reactors, spread over 50 years.
+beginning of the simulation have synchronized fuel cycles, reloading in the same
+time step.  This phenomenon disappears with the gradual decommissioning of the
+initial reactors, spread over 50 years.
 
 The decrease of the cycle time uncertainty contribution, from year 30 to year
-90, can be understood as an averaging effect.  As the uncertainty are defined once
-per deployed facility, each reactor will have a different cycle
-length value, so a different number of batches loaded per year.  With the increase
-of deployed reactors, the number of batches of \gls{LWR} fuel loaded converges
-to the references one, reducing its impact on the uncertainty on the total
-uranium consumption. This uncertainty contribution to the overall uncertainty
-decrease is proportional to the number of \gls{LWR} reactors and stops with the
+90, can be understood as an averaging effect.  As the uncertainty are defined
+once per deployed facility, each reactor will have a different cycle length
+value, so a different number of batches loaded per year.  With the increase of
+deployed reactors, the number of batches of \gls{LWR} fuel loaded converges to
+the references one, reducing its impact on the uncertainty on the total uranium
+consumption. This uncertainty contribution to the overall uncertainty decrease
+is proportional to the number of \gls{LWR} reactors and stops with the
 decommission of the last one.
 
 The fuel enrichment contribution follow a close to constant uncertainty
-contribution of $2\%$, so as the total relative uncertainty decrease, it
-has a growing shared of the total absolute uncertainty over time.
+contribution of $2\%$, so as the total relative uncertainty decrease, it has a
+growing shared of the total absolute uncertainty over time.
+
 
 \subsection{Fissile Inventory}
-The fissile inventory corresponds to the amount of separated fissile material waiting to
-be blended with natural uranium in order to produce the \gls{SFR}-\gls{MOX} fuel.
+
+The fissile inventory corresponds to the amount of separated fissile material
+waiting to be blended with natural uranium in order to produce the
+\gls{SFR}-\gls{MOX} fuel.
 
 As observed on Figure \ref{fig:pu_full}, the fissile inventory starts to grow in
 year 40, with the deployment of the first reprocessing facility.  It grows
-during the first period of the \glspl{LWR} to \gls{SFR}-A transition until
-year 90, then decrease slightly as the last \glspl{LWR} are decommissioned.
-When the steady state is reached (full \gls{SFR} fleet), the plutonium
-inventory starts to increase, as the breading ratio of the \glspl{SFR} is higher
-than the deployment needs.
+during the first period of the \glspl{LWR} to \gls{SFR}-A transition until year
+90, then decrease slightly as the last \glspl{LWR} are decommissioned.  When the
+steady state is reached (full \gls{SFR} fleet), the plutonium inventory starts
+to increase, as the breading ratio of the \glspl{SFR} is higher than the
+deployment needs.
 
 \begin{figure}[t] % replace 't' with 'b' to force it to be on the bottom
     \centering
@@ -274,17 +281,16 @@ than the deployment needs.
 \end{figure}
 
 At the onset of fissile material production, very low mean inventories lead to
-unreliable artifacts in the relative uncertainty.
-After that, the relative uncertainty
-starts at about $5\%$ and grows until year
-125, then decreases to $10\%$ at the end of the simulation time (180y).  
-Between year 40 and 70, the main contributor to the fissile inventory
-uncertainty is the cycle length.  As with the uranium needs, different cycle length
-implies different number of fuel loads, so different amount of resources used.  Nevertheless, around year 65 (see Figure
-\ref{fig:used_fuel}), the stock of used fuel available for reprocessing becomes
-small enough to start limiting the production of fissile material.
-The dominant contribution to the uncertainty then slowly transitions from
-the cycle length to the fuel cooling time.
+unreliable artifacts in the relative uncertainty.  After that, the relative
+uncertainty starts at about $5\%$ and grows until year 125, then decreases to
+$10\%$ at the end of the simulation time (180y).  Between year 40 and 70, the
+main contributor to the fissile inventory uncertainty is the cycle length.  As
+with the uranium needs, different cycle length implies different number of fuel
+loads, so different amount of resources used.  Nevertheless, around year 65 (see
+Figure \ref{fig:used_fuel}), the stock of used fuel available for reprocessing
+becomes small enough to start limiting the production of fissile material.  The
+dominant contribution to the uncertainty then slowly transitions from the cycle
+length to the fuel cooling time.
 
 \begin{figure}[t] % replace 't' with 'b' to force it to be on the bottom
     \centering
@@ -293,74 +299,78 @@ the cycle length to the fuel cooling time.
     \glspl{LWR} and \glspl{SFR} fuel, cooled and waiting to be reprocessed.}
     \label{fig:used_fuel}
 \end{figure}
+
 Between year 90 and 120, the \gls{SFR} deployment speed increases; it has to
 compensate the non-replacement of the decommissioned \glspl{LWR} as well as
-follow the growing power demand.  During this period the needs in plutonium are higher
-than its production, explaining the observed decrease of the total amount, and
-the increase associated relative uncertainty.
+follow the growing power demand.  During this period the needs in plutonium are
+higher than its production, explaining the observed decrease of the total
+amount, and the increase associated relative uncertainty.
 
 As the transition ends, the plutonium bred from the \glspl{SFR} starts to be
 sufficient to sustain the new \gls{SFR} deployment to follow the power demand.
 
 It is also interesting to note that, the uncertainty contribution from the cycle
-length between year 40 and 70 comes mainly from fuel batch loading
-frequencies.  After 70 years this contribution follows the thermal
-power contribution closely, suggesting that fuel discharge burnup (\ie fuel
-discharge composition) is the mechanism of this contribution.
+length between year 40 and 70 comes mainly from fuel batch loading frequencies.
+After 70 years this contribution follows the thermal power contribution closely,
+suggesting that fuel discharge burnup (\ie fuel discharge composition) is the
+mechanism of this contribution.
+
 
 \subsection{Discussion}
 
 Uranium consumption and separated fissile inventory are two important metrics
 related to non-proliferation and nuclear archaeology.  In this study, we have
 been able to estimate that the cycle length uncertainty of $10\%$ implies a
-variation of $3\%$ to $5\%$ on the total uranium needs uncertainty, whereas about
-$10\%$ uncertainty on the enrichment implies an almost constant uncertainty of $2\%$.
+variation of $3\%$ to $5\%$ on the total uranium needs uncertainty, whereas
+about $10\%$ uncertainty on the enrichment implies an almost constant
+uncertainty of $2\%$.
 
-Regarding the reprocessed fissile inventory, this study has shown the 
-impact of the reprocessed fuel compositions (through burnup variations) is
-limited to $\approx5\%$, while fuel availability constraints, such as fuel loading frequency (cycle
-time) or fissile materials available for fuel fabrication (cooling time) can lead to higher
-uncertainties, up to $10\%$ and to $30\%$, respectively.  Moreover, it is very
-interesting to observe the transition from one to the other around
-year 70.
+Regarding the reprocessed fissile inventory, this study has shown the impact of
+the reprocessed fuel compositions (through burnup variations) is limited to
+$\approx5\%$, while fuel availability constraints, such as fuel loading
+frequency (cycle time) or fissile materials available for fuel fabrication
+(cooling time) can lead to higher uncertainties, up to $10\%$ and to $30\%$,
+respectively.  Moreover, it is very interesting to observe the transition from
+one to the other around year 70.
 
 This preliminary study may suggest that the most important contributions to
 natural uranium consumption and fissile inventory come from the parameters that
-govern the exchange of material between facilities, and not
-from the physical parameters that describe those facilities, such as thermal power or fuel enrichment. Further
-analysis should allow us to understand this further.
+govern the exchange of material between facilities, and not from the physical
+parameters that describe those facilities, such as thermal power or fuel
+enrichment. Further analysis should allow us to understand this further.
+
 
 \section{Conclusion}
 
-Two main points can be deduced from this work.  First, in a transitional
-fuel cycle, uncertainty contributions to output metrics can vary over time
-depending of various factors: deployment schedule artifacts or material flow constrictions.
+Two main points can be deduced from this work.  First, in a transitional fuel
+cycle, uncertainty contributions to output metrics can vary over time depending
+of various factors: deployment schedule artifacts or material flow
+constrictions.
 
 Second, it is important to note the special character of the time related
 parameters uncertainty in a fuel cycle study, such as cooling time and cycle
 length.  While some of those time related parameters will, to first order, only
-impact material availability (as the cooling time will do), others, like
-cycle length, will also have a impact as physical parameters such as fuel
-enrichment or thermal power.  
+impact material availability (as the cooling time will do), others, like cycle
+length, will also have a impact as physical parameters such as fuel enrichment
+or thermal power.  
 
-Cycle length impacts the discharge fuel burnup and  the frequency of
-the fuel loads.  When they combine to produce in uncertainty of the
-material availability, this could result in variations related to time delays that may
-contribute to the final uncertainty in ways that are not relevant to some analyses.
-That is, a simple time lag in a particular output that otherwise follows an identical history
-could manifest itself as a large variation at any particular time.
-Those kind of time related uncertainties will require a further analysis
-to understand and measure accurately their
-contributions to the total uncertainty.
+Cycle length impacts the discharge fuel burnup and  the frequency of the fuel
+loads.  When they combine to produce in uncertainty of the material
+availability, this could result in variations related to time delays that may
+contribute to the final uncertainty in ways that are not relevant to some
+analyses.  That is, a simple time lag in a particular output that otherwise
+follows an identical history could manifest itself as a large variation at any
+particular time.  Those kind of time related uncertainties will require a
+further analysis to understand and measure accurately their contributions to the
+total uncertainty.
 
 This study aims to be a proof-of-principle for uncertainty propagation in
 potential commercial fuel cycle transition.  While it has demonstrated the
 capability to measure the uncertainty on output fuel cycle metrics and their
 relative contributions, it has only been applied to systematic uncertainties per
-facilities.
-This kind of study will to be extended to random uncertainty (new parameter
-values as a function of time) and completely systematic uncertainty (shared by all
-the facilities of a kind).
+facilities.  This kind of study will to be extended to random uncertainty (new
+parameter values as a function of time) and completely systematic uncertainty
+(shared by all the facilities of a kind).
 
 While the parameters contributing to natural uranium needs and fissile inventory
 uncertainties might be obvious, such study allows to estimate each parameters
