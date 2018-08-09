@@ -1,9 +1,40 @@
-\documentclass[12pt]{article}
-\usepackage{mathptmx} % Nearly Times New Roman
-\usepackage[affil-it]{authblk}
+\documentclass[review]{./elsarticle}
 
-%\makeglossaries
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{lineno,hyperref}
+\modulolinenumbers[5]
+
+\journal{Journal of \LaTeX\ Templates}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Elsevier bibliography styles
+%%%%%%%%%%%%%%%%%%%%%%%
+%% To change the style, put a % in front of the second line of the current style and
+%% remove the % from the second line of the style you would like to use.
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Numbered
+%\bibliographystyle{model1-num-names}
+
+%% Numbered without titles
+%\bibliographystyle{model1a-num-names}
+
+%% Harvard
+%\bibliographystyle{model2-names.bst}\biboptions{authoryear}
+
+%% Vancouver numbered
+%\usepackage{numcompress}\bibliographystyle{model3-num-names}
+
+%% Vancouver name/year
+%\usepackage{numcompress}\bibliographystyle{model4-names}\biboptions{authoryear}
+
+%% APA style
+%\bibliographystyle{model5-names}\biboptions{authoryear}
+
+%% AMA style
+%\usepackage{numcompress}\bibliographystyle{model6-num-names}
+
+%% `Elsevier LaTeX' style
+\bibliographystyle{elsarticle-num}
 
 \usepackage{color}
 \usepackage{subcaption}
@@ -15,49 +46,7 @@
 \usepackage{textcomp}
 \usepackage{multicol,tabularx,capt-of}
 \usepackage{multirow}
-
-\usepackage{fancyhdr} % allows headers and footers
-%\usepackage{ulem}
 \usepackage{pdflscape}
-% Page length commands go here in the preamble
-\setlength{\oddsidemargin}{-0.25in} % Left margin of 1 in + 0 in = 1 in
-\setlength{\textwidth}{7in}   % Right margin of 8.5 in - 1 in - 6.5 in = 1 in
-\setlength{\topmargin}{-.75in}  % Top margin of 2 in -0.75 in = 1 in
-\setlength{\textheight}{9.2in}  % Lower margin of 11 in - 9 in - 1 in = 1 in
-
-
-
-\definecolor{listinggray}{gray}{0.9}
-\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
-\definecolor{burgundy}{rgb}{0.5, 0.0, 0.13}
-\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
-\definecolor{chromeyellow}{rgb}{1.0, 0.65, 0.0}
-\definecolor{darkred}{rgb}{0.55, 0.0, 0.0}
-
-\lstset{
-    %backgroundcolor=\color{lbcolor},
-    language={C++},
-    tabsize=4,
-    rulecolor=\color{black},
-    upquote=true,
-    aboveskip={1.5\baselineskip},
-    belowskip={1.5\baselineskip},
-    columns=fixed,
-    extendedchars=true,
-    breaklines=true,
-    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
-    frame=single,
-    showtabs=false,
-    showspaces=false,
-    showstringspaces=false,
-    basicstyle=\scriptsize\ttfamily\color{green!40!black},
-    keywordstyle=\color[rgb]{0,0,1.0},
-    commentstyle=\color[rgb]{0.133,0.545,0.133},
-    stringstyle=\color[rgb]{0.627,0.126,0.941},
-    numberstyle=\color[rgb]{0,1,0},
-    identifierstyle=\color{black},
-    captionpos=t,
-}
 
 \newcommand{\code}[1]{\lstinline[basicstyle=\ttfamily\color{green!40!black}]|#1|}
 \newcommand{\units}[1] {\:\text{#1}}%
@@ -70,26 +59,42 @@
 \newcommand{\comment}[1]{{\color{green}\textbf{#1}}}
 
 \usepackage[acronym]{glossaries}
+%\makeglossaries
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \input{glossary}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{frontmatter}
-\title{Evaluating computational methods for modeling off-normal operation of gas centrifuge cascades}
-% Authors. Separated by commas
-\input{authors}
-\date{}
-% Institutes of the authors
-\input{institutions}
-\pagestyle{fancy}
+%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{document}
 
+\begin{frontmatter}
 
+    
+\input{authors}
 
-\maketitle
+\date{}
+
+\title{Evaluating computational methods for modeling off-normal operation of gas centrifuge cascades}
+\tnotetext[mytitlenote]{Fully documented templates are available in the elsarticle package on \href{http://www.ctan.org/tex-archive/macros/latex/contrib/elsarticle}{CTAN}.}
 
 
 % 0.Abstract
 \input{abstract}
+
+\begin{keyword}
+\texttt{elsarticle.cls}\sep \LaTeX\sep Elsevier \sep template
+\MSC[2010] 00-01\sep  99-00
+\end{keyword}
+
+\end{frontmatter}
+
+\linenumbers
+
+\maketitle
+
+
 % I.   Motivation
 \input{motivation}
 
@@ -129,7 +134,6 @@ DE-NA0002534
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{small}
-\bibliographystyle{ans}
 \bibliography{refs}  % NO SPACES BETWEEN BIB FILENAMES!
 \end{small}
 \end{document}
