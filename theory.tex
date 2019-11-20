@@ -13,27 +13,27 @@ with a different feed enrichment than the design one.
 
 As described in \cite{glaser.2008}, the separative power of a single centrifuge
 can be express as an analytical solution R\"aetz \cite{raetz.phd} of the
-differential equation for the gas centrifuge: 
+differential equation for the gas centrifuge:
 
 \begin{eqnarray}
-    \delta U(L,F,\theta,Z_{p}) &= &\frac{1}{2} 
-            F\theta(1 - \theta) 
+    \delta U(L,F,\theta,Z_{p}) &= &\frac{1}{2}
+            F\theta(1 - \theta)
             \left(\frac{\Delta M}{2 RT}v_{a}^{2}\right)^{2}
             \left(\frac{r_{2}}{a}\right)^{4}
             \left[1 - \left(\frac{r_{1}}{r_{2}}\right)^{2}\right]^{2}
-            \label{eq_raetz}\\  
+            \label{eq_raetz}\\
         &&
-            \left[ 
+            \left[
                 \left(\frac{1+L/F}{\theta}\right)
-                (1- exp[ - A_{P}(L,F,\theta)Z_{p}])  \nonumber  \right. \\ 
+                (1- exp[ - A_{P}(L,F,\theta)Z_{p}])  \nonumber  \right. \\
         &&~~ + \left.\left(\frac{L/F}{1 - \theta}\right)
                 (1 - exp[ -A_{W}(L,F,\theta)(Z - Z_{p}])\right]^{2}, \nonumber
-                \\ 
-    \textrm{with~ ~ ~ ~ ~} 
-        A_{P} &= &\frac{2\pi D\rho }{ ln(r_{2}/r_{1}) } 
+                \\
+    \textrm{with~ ~ ~ ~ ~}
+        A_{P} &= &\frac{2\pi D\rho }{ ln(r_{2}/r_{1}) }
                  \frac{ 1 }{ F }
                  \frac{ 1-\theta }{(1+L/F)(1-\theta+L/F) }\\
-        A_{W} &= &\frac{2\pi D\rho }{ ln(r_{2}/r_{1}) } 
+        A_{W} &= &\frac{2\pi D\rho }{ ln(r_{2}/r_{1}) }
                  \frac{ 1 }{ F }
                  \frac{ 1-\theta }{ (L/F)(1-\theta+L/F) }
 \end{eqnarray}
@@ -233,7 +233,7 @@ available of machines is reached.
 
 Little information is available about optimising an existing enrichment cascade
 that is being fed with a feed enrichment that does not match the design
-enrichment. So far 3 different methods have been investigated. 
+enrichment. So far 3 different methods have been investigated.
 
 The first one assumes that no change are been made to the cascade, i.e $\delta
 U$, $F$ and $\theta$ are fixed across all stages. The second one assumes the cut
@@ -315,7 +315,7 @@ maintain its constant feed to product enrichment factor $\alpha$.
 The last model assumes that the tails to product enrichment factor remains
 constant regardless to the feed assays. To compute the response of the cascade
 one need to determine $\alpha$ and $\beta$ such that their product and
-$\theta$ remain fixed. 
+$\theta$ remain fixed.
 From equations \eqref{eq_alphabeta} and the assay conservation equation $N =
 \theta N' + (1-\theta)N''$ it is possible to express the product $N'$ as a function of
 the feed assay $N$, $\gamma$ and the cut $\theta$ as one solution of the second
@@ -350,3 +350,15 @@ $\delta U$ in order to maintain, for any feed assay $N$, its tails to product
 enrichment factor $\gamma$, while maintaining its cut $\theta$ and feed flow
 $F$.
 
+These models inherently result in differing amounts of diminishing returns
+as can be seen in Figure \ref{fig:model_comparison}. As the product assay
+weight percent increases, the required increase in feed assay to achieve the
+same rate of increase grows. This is particularly true for Models A and C
+compared to Model B.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.4]{ModelComparison}
+    \caption{}
+    \label{fig:model_comparison}
+\end{figure}
