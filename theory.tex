@@ -261,7 +261,6 @@ Flow                 & unchanged            & reduced            & unchanged    
   \label{tab:models}
 \end{table}
 
-
 \subsubsection{Model A}
 
 The tuning method A does not re-optimize $\theta_i$ keeping the same flow as the
@@ -350,15 +349,26 @@ $\delta U$ in order to maintain, for any feed assay $N$, its tails to product
 enrichment factor $\gamma$, while maintaining its cut $\theta$ and feed flow
 $F$.
 
-These models inherently result in differing amounts of diminishing returns
-as can be seen in Figure \ref{fig:model_comparison}. As the product assay
-weight percent increases, the required increase in feed assay to achieve the
-same rate of increase grows. This is particularly true for Models A and C
-compared to Model B.
+The speed at which each models reach a threshold of $90\%$ enrichment is
+illustrated in Figure \ref{fig:model_comparison}. The production curve of
+enrichment for each model is shown. The step functions for each model represent
+the cascade configuration. Each step is one cascade in a chain of cascades and
+the shape of the curve for each model gives an indication of how quickly the model
+can reach the enrichment threshold. The main difference is that Model B reaches
+the threshold faster, whereas Models A and C reach a higher enrichment value.
+This highlights some of the immediate differences that would influence the choice
+of using each model in a breakout scenario.
 
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.4]{ModelComparison}
-    \caption{}
+    \caption{The curve of resulting product assays for each model is plotted.
+    Since the feed assay of each cascade is fed into the next cascade in the
+    chain, a linear relationship between the product and feed assays is plotted
+    in black. The step function for each model represents the output of the
+    cascade chain (each step is a cascade). While there are four steps for each
+    model, Model B (green) reached the $90\%$ enrichment threshold before
+    Model A (red) or Model C (blue). However, in the same amount of steps, Models
+    A and C are able to achieve a higher enrichment percent than Model B.}
     \label{fig:model_comparison}
 \end{figure}
