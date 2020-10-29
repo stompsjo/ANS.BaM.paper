@@ -40,7 +40,7 @@ differential equation for the gas centrifuge:
 
 In this equation, the parameters of average gas temperature, $T$, peripheral speed,
 $v_a$, height, $h$, diameter, $d$, pressure ratio, $x$, feed flow rate, $F$,
-counter-current flow ratio, $L/P$, are intrinsic to the centrifuge design.
+counter-current flow ratio, $L/F$, are intrinsic to the centrifuge design.
 To match the cascade design describe in \cite{glaser.2008} and \cite{walker.2017},
 P1-type centrifuge properties have been chosen (Table \ref{tab:centrifuges}).
 
@@ -56,6 +56,18 @@ P1-type centrifuge properties have been chosen (Table \ref{tab:centrifuges}).
     \end{tabular}
     \label{tab:centrifuges}
 \end{table}
+
+The variable $Z_p$ is the rectifier length, or the location of the feed point, has
+an optimal axial location as defined by \cite{raetz.phd}:
+
+\begin{equation}
+    Z_p = \frac{(1-\theta)(1+L/F)}{1-\theta+L/F}Z
+\end{equation}
+
+This optimizes the recitifer length based on the cut, $\theta$, which is an expression
+of the fraction of the centrifuge feed that is output as product, and the counter-current
+flow, $L/F$. In practice, this value is a design parameter that is updated in the model
+during the design of the centrifuge cascade.
 
 \paragraph{First principle}
 
