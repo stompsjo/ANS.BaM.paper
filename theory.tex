@@ -1,9 +1,9 @@
 \section{Theory}
 
-In the following section, one will describe the different equations and
-algorithms used to model the behavior of a symmetric ideal gas centrifuge cascade from the
-individual centrifuge property, and to model the centrifuge behavior when fed
-with a different feed enrichment than the design one.
+In the following section, equations and algorithms used to model the behavior of
+a symmetric ideal gas centrifuge cascade from the individual centrifuge property
+are described. Details will also be provided to model the centrifuge behavior
+when fed with a different feed enrichment than the design one.
 
 \subsection{Centrifuge properties}
 
@@ -12,7 +12,7 @@ with a different feed enrichment than the design one.
 \paragraph{R\"aetz equation}
 
 As described in \cite{glaser.2008}, the separative power of a single centrifuge
-can be express as an analytical solution R\"aetz \cite{raetz.phd} of the
+can be express as an analytical solution \cite{raetz.phd} of the
 differential equation for the gas centrifuge:
 
 \begin{eqnarray}
@@ -38,20 +38,20 @@ differential equation for the gas centrifuge:
                  \frac{ 1-\theta }{ (L/F)(1-\theta+L/F) }
 \end{eqnarray}
 
-Centrifuge parameters, such as average gas temperature, $T$, peripheral speed,
-$v$, height, $h$, diameter, $d$, pressure ratio, $x$, feed flow rate, $F$,
-counter-current flow ratio, $L/P$, and efficiency, $e$ have been chosen (Table
-\ref{tab:centrifuges}) to match the cascade design describe in
-\cite{glaser.2008} and \cite{walker.2017} using P1-type centrifuges.
+In this equation, the parameters of average gas temperature, $T$, peripheral speed,
+$v_a$, height, $h$, diameter, $d$, pressure ratio, $x$, feed flow rate, $F$,
+counter-current flow ratio, $L/P$, are intrinsic to the centrifuge design.
+To match the cascade design describe in \cite{glaser.2008} and \cite{walker.2017},
+P1-type centrifuge properties have been chosen (Table \ref{tab:centrifuges}).
 
 \begin{table}[htb]
     \centering
     \caption{Summary of the centrifuge parameters.}
-    \begin{tabular}{cccccccc}
+    \begin{tabular}{ccccccc}
         \toprule
-        $T$[K] & $v$[m/s] & $h$[m] & $d$[m]   & $x$      & $F$[mg/s]  & $L/F$ & $e$  \\
+        $T$[K] & $v$[m/s] & $h$[m] & $d$[m]   & $x$      & $F$[mg/s]  & $L/F$  \\
         \midrule
-        320    & $320$    & $1.8$  & $0.105$  & $10^{3}$ & $13$       & 2     & 1.0  \\
+        320    & $320$    & $1.8$  & $0.105$  & $10^{3}$ & $13$       & 2   \\
         \bottomrule
     \end{tabular}
     \label{tab:centrifuges}
