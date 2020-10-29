@@ -16,6 +16,7 @@ can be express as an analytical solution \cite{raetz.phd} of the
 differential equation for the gas centrifuge:
 
 \begin{eqnarray}
+    \label{eq:raetz}
     \delta U(L,F,\theta,Z_{p}) &= &\frac{1}{2}
             F\theta(1 - \theta)
             \left(\frac{\Delta M}{2 RT}v_{a}^{2}\right)^{2}
@@ -86,10 +87,21 @@ to the inner centrifuge wall with radius $a$:
     (\frac{r_1}{r_2}) \approx (\frac{r_1}{a}) = \sqrt{1 - \frac{2RT}{M}(\ln x)\frac{1}{v_{a}^{2}}}
 \end{equation}
 
-Here the gas constants are mass, $M$, temperature $T$, universal gas constant, $R$,
+Here the gas constants are molar mass, $M$, temperature $T$, universal gas constant, $R$,
 and the pressure ratio, $x$ (typically $1000:1$).
 This relationship is valid when $v_a > 380 \frac{\mathrm{m}}{\mathrm{s}}$.
 Otherwise, the relationship can be approximated ${\frac{r_1}{r_2} \approx 0.534 \mid v_a \leq 380} \frac{\mathrm{m}}{\mathrm{s}}$.
+In order to decompose the ratio into each individual radius, knowledge on one
+of them is required. Glaser \cite{glaser.2008} states that $r_2$ typically ranges
+from 96% to 99% the value of the inner centrifuge wall radius $a$. The exact
+behavior of $r_2$ between these two values in operational conditions is unknown,
+but a linear approximation can be made. It is assumed that $r_2$ is always at
+the midpoint of these two extremes (i.e. $r_2 = 0.975 a$). Then, $r_1$ can be
+found by simply multiplying this value by the ratio.
+
+With this, all parameters of the separative power equation \ref{eq:raetz} are
+defined and a value can be calculated. $\delta U$ has units similar to the feed
+flow, that of $[mg/s]$.
 
 \paragraph{First principle}
 
