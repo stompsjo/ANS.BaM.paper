@@ -69,6 +69,28 @@ of the fraction of the centrifuge feed that is output as product, and the counte
 flow, $L/F$. In practice, this value is a design parameter that is updated in the model
 during the design of the centrifuge cascade.
 
+The parameters $r_1$ and $r_2$ are the separation radii of the enriched material
+(here ${}^{235}\mathrm{U}$ vs. ${}^{238}\mathrm{U}$), $r_1$ being the withdrawal
+radius for the lighter isotope and $r_2$ for the heavier isotope. R\"aetz's
+two-shell model looks for optimal values between these two, as defined from
+the hydrodynamic equations. The radii ratio is optimized using the following relationship:
+
+\begin{equation}
+    \max\{[1-(\frac{r_1}{r_2})^2]^2 \times [ \ln(\frac{r_2}{r_1})]^{-1}\}
+\end{equation}
+
+The ratio can further be constrained by approximating $r_2$ as being very close
+to the inner centrifuge wall with radius $a$:
+
+\begin{equation}
+    (\frac{r_1}{r_2}) \approx (\frac{r_1}{a}) = \sqrt{1 - \frac{2RT}{M}(\ln x)\frac{1}{v_{a}^{2}}}
+\end{equation}
+
+Here the gas constants are mass, $M$, temperature $T$, universal gas constant, $R$,
+and the pressure ratio, $x$ (typically $1000:1$).
+This relationship is valid when $v_a > 380 \frac{\mathrm{m}}{\mathrm{s}}$.
+Otherwise, the relationship can be approximated ${\frac{r_1}{r_2} \approx 0.534 \mid v_a \leq 380} \frac{\mathrm{m}}{\mathrm{s}}$.
+
 \paragraph{First principle}
 
 It can be shown \ref{avery} that the separative power of a single centrifuge can be
