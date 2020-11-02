@@ -90,7 +90,7 @@ to the inner centrifuge wall with radius $a$:
 Here the gas constants are molar mass, $M$, temperature $T$, universal gas constant, $R$,
 and the pressure ratio, $x$ (typically $1000:1$).
 This relationship is valid when $v_a > 380 \frac{\mathrm{m}}{\mathrm{s}}$.
-Otherwise, the relationship can be approximated ${\frac{r_1}{r_2} \approx 0.534 \mid v_a \leq 380} \frac{\mathrm{m}}{\mathrm{s}}$.
+Otherwise, the relationship can be approximated $\{\frac{r_1}{r_2} \approx 0.534 \mid v_a \leq 380 \frac{\mathrm{m}}{\mathrm{s}}\}$.
 In order to decompose the ratio into each individual radius, knowledge on one
 of them is required. Glaser \cite{glaser.2008} states that $r_2$ typically ranges
 from 96% to 99% the value of the inner centrifuge wall radius $a$. The exact
@@ -115,12 +115,10 @@ product enrichment factor, $\alpha$, the cut, $\theta$, and the feed rate, $F$:
 
 \subsection{Centrifuges basic properties and definition}
 
-In order to add clarity to the rest of this work, one will take the time to
-define properly the different notation and the basic equation related to gaseous
-centrifuge. The different enrichment factor, $\alpha$ (feed to product), $\beta$
-(feed to tail) and $\gamma$(tail to product) are defined as the ratio of the
-different abundance ($R = \frac{N}{1-N}$) where $N, N', N''$ respectively
-correspond to the enrichment relative to the feed, the product and the tails:
+The outputs of a centrifuge relative to its input can be described with ratios
+of the abundance ($R = \frac{N}{1-N}$) where the feed, product, and tail are
+$N, N', N''$ respectively. Enrichment factiors of $\alpha$ (feed to product),
+$\beta$ (feed to tail), and $\gamma$ (tail to product) can then be defined:
 
 \begin{subequations}
     \label{eq_alphabeta}
@@ -139,19 +137,20 @@ correspond to the enrichment relative to the feed, the product and the tails:
 \subsection{Cascade Design}
 \subsubsection{Symmetric Cascade}
 
-A symmetric cascade is a cascade where a stage is feed, $F$, with the tail, $T$, of the next
-stage, the product, $P$, of the previous one, and for the cascade feeding stage
-an external feed, $F_{ext}$, i.e. :
+A symmetric cascade is a cascade where a stage's feed, $F$, with a tail, $T$, of the next
+stage and product, $P$, of the previous one. For the cascade feeding stage
+an external feed, $F_{ext}$:
 
 \begin{equation}
     F_{i} = T_{i+1} + F_{i-1} ~(+ F_{ext})
 \end{equation}
 
 \subsubsection{Symmetric Ideal Cascade}
-The cascade is built as a symmetric ideal cascade, with no losses in the
-separative work, which means that the tail assay of the next stage ($N''_{i+1}$)
-is the as the product assay of the previous stage ($N'_{i-1}$), which can be
+This model constructs cascades as symmetrical and ideal, with no losses in
+separative work. This means that the tail assay of the next stage ($N''_{i+1}$)
+is the product assay of the previous stage ($N'_{i-1}$), which can be
 expressed as:
+
 \begin{equation}
     \forall i~ N_{i} = N'_{i-1} = N''_{i+1}~ ~\Leftrightarrow~ ~\forall (i,j)~
     \alpha_{i} = \beta_{j}
@@ -162,9 +161,9 @@ expressed as:
 \subsection{Building the cascade}
 
 The method used to design a symmetric ideal cascade starts with the feeding
-stage. As all the enrichment factor are equal across all the cascade, the
-feeding stage is used to determine those.
-The feed assay of the feeding stage, $N_{0}$ is fixed by the external feed assay
+stage. As all the enrichment factors are equal across all the cascade, the
+feeding stage is used to determine all subsequent stages.
+The feed assay of the feeding stage, $N_{0}$, is fixed by the external feed assay
 provided as an input.
 
 From equation \eqref{eq_raetz} and \eqref{eq_alpha_principle} it is possible to
@@ -176,7 +175,7 @@ $\delta U(\theta)$ and the cut $\theta$:
 \end{equation}
 
 
-From the mass conservation, $N = \theta N' + (1-\theta)N''$, and equations
+From mass conservation, $N = \theta N' + (1-\theta)N''$, and equations
 \eqref{eq_alphabeta} it is possible to express $\beta$ as a function of the
 feed abundance, $R$, the cut $\theta$ and $\alpha$:
 
@@ -186,8 +185,8 @@ feed abundance, $R$, the cut $\theta$ and $\alpha$:
 \end{equation}
 
 
-As illustrated on figure \ref{fig_a_m_b}, the $\theta$ value to ensure a ideal feeding
-stage to the cascade range 0.45 0.525 depending on the feed assay.
+As illustrated in Fig. \ref{fig_a_m_b}, $\theta$ ensures an ideal feeding
+stage to the cascade ranges between 0.45 and 0.525, depending on the feed assay.
 
 \begin{figure}[h!] % replace 't' with 'b' to force it to be on the bottom
     \centering
@@ -219,12 +218,12 @@ assay.
 
 
 
-The design of the ideal symmetric cascade is performed through 2 steps.  First
-one determines the configuration and number of stages, adding stages until the
+The design of the ideal symmetric cascade is performed through 2 steps. First,
+the configuration and number of stages is determined, adding stages until the
 product assay of the final stage is greater or equal the product targeted assay,
 and similarly the tails assay is less or equal the tails desired assay.  This
 determines the number of enriching and stripping stages as well as their
-enrichment properties ($N_{i}$, $N'_{i}$, $N''_{i}$,$\theta_{i}$i).
+enrichment properties ($N_{i}$, $N'_{i}$, $N''_{i}$,$\theta_{i}$).
 
 
 The second step determines the relative flows at each stages, solving the linear
