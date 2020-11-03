@@ -185,8 +185,18 @@ feed abundance, $R$, the cut $\theta$ and $\alpha$:
 \end{equation}
 
 
-As illustrated in Fig. \ref{fig_a_m_b}, $\theta$ ensures an ideal feeding
-stage to the cascade ranges between 0.45 and 0.525, depending on the feed assay.
+To construct an ideal cascade stage, a stage cut ($\theta$) must first be computed.
+This is found iteratively, searching for the optimal cut value where $\alpha = \beta$
+for a given feed and centrifuge parameters. With a separative power calculated,
+and $\alpha$ and $\beta$ value can be determined for an initial cut guess. This
+model assumes that the ideal cut for a stage should be between 0.1 and 0.9. The
+two enrichment factors are compared, and the higher or lower cut value is chosen
+by which pair of factors are closer. A new cut is determined from the chosen
+factors, a new separative power is computed, and new $\alpha$ and $\beta$ values
+are compared. This process continues until, to some precision, the resulting
+enrichment factors are approximately equal. As illustrated in Fig. \ref{fig_a_m_b},
+for a given input feed assay, the ideal feeding stage typically has a $\theta$
+value between 0.45 and 0.525 when $\alpha = \beta$.
 
 \begin{figure}[h!] % replace 't' with 'b' to force it to be on the bottom
     \centering
