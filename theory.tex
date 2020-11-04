@@ -175,14 +175,28 @@ $\delta U(\theta)$ and the cut $\theta$:
 \end{equation}
 
 
-From mass conservation, $N = \theta N' + (1-\theta)N''$, and equations
-\eqref{eq_alphabeta} it is possible to express $\beta$ as a function of the
-feed abundance, $R$, the cut $\theta$ and $\alpha$:
+From equations \eqref{eq_alphabeta}, the product assay can be expressed as:
 
-\begin{equation}\label{eq_beta}
-    \beta =   R \left(\dfrac{1-\theta}
-                     {\dfrac{R}{R+1}- \theta \dfrac{\alpha R}{1+\alpha R}} -1\right)
-\end{equation}
+\begin{equation}\label{eq_product_assay}
+    N' = \frac{\alpha R}{1 + \alpha R}
+\end {equation}
+
+
+Then, from mass conservation, $N = \theta N' + (1-\theta)N''$, equation
+\eqref{eq_product_assay}, and the definition of the abundance, $R$, it is
+possible to express $\beta$ as a function of only the feed abundance,
+$R$, the cut $\theta$ and $\alpha$:
+
+\begin{subequations}
+    \begin{equation}\label{eq_beta_interim}
+        \beta = \left( 1 - \frac{N - \theta N'}{1-\theta} \right)
+                        \left( \frac{R}{\frac{N - \theta N'}{1 - \theta}} \right)
+    \end{equation}
+    \begin{equation}\label{eq_beta}
+        \beta =   R \left(\dfrac{1-\theta}
+                        {\dfrac{R}{R+1}- \theta \dfrac{\alpha R}{1+\alpha R}} -1\right)
+    \end{equation}
+\end{subequations}
 
 
 To construct an ideal cascade stage, a stage cut ($\theta$) must first be computed.
