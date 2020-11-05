@@ -93,7 +93,7 @@ This relationship is valid when $v_a > 380 \frac{\mathrm{m}}{\mathrm{s}}$.
 Otherwise, the relationship can be approximated $\{\frac{r_1}{r_2} \approx 0.534 \mid v_a \leq 380 \frac{\mathrm{m}}{\mathrm{s}}\}$.
 In order to decompose the ratio into each individual radius, knowledge on one
 of them is required. Glaser \cite{glaser.2008} states that $r_2$ typically ranges
-from 96% to 99% the value of the inner centrifuge wall radius $a$. The exact
+from $96\%$ to $99\%$ the value of the inner centrifuge wall radius $a$. The exact
 behavior of $r_2$ between these two values in operational conditions is unknown,
 but a linear approximation can be made. It is assumed that $r_2$ is always at
 the midpoint of these two extremes (i.e. $r_2 = 0.975 a$). Then, $r_1$ can be
@@ -182,10 +182,9 @@ From equations \eqref{eq_alphabeta}, the product assay can be expressed as:
 \end {equation}
 
 
-Then, from mass conservation, $N = \theta N' + (1-\theta)N''$, equation
-\eqref{eq_product_assay}, and the definition of the abundance, $R$, it is
-possible to express $\beta$ as a function of only the feed abundance,
-$R$, the cut $\theta$ and $\alpha$:
+Then, from mass conservation, $N = \theta N' + (1-\theta)N''$ and equation
+\eqref{eq_product_assay}, it is possible to express $\beta$ as a function of
+only the feed abundance, $R$, the cut $\theta$ and $\alpha$:
 
 \begin{subequations}
     \begin{equation}\label{eq_beta_interim}
@@ -198,8 +197,17 @@ $R$, the cut $\theta$ and $\alpha$:
     \end{equation}
 \end{subequations}
 
+Finally from equation \eqref{eq_alpha} and \eqref{eq_beta} it is possible to
+determine the cut, $\theta$ required to build an ideal cascade:
 
-To construct an ideal cascade stage, a stage cut ($\theta$) must first be computed.
+\begin{eqnarray}
+    \theta_{i} = \dfrac{N_{i} - \dfrac{1}{1 + \beta/R_{i}}}{ \dfrac{\alpha R_{i}}{1 + \alpha R_{i}} -
+           \dfrac{1}{1 + \beta/R_{i}}}
+           \label{eq_theta}
+\end{eqnarray}
+
+
+To construct an ideal stage, a cut ($\theta$) must first be computed.
 This is found iteratively, searching for the optimal cut value where $\alpha = \beta$
 for a given feed and centrifuge parameters. With a separative power calculated,
 and $\alpha$ and $\beta$ value can be determined for an initial cut guess. This
@@ -221,25 +229,28 @@ value between 0.45 and 0.525 when $\alpha = \beta$.
     \label{fig_a_m_b}
 \end{figure}
 
-From equation \eqref{eq_alpha} and \eqref{eq_beta} it is possible to determine
-the cut, $\theta$ required to build an ideal cascade:
+The number of machines required to construct a stage can then be computed using
+equation \eqref{eq_alpha_principle} to solve for the centrifuge feed flow:
 
-\begin{eqnarray}
-    \theta_{i} = \dfrac{N_{i} - \dfrac{1}{1 + \beta/R_{i}}}{ \dfrac{\alpha R_{i}}{1 + \alpha R_{i}} -
-           \dfrac{1}{1 + \beta/R_{i}}}
-           \label{eq_theta}
-\end{eqnarray}
+\begin{equation}\label{eq_cent_feed}
+    F_c = \frac{2 \delta U}{(\alpha - 1)^2} \frac{M}{M_{238}} \frac{1-\theta}{\theta}
+\end{equation}
 
-
-As $\alpha_{i}$ and $\beta_{i}$ remain constant, only the value of the cut,
-$\theta_{i}$, changes across the different stages of a cascade.  This algorithm
-assumes that the corresponding separative power $\delta U$ (not re-computed) can
-be achieved with the chosen centrifuge design, tuning other operational
-parameter such as the rotation speed, the counter-current flow ratio, etc.  Once
-$\theta_{i}$ is determined, it is possible to compute the product and the tail
-assay.
+Where the molar mass ratio $\frac{M}{M_{238}}$ accounts for the molar mass
+differences between the feed gas, $UF_6$, and the individual uranium isotopes
+being separated. The stage feed flow can then be divided by the individual
+centrifuge feed flow, equation \eqref{eq_cent_feed}, to find the exact number of
+machines needed for the ideal stage. In practice, this number is rounded up to
+account for fractional machines required.
 
 
+In a cascade, as $\alpha_{i}$ and $\beta_{i}$ remain constant, only the value of
+the cut, $\theta_{i}$, changes across the different stages of a cascade.  This
+algorithm assumes that the corresponding separative power $\delta U$ (not
+re-computed) can be achieved with the chosen centrifuge design, tuning other
+operational parameter such as the rotation speed, the counter-current flow
+ratio, etc.  Once $\theta_{i}$ is determined, it is possible to compute the
+product and the tail assay.
 
 
 The design of the ideal symmetric cascade is performed through 2 steps. First,
