@@ -313,15 +313,15 @@ available of machines is reached.
 
 Little information is available about optimising an existing enrichment cascade
 that is being fed with a feed enrichment that does not match the design
-enrichment. So far 3 different methods have been investigated.
+enrichment. Here, 3 different methods will be investigated.
 
-The first one assumes that no change are been made to the cascade, i.e $\delta
+The first one assumes that no changes are being made to the cascade, i.e $\delta
 U$, $F$ and $\theta$ are fixed across all stages. The second one assumes the cut
 value at each stage is retuned to maintain the ideal state of the cascade,
 $\alpha$ and $\beta$ remain fixed. The last one, described in \cite{walker.2017}
-assumes the tails to product enriching factor and the cut remain constants ($\gamma =
-\alpha\times\beta$). Models behaviors and assumptions are summarized in Tab.
-\ref{tab:models}.
+assumes the tails to product enrichment factor and the cut remain constants
+(eq. \eqref{eq_gamma-def}: $\gamma = \alpha\beta$). Models behaviors and
+assumptions are summarized in Tab. \ref{tab:models}.
 
 \begin{table}[htb]
 \centering
@@ -331,7 +331,7 @@ assumes the tails to product enriching factor and the cut remain constants ($\ga
 
 Model                &    A                 & B                  & C  \\
 \midrule
-Constant parameters  & $\alpha_i, \theta_i$ & $\alpha_i=\beta_i$ & $\gamma_i=\alpha_i .\beta_i, \theta_i$       \\
+Constant parameters  & $\alpha_i, \theta_i$ & $\alpha_i=\beta_i$ & $\gamma_i=\alpha_i\beta_i, \theta_i$       \\
 Varying parameters   & $\beta_i$            & $\theta_i$         & $\alpha_i, \beta_i$                     \\
 Assays determination & blended              & ideal              & blended                  \\
 Flow                 & unchanged            & reduced            & unchanged       \\
@@ -344,10 +344,10 @@ Flow                 & unchanged            & reduced            & unchanged    
 \subsubsection{Model A}
 
 The tuning method A does not re-optimize $\theta_i$ keeping the same flow as the
-ideal configuration. From equation \eqref{eq_alpha}, maintaining $\delta U$, $F$
-and $\theta$ unchanged implies $\alpha$ remains unchanged as well. According to
-equation \eqref{eq_beta}, when $\alpha$ and $\theta$ are fixed, if the feed
-assay ($N$) changes, $\beta$ will change accordingly.  This breaks the
+ideal configuration. From equation \eqref{eq_alpha}, maintaining $\delta U$ and
+$F$ while $\theta$ is unchanged implies $\alpha$ remains unchanged as well.
+According to equation \eqref{eq_beta}, when $\alpha$ and $\theta$ are fixed, if
+the feed assay ($N$) changes, $\beta$ will change accordingly.  This breaks the
 ideal status of the cascade, i.e. $N_{i} \neq N'_{i-1} \neq N''_{i+1}$.
 
 
@@ -357,8 +357,8 @@ blended in order to determine the correct stage feed assay. All feed assays are
 iteratively updated, blending the proper product and tails, then using the
 updated feed assay, the new product and tails assays are recomputed. This
 process is repeated until the sum of the square difference in assays is smaller
-than $10^{-8}$.  As the cut remain fixed at each stage the flows do not need to
-be recomputed.
+than $10^{-8}$.  As the cut remains fixed at each stage, the flows do not need
+to be recomputed.
 
 This model assumes that it is possible to maintain the separative power of a
 centrifuges, $\delta U$, for any feed assays $N$ while maintaining its cut
@@ -366,10 +366,11 @@ $\theta$ and feed flow $F$.
 
 \subsubsection{Model B}
 
-Using the second method, the cut value at each stage $\theta_i$, is retuned in
+Using the second method, the cut value at each stage, $\theta_i$, is retuned in
 order to maintain the $\alpha_i$ and $\beta_i$ at their original values
-(equation \eqref{eq_theta}). The cascade remaining ideal, the product and tails
-assay at each stages are easily determined using equations \eqref{eq_alphabeta}.
+(equation \eqref{eq_theta}). Since the cascade remains ideal, the product and
+tails assay at each stage can easily be determined using equations
+\eqref{eq_alphabeta}.
 
 As the cut values change, the relative flow rates between the different stages
 are recomputed using equation \eqref{eq_flow}.  Under this model, the flow at
@@ -396,9 +397,9 @@ constant regardless to the feed assays. To compute the response of the cascade
 one need to determine $\alpha$ and $\beta$ such that their product and
 $\theta$ remain fixed.
 From equations \eqref{eq_alphabeta} and the assay conservation equation $N =
-\theta N' + (1-\theta)N''$ it is possible to express the product $N'$ as a function of
-the feed assay $N$, $\gamma$ and the cut $\theta$ as one solution of the second
-order equation \eqref{eq_gamma_p}:
+\theta N' + (1-\theta)N''$ it is possible to express the product, $N'$,
+dependent on the feed assay $N$, $\gamma$, and the cut, $\theta$, as one
+solution of the second order equation \eqref{eq_gamma_p}:
 
 \begin{equation}\label{eq_gamma_p}
     \theta(\gamma-1)N'^2+((N+\theta)(\gamma-1)+1)N'-N\gamma = 0
@@ -407,6 +408,7 @@ order equation \eqref{eq_gamma_p}:
 
 The only solution allowing product assay to range between 0 and 1 is the
 following :
+
 \begin{equation}\label{eq_model_b_sol}
     N' = \frac{N+\theta}{2\theta} +
          \frac{1 - \sqrt{\gamma^{2}(N-\theta)^{2}
@@ -414,41 +416,41 @@ following :
                          + (N + \theta + 1)^{2}}}
               {2\theta(\gamma - 1)}
 \end{equation}
+
 Once the product assay is known, one can trivially determine the tails assay,
-$\alpha$ and $\beta$ using equations \eqref{eq_alphabeta} and mass
+$\alpha$ and $\beta$, using equations \eqref{eq_alphabeta} and mass
 conservation.
 
-Similar to model A, because the cut values remain constant, the flows don't
-need to be recomputed, and the correct assays, $\alpha$ and $\beta$ are
+Similar to model A, because the cut values remain constant, the flows do not
+need to be recomputed and the correct assays, $\alpha$ and $\beta$, are
 determined through iterative blending of the product assays of the previous
 stage and the tails assay of the next stage using equation
 \eqref{eq_model_b_sol}.
 
 This model assumes that it is possible to tune the centrifuge separative power
-$\delta U$ in order to maintain, for any feed assay $N$, its tails to product
-enrichment factor $\gamma$, while maintaining its cut $\theta$ and feed flow
-$F$.
+$\delta U$ in order to maintain for any feed assay $N$ and its tails to product
+enrichment factor $\gamma$ while maintaining its cut $\theta$ and feed flow $F$.
 
-The speed at which each models reach a threshold of $90\%$ enrichment is
-illustrated in Figure \ref{fig:model_comparison}. The production curve of
-enrichment for each model is shown. The step functions for each model represent
-the cascade configuration. Each step is one cascade in a chain of cascades and
-the shape of the curve for each model gives an indication of how quickly the model
-can reach the enrichment threshold. The main difference is that Model B reaches
-the threshold faster, whereas Models A and C reach a higher enrichment value.
-This highlights some of the immediate differences that would influence the choice
-of using each model in a breakout scenario.
+%The speed at which each models reach a threshold of $90\%$ enrichment is
+%illustrated in Figure \ref{fig:model_comparison}. The production curve of
+%enrichment for each model is shown. The step functions for each model represent
+%the cascade configuration. Each step is one cascade in a chain of cascades and
+%the shape of the curve for each model gives an indication of how quickly the model
+%can reach the enrichment threshold. The main difference is that Model B reaches
+%the threshold faster, whereas Models A and C reach a higher enrichment value.
+%This highlights some of the immediate differences that would influence the choice
+%of using each model in a breakout scenario.
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[scale=0.4]{ModelComparison}
-    \caption{The curve of resulting product assays for each model is plotted.
-    Since the feed assay of each cascade is fed into the next cascade in the
-    chain, a linear relationship between the product and feed assays is plotted
-    in black. The step function for each model represents the output of the
-    cascade chain (each step is a cascade). While there are four steps for each
-    model, Model B (green) reached the $90\%$ enrichment threshold before
-    Model A (red) or Model C (blue). However, in the same amount of steps, Models
-    A and C are able to achieve a higher enrichment percent than Model B.}
-    \label{fig:model_comparison}
-\end{figure}
+%\begin{figure}[ht]
+%    \centering
+%    \includegraphics[scale=0.4]{ModelComparison}
+%    \caption{The curve of resulting product assays for each model is plotted.
+%    Since the feed assay of each cascade is fed into the next cascade in the
+%    chain, a linear relationship between the product and feed assays is plotted
+%    in black. The step function for each model represents the output of the
+%    cascade chain (each step is a cascade). While there are four steps for each
+%    model, Model B (green) reached the $90\%$ enrichment threshold before
+%    Model A (red) or Model C (blue). However, in the same amount of steps, Models
+%    A and C are able to achieve a higher enrichment percent than Model B.}
+%    \label{fig:model_comparison}
+%\end{figure}
