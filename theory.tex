@@ -1,9 +1,9 @@
 \section{Theory}
 
 In the following section, equations and algorithms used to model the behavior of
-a symmetric ideal gas centrifuge cascade from the individual centrifuge property
-are described. Details will also be provided to model the centrifuge behavior
-when fed with a different feed enrichment than the design one.
+a symmetric ideal gas centrifuge cascade from individual centrifuge properties
+are described. Details will also be provided to model centrifuge behavior
+when fed with a different feed enrichment than designed.
 
 \subsection{Centrifuge properties}
 
@@ -58,8 +58,8 @@ P1-type centrifuge properties have been chosen (Table \ref{tab:centrifuges}).
     \label{tab:centrifuges}
 \end{table}
 
-The variable $Z_p$ is the rectifier length, or the location of the feed point, has
-an optimal axial location as defined by \cite{raetz.phd}:
+The variable $Z_p$ is the rectifier length, or the location of the feed point,
+and has an optimal axial location as defined by \cite{raetz.phd}:
 
 \begin{equation}
     Z_p = \frac{(1-\theta)(1+L/F)}{1-\theta+L/F}Z
@@ -67,13 +67,13 @@ an optimal axial location as defined by \cite{raetz.phd}:
 
 This optimizes the recitifer length based on the cut, $\theta$, which is an expression
 of the fraction of the centrifuge feed that is output as product, and the counter-current
-flow, $L/F$. In practice, this value is a design parameter that is updated in the model
+flow, $L/F$. In practice, this value is a design parameter that is defined in the model
 during the design of the centrifuge cascade.
 
 The parameters $r_1$ and $r_2$ are the separation radii of the enriched material
 (here ${}^{235}\mathrm{U}$ vs. ${}^{238}\mathrm{U}$), $r_1$ being the withdrawal
 radius for the lighter isotope and $r_2$ for the heavier isotope. R\"aetz's
-two-shell model looks for optimal values between these two, as defined from
+two-shell model looks for optimal values between these two, as described by
 the hydrodynamic equations. The radii ratio is optimized using the following relationship:
 
 \begin{equation}
@@ -139,7 +139,7 @@ $\beta$ (feed to tail), and $\gamma$ (tail to product) can then be defined:
 
 A symmetric cascade is a cascade where a stage's feed, $F$, with a tail, $T$, of the next
 stage and product, $P$, of the previous one. For the cascade feeding stage
-an external feed, $F_{ext}$:
+and external feed, $F_{ext}$:
 
 \begin{equation}
     F_{i} = T_{i+1} + F_{i-1} ~(+ F_{ext})
@@ -168,7 +168,7 @@ provided as an input.
 
 From equation \eqref{eq_raetz} and \eqref{eq_alpha_principle} it is possible to
 express $\alpha$ as a function of the feed rate $F$, the separative performance
-$\delta U(\theta)$ and the cut $\theta$:
+$\delta U$ (a function of $\theta$), and the cut $\theta$:
 
 \begin{equation} \label{eq_alpha}
     \alpha = \sqrt{\frac{2\delta U(\theta)}{F} \frac{1-\theta}{\theta}} + 1
@@ -184,7 +184,7 @@ From equations \eqref{eq_alphabeta}, the product assay can be expressed as:
 
 Then, from mass conservation, $N = \theta N' + (1-\theta)N''$ and equation
 \eqref{eq_product_assay}, it is possible to express $\beta$ as a function of
-only the feed abundance, $R$, the cut $\theta$ and $\alpha$:
+only the feed abundance, $R$, the cut $\theta$, and $\alpha$:
 
 \begin{subequations}
     \begin{equation}\label{eq_beta_interim}
@@ -198,7 +198,7 @@ only the feed abundance, $R$, the cut $\theta$ and $\alpha$:
 \end{subequations}
 
 Finally from equation \eqref{eq_alpha} and \eqref{eq_beta} it is possible to
-determine the cut, $\theta$ required to build an ideal cascade:
+determine the cut, $\theta$, required to build an ideal cascade:
 
 \begin{eqnarray}
     \theta_{i} = \dfrac{N_{i} - \dfrac{1}{1 + \beta/R_{i}}}{ \dfrac{\alpha R_{i}}{1 + \alpha R_{i}} -
@@ -207,10 +207,10 @@ determine the cut, $\theta$ required to build an ideal cascade:
 \end{eqnarray}
 
 
-To construct an ideal stage, a cut ($\theta$) must first be computed.
+To construct an ideal stage, a cut, $\theta$, must first be computed.
 This is found iteratively, searching for the optimal cut value where $\alpha = \beta$
 for a given feed and centrifuge parameters. With a separative power calculated,
-and $\alpha$ and $\beta$ value can be determined for an initial cut guess. This
+an $\alpha$ and $\beta$ value can be determined for an initial cut guess. This
 model assumes that the ideal cut for a stage should be between 0.1 and 0.9. The
 two enrichment factors are compared, and the higher or lower cut value is chosen
 by which pair of factors are closer. A new cut is determined from the chosen
@@ -261,10 +261,10 @@ determines the number of enriching and stripping stages as well as their
 enrichment properties ($N_{i}$, $N'_{i}$, $N''_{i}$,$\theta_{i}$).
 
 
-The second step determines the relative flows at each stages, solving the linear
+The second step determines the relative flows at each stage, solving the linear
 flow equation, \eqref{eq_flow}.
 The cascade can then be populated with actual machines until the maximum number
-available of machines is reached.
+of available machines is reached.
 
 \begin{equation}
 \resizebox{\linewidth}{!}{%
@@ -323,7 +323,7 @@ U$, $F$ and $\theta$ are fixed across all stages. The second one assumes the cut
 value at each stage is retuned to maintain the ideal state of the cascade,
 $\alpha$ and $\beta$ remain fixed. The last one, described in \cite{walker.2017}
 assumes the tails to product enrichment factor and the cut remain constants
-(eq. \eqref{eq_gamma-def}: $\gamma = \alpha\beta$). Models behaviors and
+(eq. \eqref{eq_gamma-def}: $\gamma = \alpha\beta$). Model behaviors and
 assumptions are summarized in Tab. \ref{tab:models}.
 
 \begin{table}[htb]
@@ -346,7 +346,7 @@ Flow                 & unchanged            & reduced            & unchanged    
 
 \subsubsection{Model A}
 
-The tuning method A does not re-optimize $\theta_i$ keeping the same flow as the
+The tuning method A does not re-optimize $\theta_i$, keeping the same flow as the
 ideal configuration. From equation \eqref{eq_alpha}, maintaining $\delta U$ and
 $F$ while $\theta$ is unchanged implies $\alpha$ remains unchanged as well.
 According to equation \eqref{eq_beta}, when $\alpha$ and $\theta$ are fixed, if
@@ -354,7 +354,7 @@ the feed assay ($N$) changes, $\beta$ will change accordingly.  This breaks the
 ideal status of the cascade, i.e. $N_{i} \neq N'_{i-1} \neq N''_{i+1}$.
 
 
-In order to compute the proper product and tails assay at each stage, the tails
+In order to compute the proper product and tails assay at each stage, the tail
 and the product from the next and the previous stage respectively must be
 blended in order to determine the correct stage feed assay. All feed assays are
 iteratively updated, blending the proper product and tails, then using the

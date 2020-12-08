@@ -1,12 +1,14 @@
 \section{The experiment}
 This work focuses on comparing the different misuse models to a reference
-calculation in which a single large cascade is build and designed to directly
+calculation in which a single large cascade is designed and built to directly
 produce \gls{HEU} from natural uranium.
 This works uses the Cyclus fuel cycle simulator to allow material exchange
-between facilities. The enrichment cascade algorithm have been implemented in
+between facilities. The enrichment cascade algorithm has been implemented in
 the $mbmore$ package \cite{mbmore.2018}.
 In each cases, 5060 centrifuges have been used and spread across up to 30
-different gas centrifuge enrichment cascades. 
+different gas centrifuge enrichment cascades. This is inspired by limitations
+placed on the Iranian uranium enrichment program via the Joint Comprehensive
+Plan of Action (JCPoA) \cite{jcpoa}.
 
 
 \subsection{The cascade configuration}
@@ -90,14 +92,18 @@ been computed as:
 where, $j$ represents a level of cascade and $N_{j}$, $N'_{j}$ and $N''_{j}$
 the feed, product and tails assay, respectively, of the cascades at this level.
 
-A flow equation similar to \eqref{eq:flow} is then solved to obtain the optimum
+A flow equation similar to \eqref{eq_flow} is then solved to obtain the optimum
 number of cascade per level. When the tails are not recycled, the $(1-\theta)$
 terms are removed from the flow equation.  The results of the level population
 are summarized in Table \ref{tab:level}.
 
 As it is not possible to assign a fraction of an enrichment cascade, cascade per
-level are rounded up for each level but the first one. The remaining available
-cascades are attributed to the first level.
+level must be rounded and assigned for each level. Again, per the JCPoA, 30
+cascades are distributed to the appropriate number of levels to achieve an
+HEU threshold with the least amount of levels. This optimal assignment is
+manually tested by running many different configurations. In generally, each
+level besides the first is rounded up from its optimal fractional value, with
+the remaining cascades being assigned to the first level.
 
 
 %% \subsection{Timestep effect}
