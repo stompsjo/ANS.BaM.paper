@@ -11,8 +11,7 @@ when fed with a different feed enrichment than designed.
 
 \paragraph{R\"aetz equation}
 
-As described in \cite{glaser.2008}, the separative power of a single centrifuge
-can be express as an analytical solution \cite{raetz.phd} of the
+As described by Glaser in \cite{glaser.2008}, the separative power of a single centrifuge can be express as an analytical solution \cite{raetz.phd} of the
 differential equation for the gas centrifuge:
 
 \begin{eqnarray}
@@ -77,18 +76,18 @@ two-shell model looks for optimal values between these two, as described by
 the hydrodynamic equations. The radii ratio is optimized using the following relationship:
 
 \begin{equation}
-    \max\{[1-(\frac{r_1}{r_2})^2]^2 \times [ \ln(\frac{r_2}{r_1})]^{-1}\}
+    \max \left\{ \left[1-\left(\frac{r_1}{r_2}\right)^2 \right]^2 \times \left[ \ln \left(\frac{r_2}{r_1} \right) \right]^{-1} \right\}
 \end{equation}
 
-The ratio can further be constrained by approximating $r_2$ as being very close
+This ratio can further be constrained by approximating $r_2$ as being very close
 to the inner centrifuge wall with radius $a$:
 
 \begin{equation}
-    (\frac{r_1}{r_2}) \approx (\frac{r_1}{a}) = \sqrt{1 - \frac{2RT}{M}(\ln x)\frac{1}{v_{a}^{2}}}
+    \left(\frac{r_1}{r_2}\right) \approx \left(\frac{r_1}{a}\right) = \sqrt{1 - \frac{2RT}{M}(\ln x)\frac{1}{v_{a}^{2}}}
 \end{equation}
-
+ 
 Here the gas constants are molar mass, $M$, temperature $T$, universal gas constant, $R$,
-and the pressure ratio, $x$ (typically $1000:1$).
+and the pressure ratio, $x$ (typically $1000:1$) \cite{}. %needs citation?
 This relationship is valid when $v_a > 380 \frac{\mathrm{m}}{\mathrm{s}}$.
 Otherwise, the relationship can be approximated $\{\frac{r_1}{r_2} \approx 0.534 \mid v_a \leq 380 \frac{\mathrm{m}}{\mathrm{s}}\}$.
 In order to decompose the ratio into each individual radius, knowledge on one
@@ -100,14 +99,13 @@ the midpoint of these two extremes (i.e. $r_2 = 0.975 a$). Then, $r_1$ can be
 found by simply multiplying this value by the ratio.
 
 With this, all parameters of the separative power equation \ref{eq:raetz} are
-defined and a value can be calculated. $\delta U$ has units similar to the feed
-flow, that of $[mg/s]$.
+defined and a value can be calculated. Separative power, $\delta U$, has units similar to the feed flow, that of $[mg/s]$.
 
 \paragraph{First principle}
 
-It can be shown \ref{avery} that the separative power of a single centrifuge can be
-derive from the first principle and expressed as a function of the feed to
-product enrichment factor, $\alpha$, the cut, $\theta$, and the feed rate, $F$:
+It can be shown \cite{avery} that the separative power of a single centrifuge can be
+derived from first principles and expressed as a function of the feed-to-product enrichment factor, $\alpha$, the cut, $\theta$, and the feed rate, $F$:
+%I think we should replicate at least some of that here
 
 \begin{equation} \label{eq_alpha_principle}
     \delta U = \frac{F}{2}\frac{\theta}{1-\theta}(\alpha-1)^{2}
@@ -116,9 +114,8 @@ product enrichment factor, $\alpha$, the cut, $\theta$, and the feed rate, $F$:
 \subsection{Centrifuges basic properties and definition}
 
 The outputs of a centrifuge relative to its input can be described with ratios
-of the abundance ($R = \frac{N}{1-N}$) where the feed, product, and tail are
-$N, N', N''$ respectively. Enrichment factiors of $\alpha$ (feed to product),
-$\beta$ (feed to tail), and $\gamma$ (tail to product) can then be defined:
+of the abundance ($R = \frac{N}{1-N}$) where the feed, product, and tail enrichment $N, N', N''$ respectively. Enrichment factors of $\alpha$ (feed-to-product),
+$\beta$ (feed-to-tail), and $\gamma$ (tail-to-product) can then be defined:
 
 \begin{subequations}
     \label{eq_alphabeta}
@@ -129,7 +126,7 @@ $\beta$ (feed to tail), and $\gamma$ (tail to product) can then be defined:
         \beta = \frac{1-N''}{N''}\frac{N}{1-N}
     \end{equation}
     \begin{equation}\label{eq_gamma-def}
-        \gamma = \alpha.\beta
+        \gamma = \alpha \, \beta
     \end{equation}
 \end{subequations}
 
@@ -137,9 +134,7 @@ $\beta$ (feed to tail), and $\gamma$ (tail to product) can then be defined:
 \subsection{Cascade Design}
 \subsubsection{Symmetric Cascade}
 
-A symmetric cascade is a cascade where a stage's feed, $F$, with a tail, $T$, of the next
-stage and product, $P$, of the previous one. For the cascade feeding stage
-and external feed, $F_{ext}$:
+A symmetric cascade is a cascade where a stage is fed using the tail, $T$, of the next stage and the product, $P$, of the previous one. The the cascade feeding stage, $F_{i}$ flow, with external feed, $F_{ext}$, is given by:
 
 \begin{equation}
     F_{i} = T_{i+1} + F_{i-1} ~(+ F_{ext})
@@ -160,14 +155,14 @@ expressed as:
 
 \subsection{Building the cascade}
 
-The method used to design a symmetric ideal cascade starts with the feeding
+Designing a symmetric ideal cascade beings with the feeding
 stage. As all the enrichment factors are equal across all the cascade, the
 feeding stage is used to determine all subsequent stages.
 The feed assay of the feeding stage, $N_{0}$, is fixed by the external feed assay
 provided as an input.
 
 From equation \eqref{eq_raetz} and \eqref{eq_alpha_principle} it is possible to
-express $\alpha$ as a function of the feed rate $F$, the separative performance
+express the feed-to-product enrichment factor $\alpha$ as a function of the feed rate $F$, the separative performance
 $\delta U$ (a function of $\theta$), and the cut $\theta$:
 
 \begin{equation} \label{eq_alpha}
@@ -178,13 +173,12 @@ $\delta U$ (a function of $\theta$), and the cut $\theta$:
 From equations \eqref{eq_alphabeta}, the product assay can be expressed as:
 
 \begin{equation}\label{eq_product_assay}
-    N' = \frac{\alpha R}{1 + \alpha R}
+    N' = \frac{\alpha \frac{N}{1-N}}{1+\alpha \frac{N}{1-N}} = \frac{\alpha R}{1 + \alpha R}
 \end {equation}
 
 
 Then, from mass conservation, $N = \theta N' + (1-\theta)N''$ and equation
-\eqref{eq_product_assay}, it is possible to express $\beta$ as a function of
-only the feed abundance, $R$, the cut $\theta$, and $\alpha$:
+\eqref{eq_product_assay}, it is possible to express the feed-to-tail enrichment factor $\beta$ as a function of only the feed abundance, $R$, the cut $\theta$, and the feed-to-product enrichment factor, $\alpha$:
 
 \begin{subequations}
     \begin{equation}\label{eq_beta_interim}
@@ -209,7 +203,7 @@ determine the cut, $\theta$, required to build an ideal cascade:
 
 To construct an ideal stage, a cut, $\theta$, must first be computed.
 This is found iteratively, searching for the optimal cut value where $\alpha = \beta$
-for a given feed and centrifuge parameters. With a separative power calculated,
+for given feed and centrifuge parameters. With a separative power calculated,
 an $\alpha$ and $\beta$ value can be determined for an initial cut guess. This
 model assumes that the ideal cut for a stage should be between 0.1 and 0.9. The
 two enrichment factors are compared, and the higher or lower cut value is chosen
@@ -244,21 +238,18 @@ machines needed for the ideal stage. In practice, this number is rounded up to
 account for fractional machines required.
 
 
-In a cascade, as $\alpha_{i}$ and $\beta_{i}$ remain constant, only the value of
+In a cascade, as the stage feed-to-product enrichment factor $\alpha_{i}$ and stage feed-to-tail enrichment factor $\beta_{i}$ remain constant, only the value of
 the cut, $\theta_{i}$, changes across the different stages of a cascade.  This
 algorithm assumes that the corresponding separative power $\delta U$ (not
-re-computed) can be achieved with the chosen centrifuge design, tuning other
-operational parameter such as the rotation speed, the counter-current flow
+re-computed) can be achieved with the chosen centrifuge design by tuning other
+operational parameters such as the rotation speed, counter-current flow
 ratio, etc.  Once $\theta_{i}$ is determined, it is possible to compute the
-product and the tail assay.
+product and the tail assays.
 
 
 The design of the ideal symmetric cascade is performed through 2 steps. First,
-the configuration and number of stages is determined, adding stages until the
-product assay of the final stage is greater or equal the product targeted assay,
-and similarly the tails assay is less or equal the tails desired assay.  This
-determines the number of enriching and stripping stages as well as their
-enrichment properties ($N_{i}$, $N'_{i}$, $N''_{i}$,$\theta_{i}$).
+the configuration and number of stages is determined, adding stages with product assay $N'_i$ calculated using equation \ref{eq_product_assay}, until the
+product assay of the final stage is greater than or equal to the product targeted assay. The stage tails assay $N''_i$ is calculated similarly, until it is less than or equal to the tails desired assay.  This determines the number of enriching and stripping stages as well as their enrichment properties ($N_{i}$, $N'_{i}$, $N''_{i}$,$\theta_{i}$).
 
 
 The second step determines the relative flows at each stage, solving the linear
@@ -318,11 +309,7 @@ Little information is available about optimising an existing enrichment cascade
 that is being fed with a feed enrichment that does not match the design
 enrichment. Here, 3 different methods will be investigated.
 
-The first one assumes that no changes are being made to the cascade, i.e $\delta
-U$, $F$ and $\theta$ are fixed across all stages. The second one assumes the cut
-value at each stage is retuned to maintain the ideal state of the cascade,
-$\alpha$ and $\beta$ remain fixed. The last one, described in \cite{walker.2017}
-assumes the tails to product enrichment factor and the cut remain constants
+The first method, A, assumes that no changes are being made to the cascade, i.e $\delta U$, $F$ and $\theta$ are fixed across all stages. The second method, B, assumes the cut value $\theta$ is re-tuned at each stage to maintain the ideal state of the cascade, while $\alpha$ and $\beta$ remain fixed. The last method, C, described in \cite{walker.2017} assumes the tails-to-product enrichment factor $\gamma$ and the cut $\theta$ remain constants
 (eq. \eqref{eq_gamma-def}: $\gamma = \alpha\beta$). Model behaviors and
 assumptions are summarized in Tab. \ref{tab:models}.
 
