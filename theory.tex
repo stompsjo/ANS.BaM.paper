@@ -103,12 +103,44 @@ defined and a value can be calculated. Separative power, $\delta U$, has units s
 
 \paragraph{First principle}
 
-It can be shown \cite{avery} that the separative power of a single centrifuge can be
-derived from first principles and expressed as a function of the feed-to-product enrichment factor, $\alpha$, the cut, $\theta$, and the feed rate, $F$:
+Separative power can be written as a function of the change in entropy performed \cite{avery}:
+
+\begin{equation}
+    \delta U = \frac{L}{RN} \frac{\Delta S}{(1-N)}
+\end{equation}
+
+Here, $L$ is the feed flow expressed as moles per second and could be interchangeably expressed as $F$ above.
+Using the Boltzmann definition of entropy, the change in entropy for a mixture of two isotopes is:
+
+\begin{equation}
+    \Delta S(N) = R \left( N \ln(N) + (1-N) \ln(1-N) \right)
+\end{equation}
+
+Using this in the expression for free energy \cite{?} and normalizing for temperature and gas constant,
+a value function can be constructed \cite{?}:
+
+\begin{equation}
+    V(x) = (2x-1) \ln{(\frac{x}{1-x})}
+\end{equation}
+
+Where $x$ here is a concentration for a mass (e.g. $N$). The separative work applied on a feed is then an expression of this value function:
+
+\begin{equation}
+    \delta U = \theta F V(N') + (1-\theta) F V(N'') - F V(N)
+\end{equation}
+
+Conducting a Taylor expansion of $V(N)$ around $N$ and utilizing the definition $N=\theta N' + (1-\theta)N''$ lends a simplification:
+
+\begin{equation}
+    \delta U = \frac{\theta}{1-\theta} \frac{F(\alpha-1)^2}{2} \frac{d^2 V(N)}{dN^2} \left[ N(1-N) \right]^2
+\end{equation}
+
+Finally, specifying the change in value function to be independent of $N$ (?) concludes in an expression for the separative power of a single centrifuge
+in terms of the feed-to-product enrichment factor, $\alpha$, the cut, $\theta$, and the feed rate, $F$ \cite{avery}:
 %I think we should replicate at least some of that here
 
 \begin{equation} \label{eq_alpha_principle}
-    \delta U = \frac{F}{2}\frac{\theta}{1-\theta}(\alpha-1)^{2}
+    \delta U = \frac{\theta}{1-\theta}\frac{F}{2}(\alpha-1)^{2}
 \end{equation}
 
 \subsection{Centrifuges basic properties and definition}
